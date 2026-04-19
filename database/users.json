@@ -1,0 +1,1805 @@
+{
+  "3bf0334eb1cef94419d6cd0531b": {
+    "username": "user_6285809839062@s.whatsapp.net",
+    "aliases": [
+      "6285809839062@s.whatsapp.net"
+    ],
+    "money": 999789842,
+    "limit": 15,
+    "level_cache": 89,
+    "level": 34,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "aktif",
+    "afk": null,
+    "createdAt": "2026-04-08T11:18:05.349Z",
+    "updatedAt": "2026-04-19T08:22:21.860Z",
+    "lastClaim": 1776495847312,
+    "terjawab": [
+      1,
+      2,
+      4,
+      7,
+      3
+    ]
+  },
+  "a1cca8dea889c9ba19d6cd09cdb": {
+    "username": "user_6281910828223@s.whatsapp.net",
+    "aliases": [
+      "6281910828223@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 60,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:18:24.221Z",
+    "updatedAt": "2026-04-13T11:32:30.623Z"
+  },
+  "77fbba2a9c511a4519d6cd0b4cd": {
+    "username": "user_6285136763825@s.whatsapp.net",
+    "aliases": [
+      "6285136763825@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 80,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:18:30.349Z",
+    "updatedAt": "2026-04-13T06:35:26.108Z"
+  },
+  "772ea9299b124b3b19d6cd0e37f": {
+    "username": "user_6283873021378@s.whatsapp.net",
+    "aliases": [
+      "6283873021378@s.whatsapp.net"
+    ],
+    "money": 99999524,
+    "limit": 0,
+    "level_cache": 11,
+    "level": 5,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "aktif",
+    "afk": null,
+    "createdAt": "2026-04-08T11:18:42.304Z",
+    "updatedAt": "2026-04-18T12:14:13.689Z",
+    "premium": "2053-08-27T04:05:23.479Z"
+  },
+  "9b580e78b9c77a4f19d6cd12e63": {
+    "username": "user_628976681863@s.whatsapp.net",
+    "aliases": [
+      "628976681863@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 19,
+    "level": 4,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "aktif",
+    "afk": null,
+    "createdAt": "2026-04-08T11:19:01.477Z",
+    "updatedAt": "2026-04-18T06:10:51.182Z"
+  },
+  "59d15b549b7fcbc819d6cd16ec4": {
+    "username": "user_6283836043544@s.whatsapp.net",
+    "aliases": [
+      "6283836043544@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 27,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:19:17.959Z",
+    "updatedAt": "2026-04-13T12:01:12.142Z"
+  },
+  "60ceb328923b690419d6cd1b2d0": {
+    "username": "user_60189106648@s.whatsapp.net",
+    "aliases": [
+      "60189106648@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 27,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:19:35.377Z",
+    "updatedAt": "2026-04-16T08:24:59.606Z"
+  },
+  "91b5086d8a94da4419d6cd427f0": {
+    "username": "user_6285822134348@s.whatsapp.net",
+    "aliases": [
+      "6285822134348@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 48,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:22:16.432Z",
+    "updatedAt": "2026-04-18T11:36:19.042Z"
+  },
+  "aaa321728026e8f019d6cd4a6b0": {
+    "username": "user_6283838344887@s.whatsapp.net",
+    "aliases": [
+      "6283838344887@s.whatsapp.net"
+    ],
+    "money": 9,
+    "limit": 0,
+    "level_cache": 22,
+    "level": 2,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:22:48.880Z",
+    "updatedAt": "2026-04-12T04:19:10.336Z",
+    "lastClaim": 1775647699402
+  },
+  "e021140699d5ea2519d6cd5e69b": {
+    "username": "user_6283150845447@s.whatsapp.net",
+    "aliases": [
+      "6283150845447@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 11,
+    "level": 4,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "aktif",
+    "afk": null,
+    "createdAt": "2026-04-08T11:24:10.779Z",
+    "updatedAt": "2026-04-18T11:36:23.915Z"
+  },
+  "885cd4e6a675b81119d6cd7763c": {
+    "username": "user_6289677044001@s.whatsapp.net",
+    "aliases": [
+      "6289677044001@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 13,
+    "level": 5,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:25:53.084Z",
+    "updatedAt": "2026-04-18T06:39:17.831Z"
+  },
+  "79d45e65ad46fb9519d6cd77696": {
+    "username": "user_6281254528717@s.whatsapp.net",
+    "aliases": [
+      "6281254528717@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 74,
+    "level": 3,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:25:53.174Z",
+    "updatedAt": "2026-04-12T04:28:27.668Z",
+    "premium": "2053-08-27T04:04:35.801Z"
+  },
+  "58be4b37b9965a3519d6cdcd437": {
+    "username": "user_6281241077553@s.whatsapp.net",
+    "aliases": [
+      "6281241077553@s.whatsapp.net"
+    ],
+    "money": 10001000131,
+    "limit": 0,
+    "level_cache": 91,
+    "level": 7,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "aktif",
+    "afk": null,
+    "createdAt": "2026-04-08T11:31:44.823Z",
+    "updatedAt": "2026-04-18T10:25:40.910Z",
+    "premium": "2053-08-27T04:04:54.772Z",
+    "terjawab": [
+      2,
+      5
+    ]
+  },
+  "7a0d64d498191bac19d6cdd7e81": {
+    "username": "user_6289510256495@s.whatsapp.net",
+    "aliases": [
+      "6289510256495@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 5,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:32:28.417Z",
+    "updatedAt": "2026-04-17T15:41:12.522Z"
+  },
+  "cc28fab5901d797d19d6cec2e4a": {
+    "username": "user_6283181408349@s.whatsapp.net",
+    "aliases": [
+      "6283181408349@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 15,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:48:30.922Z",
+    "updatedAt": "2026-04-08T12:32:53.159Z"
+  },
+  "7462ec8bbeba688419d6cf33bb4": {
+    "username": "user_6285167123580@s.whatsapp.net",
+    "aliases": [
+      "6285167123580@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 12,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:56:13.108Z",
+    "updatedAt": "2026-04-13T11:57:36.114Z"
+  },
+  "e3d0ac3f823f091019d6cf532e4": {
+    "username": "user_923196994667@s.whatsapp.net",
+    "aliases": [
+      "923196994667@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 48,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T11:58:21.924Z",
+    "updatedAt": "2026-04-12T04:59:06.240Z"
+  },
+  "db0e9d46b09229ab19d6d020f09": {
+    "username": "user_6281231801711@s.whatsapp.net",
+    "aliases": [
+      "6281231801711@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 95,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T12:12:24.714Z",
+    "updatedAt": "2026-04-16T09:17:58.749Z"
+  },
+  "c48d7d9f952c4a6e19d6d049a0a": {
+    "username": "user_6285748357327@s.whatsapp.net",
+    "aliases": [
+      "6285748357327@s.whatsapp.net"
+    ],
+    "money": 7,
+    "limit": 10,
+    "level_cache": 48,
+    "level": 5,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T12:15:11.370Z",
+    "updatedAt": "2026-04-19T07:56:36.430Z",
+    "premium": "2027-04-18T11:08:56.164Z",
+    "lastClaim": 1776344851178
+  },
+  "85875621adee694819d6d059173": {
+    "username": "user_6281927088516@s.whatsapp.net",
+    "aliases": [
+      "6281927088516@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 57,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T12:16:14.708Z",
+    "updatedAt": "2026-04-17T02:33:17.519Z"
+  },
+  "f82db827b0dfe86e19d6d154dcd": {
+    "username": "user_6281398837130@s.whatsapp.net",
+    "aliases": [
+      "6281398837130@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 37,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T12:33:25.966Z",
+    "updatedAt": "2026-04-12T23:29:22.259Z"
+  },
+  "f83ad5e19b1c694519d6d41455b": {
+    "username": "user_6289673779808@s.whatsapp.net",
+    "aliases": [
+      "6289673779808@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 33,
+    "level": 3,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-08T13:21:27.387Z",
+    "updatedAt": "2026-04-18T11:29:32.278Z"
+  },
+  "464566f99dd97a8219d711a94d1": {
+    "username": "user_84878311691@s.whatsapp.net",
+    "aliases": [
+      "84878311691@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 76,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T07:17:40.689Z",
+    "updatedAt": "2026-04-18T10:15:16.941Z"
+  },
+  "bf5548db94d49a6b19d711cc9b0": {
+    "username": "user_6288220658945@s.whatsapp.net",
+    "aliases": [
+      "6288220658945@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 9,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T07:20:05.296Z",
+    "updatedAt": "2026-04-09T07:59:03.004Z"
+  },
+  "16a601f597992ba519d711fa33d": {
+    "username": "user_6283164482244@s.whatsapp.net",
+    "aliases": [
+      "6283164482244@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 2,
+    "level": 2,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T07:23:12.061Z",
+    "updatedAt": "2026-04-18T08:16:21.277Z"
+  },
+  "8b3308d6aa8a8b6d19d712b27c2": {
+    "username": "user_6287840009813@s.whatsapp.net",
+    "aliases": [
+      "6287840009813@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 36,
+    "level": 2,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T07:35:46.882Z",
+    "updatedAt": "2026-04-16T15:05:14.955Z"
+  },
+  "43e8a575b558a93f19d715109ee": {
+    "username": "user_6283157116089@s.whatsapp.net",
+    "aliases": [
+      "6283157116089@s.whatsapp.net"
+    ],
+    "money": 1,
+    "limit": 0,
+    "level_cache": 41,
+    "level": 4,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T08:17:09.614Z",
+    "updatedAt": "2026-04-18T14:55:41.290Z"
+  },
+  "c07420c8b1e1cafb19d71b8a064": {
+    "username": "user_6282252547795@s.whatsapp.net",
+    "aliases": [
+      "6282252547795@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T10:10:18.340Z",
+    "updatedAt": "2026-04-09T10:10:18.340Z"
+  },
+  "706b4e408dbd797519d71cdbe27": {
+    "username": "user_6287852467350@s.whatsapp.net",
+    "aliases": [
+      "6287852467350@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 8,
+    "level": 3,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T10:33:22.215Z",
+    "updatedAt": "2026-04-13T06:21:31.108Z"
+  },
+  "e088ff608ed77b0219d72049599": {
+    "username": "user_6289529280909@s.whatsapp.net",
+    "aliases": [
+      "6289529280909@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 96,
+    "level": 2,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T11:33:16.313Z",
+    "updatedAt": "2026-04-18T14:53:39.485Z"
+  },
+  "93cd6e99b56af9f219d724186e9": {
+    "username": "user_6281529247980@s.whatsapp.net",
+    "aliases": [
+      "6281529247980@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 23,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T12:39:50.249Z",
+    "updatedAt": "2026-04-10T04:06:23.723Z"
+  },
+  "fab75dcabb251b9f19d728da4f8": {
+    "username": "user_6285281198746@s.whatsapp.net",
+    "aliases": [
+      "6285281198746@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 17,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T14:02:58.680Z",
+    "updatedAt": "2026-04-10T11:19:22.242Z"
+  },
+  "b5ba08038e5748ff19d72f4ffdf": {
+    "username": "user_628211294152@s.whatsapp.net",
+    "aliases": [
+      "628211294152@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 74,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T15:55:52.159Z",
+    "updatedAt": "2026-04-13T06:22:49.812Z"
+  },
+  "9bd36a7db60e4b4919d74474fbb": {
+    "username": "user_6285293726774@s.whatsapp.net",
+    "aliases": [
+      "6285293726774@s.whatsapp.net"
+    ],
+    "money": 1e+28,
+    "limit": 10000000,
+    "level_cache": 9,
+    "level": 18,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "aktif",
+    "afk": null,
+    "createdAt": "2026-04-09T22:05:23.771Z",
+    "updatedAt": "2026-04-18T12:43:49.724Z",
+    "lastClaim": 1776495851970,
+    "premium": "2026-04-20T11:11:05.418Z",
+    "terjawab": [
+      1,
+      2
+    ]
+  },
+  "f008f8be80f2dba919d744850cd": {
+    "username": "user_6285881906746@s.whatsapp.net",
+    "aliases": [
+      "6285881906746@s.whatsapp.net"
+    ],
+    "money": 370,
+    "limit": 0,
+    "level_cache": 23,
+    "level": 9,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T22:06:29.581Z",
+    "updatedAt": "2026-04-18T06:42:30.587Z"
+  },
+  "3a44c2d7ae913bf119d7450afa1": {
+    "username": "user_628816536225@s.whatsapp.net",
+    "aliases": [
+      "628816536225@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-09T22:15:38.145Z",
+    "updatedAt": "2026-04-09T22:15:38.145Z"
+  },
+  "0d5e619fba05285d19d7451a5c7": {
+    "username": "user_52266128146652@lid",
+    "aliases": [
+      "52266128146652@lid"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 81,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "aktif",
+    "afk": null,
+    "createdAt": "2026-04-09T22:16:41.159Z",
+    "updatedAt": "2026-04-13T12:56:41.414Z",
+    "premium": "2053-08-28T12:53:30.021Z"
+  },
+  "255cf2e2a1e20a4219d7523807f": {
+    "username": "user_628133120950@s.whatsapp.net",
+    "aliases": [
+      "628133120950@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 3,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T02:05:54.175Z",
+    "updatedAt": "2026-04-12T23:29:07.909Z"
+  },
+  "b44cc137bb93998219d75a9214c": {
+    "username": "user_6283829382305@s.whatsapp.net",
+    "aliases": [
+      "6283829382305@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 23,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T04:31:51.628Z",
+    "updatedAt": "2026-04-12T04:35:23.662Z"
+  },
+  "b346d03a92de7b3c19d75d01bac": {
+    "username": "user_6285183775260@s.whatsapp.net",
+    "aliases": [
+      "6285183775260@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 98,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T05:14:26.092Z",
+    "updatedAt": "2026-04-18T07:08:15.146Z"
+  },
+  "dff04beda13b781319d75d20139": {
+    "username": "user_6288210473687@s.whatsapp.net",
+    "aliases": [
+      "6288210473687@s.whatsapp.net"
+    ],
+    "money": 1000000029,
+    "limit": 0,
+    "level_cache": 17,
+    "level": 3,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T05:16:30.393Z",
+    "updatedAt": "2026-04-13T12:15:15.243Z"
+  },
+  "c8266b5cb67c59ee19d75e7c160": {
+    "username": "user_628892996785@s.whatsapp.net",
+    "aliases": [
+      "628892996785@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 6,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T05:40:15.840Z",
+    "updatedAt": "2026-04-10T05:47:08.173Z"
+  },
+  "29afb9598a37bb8e19d76657ec6": {
+    "username": "user_62895622105834@s.whatsapp.net",
+    "aliases": [
+      "62895622105834@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 2,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T07:57:36.326Z",
+    "updatedAt": "2026-04-10T08:00:31.847Z"
+  },
+  "36b43a5998f9fba319d77117cee": {
+    "username": "user_6283854975341@s.whatsapp.net",
+    "aliases": [
+      "6283854975341@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T11:05:28.046Z",
+    "updatedAt": "2026-04-10T11:05:28.046Z"
+  },
+  "0949c6d5b609eb6d19d772cebce": {
+    "username": "user_62882016925117@s.whatsapp.net",
+    "aliases": [
+      "62882016925117@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T11:35:25.902Z",
+    "updatedAt": "2026-04-10T11:35:25.902Z"
+  },
+  "c908c66e91c2fa6e19d774e68be": {
+    "username": "user_274534829703301@lid",
+    "aliases": [
+      "274534829703301@lid"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 5,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T12:12:00.574Z",
+    "updatedAt": "2026-04-17T10:58:10.853Z",
+    "premium": "2026-04-24T10:58:10.853Z"
+  },
+  "ba76b17288eb7a9219d774ecc0f": {
+    "username": "user_120363400363568943@newsletter",
+    "aliases": [
+      "120363400363568943@newsletter"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 8,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T12:12:25.999Z",
+    "updatedAt": "2026-04-10T12:19:32.798Z"
+  },
+  "0ab6653a86ba090119d774f27c8": {
+    "username": "user_192182807957566@lid",
+    "aliases": [
+      "192182807957566@lid"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T12:12:49.480Z",
+    "updatedAt": "2026-04-10T12:12:49.480Z"
+  },
+  "6754255584f43add19d774fcefa": {
+    "username": "user_205342487093485@lid",
+    "aliases": [
+      "205342487093485@lid"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T12:13:32.282Z",
+    "updatedAt": "2026-04-10T12:13:32.282Z"
+  },
+  "8a97f4d2a8beca8b19d7755450b": {
+    "username": "user_120363335601686750@newsletter",
+    "aliases": [
+      "120363335601686750@newsletter"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 1,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T12:19:30.187Z",
+    "updatedAt": "2026-04-10T12:20:44.018Z"
+  },
+  "07a622cfbc515a8319d77555487": {
+    "username": "user_31864916058166@lid",
+    "aliases": [
+      "31864916058166@lid"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 5,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-10T12:19:34.151Z",
+    "updatedAt": "2026-04-10T12:20:16.319Z"
+  },
+  "af3d3f18b204198519d7ce4b587": {
+    "username": "user_6285187672420@s.whatsapp.net",
+    "aliases": [
+      "6285187672420@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 24,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-11T14:14:16.711Z",
+    "updatedAt": "2026-04-13T06:37:06.664Z"
+  },
+  "8c7656a6a5578b6219d7d07e02f": {
+    "username": "user_6281770287082@s.whatsapp.net",
+    "aliases": [
+      "6281770287082@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 10,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-11T14:52:41.391Z",
+    "updatedAt": "2026-04-12T01:40:58.830Z"
+  },
+  "832f55d386248b6119d7d4096d0": {
+    "username": "user_6288211046939@s.whatsapp.net",
+    "aliases": [
+      "6288211046939@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 19,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-11T15:54:38.160Z",
+    "updatedAt": "2026-04-13T11:30:38.090Z"
+  },
+  "92188536b95c4b9e19d7dc0c7a3": {
+    "username": "user_6285820160583@s.whatsapp.net",
+    "aliases": [
+      "6285820160583@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 8,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-11T18:14:39.267Z",
+    "updatedAt": "2026-04-12T01:11:37.731Z"
+  },
+  "238997c3ac24aa3c19d7ec7534b": {
+    "username": "user_6287800218523@s.whatsapp.net",
+    "aliases": [
+      "6287800218523@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 37,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-11T23:01:25.451Z",
+    "updatedAt": "2026-04-13T00:34:40.760Z"
+  },
+  "e6b9434ebcdfbb0019d7f833994": {
+    "username": "user_6283143496788@s.whatsapp.net",
+    "aliases": [
+      "6283143496788@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 25,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T02:26:39.636Z",
+    "updatedAt": "2026-04-12T23:28:11.183Z"
+  },
+  "93e52e5bb43d49c519d7f8d9470": {
+    "username": "user_6285705982324@s.whatsapp.net",
+    "aliases": [
+      "6285705982324@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 13,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T02:37:58.256Z",
+    "updatedAt": "2026-04-12T14:32:38.842Z"
+  },
+  "ecda4f319ddb68ae19d7f8dab82": {
+    "username": "user_6285339263554@s.whatsapp.net",
+    "aliases": [
+      "6285339263554@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 46,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T02:38:04.162Z",
+    "updatedAt": "2026-04-12T03:13:10.434Z"
+  },
+  "4c276c258bfe285a19d7fe7a4b0": {
+    "username": "user_6287861609541@s.whatsapp.net",
+    "aliases": [
+      "6287861609541@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T04:16:20.656Z",
+    "updatedAt": "2026-04-12T04:16:20.657Z"
+  },
+  "d4836739af9d3b0d19d8007e5e2": {
+    "username": "user_6288985620602@s.whatsapp.net",
+    "aliases": [
+      "6288985620602@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 8,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T04:51:34.498Z",
+    "updatedAt": "2026-04-12T04:58:38.610Z"
+  },
+  "9306ec4ea31f9a3a19d800b3279": {
+    "username": "user_6281385347529@s.whatsapp.net",
+    "aliases": [
+      "6281385347529@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 4,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T04:55:10.713Z",
+    "updatedAt": "2026-04-12T04:56:00.577Z"
+  },
+  "9456338980472bcf19d800eed29": {
+    "username": "user_62882015654281@s.whatsapp.net",
+    "aliases": [
+      "62882015654281@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T04:59:15.113Z",
+    "updatedAt": "2026-04-12T04:59:15.113Z"
+  },
+  "fd5fb521988c08f719d818aeb27": {
+    "username": "user_6289507076336@s.whatsapp.net",
+    "aliases": [
+      "6289507076336@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 2,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T11:54:18.279Z",
+    "updatedAt": "2026-04-12T13:18:03.188Z"
+  },
+  "80febe3da7307a6619d822a871b": {
+    "username": "user_6283148791172@s.whatsapp.net",
+    "aliases": [
+      "6283148791172@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 18,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T14:48:38.427Z",
+    "updatedAt": "2026-04-18T12:51:33.924Z"
+  },
+  "8c0f5f4b92ca185019d8310086d": {
+    "username": "user_62881022281392@s.whatsapp.net",
+    "aliases": [
+      "62881022281392@s.whatsapp.net"
+    ],
+    "money": 4,
+    "limit": 10,
+    "level_cache": 70,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T18:59:19.277Z",
+    "updatedAt": "2026-04-13T06:12:03.116Z",
+    "lastClaim": 1776047838625
+  },
+  "edea1f1b83f29b6819d84230ea6": {
+    "username": "user_120363425811855588@newsletter",
+    "aliases": [
+      "120363425811855588@newsletter"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 27,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-12T23:59:43.270Z",
+    "updatedAt": "2026-04-18T11:49:25.252Z"
+  },
+  "192d7ba3a35db99d19d84e5bf31": {
+    "username": "user_6283192694297@s.whatsapp.net",
+    "aliases": [
+      "6283192694297@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 5,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-13T03:32:22.449Z",
+    "updatedAt": "2026-04-18T09:07:11.531Z"
+  },
+  "c431f87db2b6593a19d868c939a": {
+    "username": "user_120363400911374213@newsletter",
+    "aliases": [
+      "120363400911374213@newsletter"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 20,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-13T11:14:13.018Z",
+    "updatedAt": "2026-04-18T06:01:17.756Z"
+  },
+  "203a2a608edde92419d868e8461": {
+    "username": "user_120363405860694609@newsletter",
+    "aliases": [
+      "120363405860694609@newsletter"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 56,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-13T11:16:20.193Z",
+    "updatedAt": "2026-04-19T08:06:29.795Z"
+  },
+  "0c66301fa025fb7c19d86c7ffe3": {
+    "username": "user_6281295658282@s.whatsapp.net",
+    "aliases": [
+      "6281295658282@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-13T12:19:07.363Z",
+    "updatedAt": "2026-04-13T12:19:07.363Z"
+  },
+  "8e49ba6cb8fe181619d86cf046c": {
+    "username": "user_120363407208140590@newsletter",
+    "aliases": [
+      "120363407208140590@newsletter"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 9,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-13T12:26:47.276Z",
+    "updatedAt": "2026-04-18T08:19:43.484Z"
+  },
+  "dbcffc0682d1eb7819d86e03af9": {
+    "username": "user_54525247361259@lid",
+    "aliases": [
+      "54525247361259@lid"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-13T12:45:35.353Z",
+    "updatedAt": "2026-04-13T12:45:35.353Z"
+  },
+  "221c0aa28e3c596019d94d2252b": {
+    "username": "user_120363423053078572@newsletter",
+    "aliases": [
+      "120363423053078572@newsletter"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 11,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-16T05:44:53.291Z",
+    "updatedAt": "2026-04-18T12:50:03.660Z"
+  },
+  "d2a3ecc38ba809af19d952eec87": {
+    "username": "user_62895383265310@s.whatsapp.net",
+    "aliases": [
+      "62895383265310@s.whatsapp.net"
+    ],
+    "money": 7,
+    "limit": 95,
+    "level_cache": 46,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-16T07:26:13.639Z",
+    "updatedAt": "2026-04-17T05:54:31.741Z",
+    "lastClaim": 1776324473246
+  },
+  "83959702b3cb49c019d95371678": {
+    "username": "user_601165458387@s.whatsapp.net",
+    "aliases": [
+      "601165458387@s.whatsapp.net"
+    ],
+    "money": 9,
+    "limit": 4,
+    "level_cache": 98,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-16T07:35:08.664Z",
+    "updatedAt": "2026-04-18T06:25:48.300Z",
+    "lastClaim": 1776493094784
+  },
+  "01a2bbd986c1788a19d9655d47c": {
+    "username": "user_6289531963213@s.whatsapp.net",
+    "aliases": [
+      "6289531963213@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 36,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "blacklist",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-16T12:48:20.604Z",
+    "updatedAt": "2026-04-16T12:53:09.999Z"
+  },
+  "2016a386b751296e19d9662a970": {
+    "username": "user_6288976983361@s.whatsapp.net",
+    "aliases": [
+      "6288976983361@s.whatsapp.net"
+    ],
+    "money": 3,
+    "limit": 90,
+    "level_cache": 63,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-16T13:02:21.552Z",
+    "updatedAt": "2026-04-18T01:20:40.066Z",
+    "lastClaim": 1776344904136
+  },
+  "c2dbbc7f9a905add19d96998c4f": {
+    "username": "user_6282343633767@s.whatsapp.net",
+    "aliases": [
+      "6282343633767@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 2,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-16T14:02:18.575Z",
+    "updatedAt": "2026-04-16T14:02:25.390Z"
+  },
+  "4a6a5ebdb8aaa88c19d96d875db": {
+    "username": "user_6281337212719@s.whatsapp.net",
+    "aliases": [
+      "6281337212719@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-16T15:11:01.595Z",
+    "updatedAt": "2026-04-16T15:11:01.595Z"
+  },
+  "0d1ed50582ba990d19d9714d0f3": {
+    "username": "user_6285156826144@s.whatsapp.net",
+    "aliases": [
+      "6285156826144@s.whatsapp.net"
+    ],
+    "money": 7,
+    "limit": 8,
+    "level_cache": 4,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "block",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-16T16:16:57.075Z",
+    "updatedAt": "2026-04-16T16:17:27.142Z",
+    "lastClaim": 1776356225746
+  },
+  "574b103da7d1d86519d9959cf8f": {
+    "username": "user_6285176914456@s.whatsapp.net",
+    "aliases": [
+      "6285176914456@s.whatsapp.net"
+    ],
+    "money": 1000,
+    "limit": 50,
+    "level_cache": 100,
+    "level": 4,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-17T02:51:33.135Z",
+    "updatedAt": "2026-04-18T11:43:03.273Z",
+    "lastClaim": 1776474062815,
+    "premium": "2026-04-21T08:00:30.135Z"
+  },
+  "11f90b878f77bb8719d99c4d618": {
+    "username": "user_6285798731788@s.whatsapp.net",
+    "aliases": [
+      "6285798731788@s.whatsapp.net"
+    ],
+    "money": 29,
+    "limit": 11,
+    "level_cache": 65,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-17T04:48:27.160Z",
+    "updatedAt": "2026-04-18T13:45:52.951Z",
+    "lastClaim": 1776471875838,
+    "premium": "2026-04-19T01:04:36.729Z"
+  },
+  "96fa2c5e80ae49a719d9a8f301f": {
+    "username": "user_6285642901130@s.whatsapp.net",
+    "aliases": [
+      "6285642901130@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 1,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-17T08:29:28.479Z",
+    "updatedAt": "2026-04-17T08:29:49.545Z"
+  },
+  "cfa0531e95e038d119d9b185609": {
+    "username": "user_6281387778001@s.whatsapp.net",
+    "aliases": [
+      "6281387778001@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 28,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-17T10:59:16.617Z",
+    "updatedAt": "2026-04-17T11:36:03.044Z",
+    "premium": "2026-04-24T11:01:03.266Z"
+  },
+  "ea8a3687b63998dc19d9b85b1b0": {
+    "username": "user_6287881841612@s.whatsapp.net",
+    "aliases": [
+      "6287881841612@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 14,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-17T12:58:43.504Z",
+    "updatedAt": "2026-04-18T14:50:41.436Z"
+  },
+  "ae15de5f9e97ebda19d9b9a6709": {
+    "username": "user_6281376842331@s.whatsapp.net",
+    "aliases": [
+      "6281376842331@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 1,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-17T13:21:20.649Z",
+    "updatedAt": "2026-04-17T13:35:16.263Z"
+  },
+  "17abfbaaaaea38c219d9dea96e7": {
+    "username": "user_6289608663173@s.whatsapp.net",
+    "aliases": [
+      "6289608663173@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-18T00:08:10.215Z",
+    "updatedAt": "2026-04-18T00:08:10.216Z"
+  },
+  "2af6d9bbba52385919d9f31fd2b": {
+    "username": "user_6285122954020@s.whatsapp.net",
+    "aliases": [
+      "6285122954020@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-18T06:05:46.667Z",
+    "updatedAt": "2026-04-18T06:05:46.667Z"
+  },
+  "9683ffcdade179f319d9f35b8e8": {
+    "username": "user_6285831766520@s.whatsapp.net",
+    "aliases": [
+      "6285831766520@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 3,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-18T06:09:51.336Z",
+    "updatedAt": "2026-04-18T07:50:17.280Z"
+  },
+  "7ebff25abd24087519d9f671133": {
+    "username": "user_6283189440642@s.whatsapp.net",
+    "aliases": [
+      "6283189440642@s.whatsapp.net"
+    ],
+    "money": 10,
+    "limit": 20,
+    "level_cache": 8,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-18T07:03:45.203Z",
+    "updatedAt": "2026-04-18T07:04:57.804Z",
+    "lastClaim": 1776495867941
+  },
+  "a32022cda8b959e419d9f6a5d36": {
+    "username": "user_6285751383643@s.whatsapp.net",
+    "aliases": [
+      "6285751383643@s.whatsapp.net"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 2,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-18T07:07:21.270Z",
+    "updatedAt": "2026-04-18T07:07:26.442Z"
+  },
+  "316eb22ead5aaac619da06af405": {
+    "username": "user_168569178448096@lid",
+    "aliases": [
+      "168569178448096@lid"
+    ],
+    "money": 0,
+    "limit": 0,
+    "level_cache": 0,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-18T11:47:37.093Z",
+    "updatedAt": "2026-04-18T11:47:37.093Z"
+  },
+  "526caed7b42e4ba219da109a7c6": {
+    "username": "user_6288216469371@s.whatsapp.net",
+    "aliases": [
+      "6288216469371@s.whatsapp.net"
+    ],
+    "money": 3,
+    "limit": 3,
+    "level_cache": 4,
+    "level": 1,
+    "role": "user",
+    "achievement": "gamers",
+    "status": "active",
+    "afk": {
+      "lastchat": 0,
+      "alasan": null
+    },
+    "createdAt": "2026-04-18T14:40:57.798Z",
+    "updatedAt": "2026-04-18T14:42:42.304Z",
+    "lastClaim": 1776523268527
+  }
+}

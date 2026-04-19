@@ -1,0 +1,121 @@
+[
+  {
+    "object": "user",
+    "attributes": {
+      "id": 1,
+      "external_id": null,
+      "uuid": "ba73f32c-36c5-4e74-be8b-8c29123abba4",
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "first_name": "admin",
+      "last_name": "admin",
+      "language": "en",
+      "root_admin": true,
+      "2fa": false,
+      "created_at": "2026-04-12T13:13:27+00:00",
+      "updated_at": "2026-04-12T13:13:27+00:00"
+    }
+  },
+  {
+    "object": "user",
+    "attributes": {
+      "id": 2,
+      "external_id": null,
+      "uuid": "26148f2e-f916-4a04-81df-6972519673f0",
+      "username": "gumy",
+      "email": "Gumy@admin.com",
+      "first_name": "Gumy",
+      "last_name": "Admin",
+      "language": "en",
+      "root_admin": true,
+      "2fa": false,
+      "created_at": "2026-04-12T14:10:44+00:00",
+      "updated_at": "2026-04-12T14:10:44+00:00"
+    }
+  },
+  {
+    "object": "user",
+    "attributes": {
+      "id": 3,
+      "external_id": null,
+      "uuid": "47169c22-507f-4c15-bdd6-1b302734a8fa",
+      "username": "ryuu",
+      "email": "ryuu@panel.com",
+      "first_name": "ryuu",
+      "last_name": "User",
+      "language": "en",
+      "root_admin": false,
+      "2fa": false,
+      "created_at": "2026-04-12T14:19:12+00:00",
+      "updated_at": "2026-04-12T14:19:12+00:00"
+    }
+  },
+  {
+    "object": "user",
+    "attributes": {
+      "id": 4,
+      "external_id": null,
+      "uuid": "7c33fcae-a1e3-49fa-bc90-cc57e912b066",
+      "username": "ahcb",
+      "email": "ahcb@panel.com",
+      "first_name": "ahcb",
+      "last_name": "User",
+      "language": "en",
+      "root_admin": false,
+      "2fa": false,
+      "created_at": "2026-04-12T14:24:31+00:00",
+      "updated_at": "2026-04-12T14:24:31+00:00"
+    }
+  },
+  {
+    "object": "user",
+    "attributes": {
+      "id": 5,
+      "external_id": null,
+      "uuid": "1795772e-01db-4d89-a26a-1637bf869467",
+      "username": "rizx",
+      "email": "rizx@panel.com",
+      "first_name": "rizx",
+      "last_name": "User",
+      "language": "en",
+      "root_admin": false,
+      "2fa": false,
+      "created_at": "2026-04-12T14:49:38+00:00",
+      "updated_at": "2026-04-12T14:50:39+00:00"
+    }
+  },
+  {
+    "object": "user",
+    "attributes": {
+      "id": 6,
+      "external_id": null,
+      "uuid": "1a697771-d3d5-49db-8592-57aea01fc412",
+      "username": "yanzz",
+      "email": "yanzz@panel.com",
+      "first_name": "yanzz",
+      "last_name": "User",
+      "language": "en",
+      "root_admin": false,
+      "2fa": false,
+      "created_at": "2026-04-12T17:59:25+00:00",
+      "updated_at": "2026-04-12T17:59:25+00:00"
+    }
+  },
+  {
+    "object": "user",
+    "attributes": {
+      "id": 7,
+      "external_id": null,
+      "uuid": "78350510-84a5-4ae5-8fa2-4e98e8cab273",
+      "username": "ryuuzen",
+      "email": "ryuuzen@gmail.com",
+      "first_name": "ryuuzen",
+      "last_name": "ryuuzen",
+      "language": "en",
+      "root_admin": false,
+      "2fa": false,
+      "created_at": "2026-04-13T06:30:38+00:00",
+      "updated_at": "2026-04-13T06:30:38+00:00"
+    }
+  }
+]

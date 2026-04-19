@@ -1,0 +1,17 @@
+# Node.js
+node_modules/    
+tmp/    
+lib/key.txt
+logs/      
+logs_panel/      
+plugins_backup/
+tracking_action/
+session/
+catatan update.txt
+npm-debug.log           
+yarn-error.log
+.pnpm-debug.log
+.env
+config.js
+tmp\logs\.e10f36bbc4a55945aad553833a179d04af3070bf-audit.json
+.menu
