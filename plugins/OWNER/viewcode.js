@@ -28,9 +28,9 @@ async function handle(sock, messageInfo) {
     return await reply(m, `_File tidak ditemukan:_ *${content}*`);
   }
 
-  if (path.extname(targetPath) !== ".js") {
-    return await reply(m, `_Hanya file .js yang diperbolehkan_`);
-  }
+//  if (path.extname(targetPath) !== ".js") {
+//    return await reply(m, `_Hanya file .js yang diperbolehkan_`);
+//  }
 
   try {
     const fileContent = fs.readFileSync(targetPath, "utf-8");
@@ -62,7 +62,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["viewcode"],
+  Commands: ["viewcode", "v"],
   OnlyPremium: false,
   OnlyOwner: true,
 };

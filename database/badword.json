@@ -1,1 +1,19 @@
-{}
+{
+  "120363409149646282@g.us": {
+    "listBadword": [
+      "bego"
+    ],
+    "createdAt": "2026-04-21T13:34:57.530Z",
+    "updatedAt": "2026-04-21T13:34:57.536Z"
+  },
+  "120363425984714150@g.us": {
+    "listBadword": [],
+    "createdAt": "2026-04-25T11:31:30.884Z",
+    "updatedAt": "2026-04-25T11:31:30.884Z"
+  },
+  "global-badword": {
+    "listBadword": [],
+    "createdAt": "2026-04-25T11:31:31.191Z",
+    "updatedAt": "2026-04-25T11:31:31.193Z"
+  }
+}

@@ -25,7 +25,7 @@ async function handle(sock, messageInfo) {
 4. *OWNER & RESELLER:*
    - Semua command *WAJIB* dijalankan di dalam grup OWNER CUST.
    - Jika ketahuan menggunakan fitur khusus di Private Chat (PC), owner berhak melakukan *BLACKLIST*.
-   - Bebas di jual belikan agar ADA KONFIRMASI TRX KEPADA OWNER UTAMA dan OWNER UTAMA HARUS SETUJU UNTUK MELAKUKAN CMD ITU.
+   - Bebas di jual belikan asal ADA KONFIRMASI TRX KEPADA OWNER UTAMA dan OWNER UTAMA HARUS SETUJU UNTUK MELAKUKAN CMD ITU.
    - Setinggi tinggi nya value yang dapat di berikan oleh OWNER PENYEWA, HANYA BOLEH SETARA 200% harga sewa penyewa.
    - Melanggar APAPUN RULES DI NO 4 INI, OWNER UTAMA BERHAK ATAS WEWENANG UNTUK MERALAT STATUS OWNER.
 

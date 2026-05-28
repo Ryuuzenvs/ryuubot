@@ -8,8 +8,11 @@ import { getGroupMetadata } from "../../lib/cache.js";
  * @returns {string} - vCard formatted string.
  */
 async function generateVCard(userId) {
-  const displayName = `Pushkontak - ${userId.split("@")[0]}`;
-  const phoneNumber = userId.split("@")[0];
+  const number = userId.split("@")[0];
+  
+  // Tambahkan '+' di depan nomor agar HP tahu ini format internasional (misal: +628123...)
+  const phoneNumber = number.startsWith('+') ? number : `+${number}`;
+  const displayName = `Pushkontak - ${number}`;
 
   // Format vCard versi 3.0
   const vCard = `
@@ -18,7 +21,7 @@ VERSION:3.0
 FN:${displayName}
 TEL;TYPE=CELL:${phoneNumber}
 END:VCARD
-    `.trim();
+  `.trim();
   return vCard;
 }
 
@@ -58,17 +61,21 @@ async function handle(sock, messageInfo) {
     }
 
     // Ambil id atau phoneNumber dari peserta grup
-    const allUsers = Metadata.participants
-      .map((v) => v.id || v.phoneNumber) // ambil id jika ada, kalau tidak ambil phoneNumber
-      .filter(Boolean); // buang yang undefined atau null
-
-    if (allUsers.length === 0) {
-      return await sock.sendMessage(
-        remoteJid,
-        { text: "Tidak ada kontak yang sesuai filter." },
-        { quoted: message }
-      );
-    }
+// Ambil id atau phoneNumber dari peserta grup
+const allUsers = Metadata.participants
+  .map((v) => {
+    // 1. Cek v.phoneNumber dulu (biasanya berisi nomor asli tanpa @s.whatsapp.net jika dia mode LID)
+    if (v.phoneNumber) return v.phoneNumber;
+    
+    // 2. Jika tidak ada phoneNumber, baru ambil v.id nya
+    return v.id;
+  })
+  .filter(Boolean)
+  .map((id) => id.split("@")[0]) // Ambil angka depannya saja
+  .filter((number) => {
+    // Filter ketat: pastikan nomor Indonesia (berawalan 62) dan panjangnya normal
+    return number.startsWith("62") && number.length >= 11 && number.length <= 14;
+  });
 
     // Buat file vCard
     let textVCF = "";
@@ -77,7 +84,9 @@ async function handle(sock, messageInfo) {
       textVCF += `${vCard}\n`;
     }
 
-    // Pastikan folder tujuan ada
+    // Pastikan folder tujuan adaMari kita buat format namanya menjadi rapi, misalnya: BotRyuu AutoSave - Member 001, BotRyuu AutoSave - Member 002, dst. Ini sangat disukai buyer karena di HP mereka nanti kontaknya akan berurutan rapi berdasarkan abjad dan nomor urut.
+
+
     const saveDir = path.join(process.cwd(), "tmp"); // Menggunakan direktori kerja saat ini
     if (!fs.existsSync(saveDir)) {
       fs.mkdirSync(saveDir, { recursive: true });

@@ -10,7 +10,7 @@ async function handle(sock, messageInfo) {
       {
         text: `_⚠️ Format Penggunaan:_ \n\n_💬 Contoh:_ _*${
           prefix + command
-        } 50*_\n\n_Ket : *1* limit = *20* money_`,
+        } 50*_\n\n_Ket : *1* limit = *99* money_`,
       },
       { quoted: message }
     );
@@ -29,7 +29,7 @@ async function handle(sock, messageInfo) {
   }
 
   // Harga per limit
-  const pricePerLimit = 20;
+  const pricePerLimit = 99;
   const totalCost = limitToBuy * pricePerLimit;
 
   // Ambil data user

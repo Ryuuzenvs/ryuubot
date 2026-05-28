@@ -28,7 +28,7 @@ const mess = {
     isAdmin: '⚠️ _Perintah ini Hanya Untuk Admin_',
     isGroup: '⚠️ _Perintah ini Hanya digunakan di grup_',
     limit:
-      '⚠️ _Limit kamu sudah habis_ \n\n_Ketik *.claim* untuk mendapatkan limit_ _Atau 💎 Berlangganan Member Premium agar limitmu tanpa batas_',
+      '⚠️ _Limit kamu sudah habis_ \n\n*HANYA RP.100* untuk mendapatkan 100 limit.\n\n_Ketik *.claim* untuk mendapatkan limit_ _Atau 💎 Berlangganan Member Premium agar limitmu tanpa batas_',
     success: '✅ _Success Kak_',
     isBlocked: '⚠️ _Kamu sedang di block dari penggunaan bot ini_', // kalau block seluruhnya
     isBaned: '⚠️ _Kamu sedang di ban pada grub ini_', // kalau ban hanya grub itu saja

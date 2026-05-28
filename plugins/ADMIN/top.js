@@ -1,5 +1,5 @@
 import { sendMessageWithMention } from "../../lib/utils.js";
-import { readUsers } from "../../lib/users.js";
+import { readUsers, isOwner } from "../../lib/users.js"; // Tambahkan import isOwner
 import { getGroupMetadata } from "../../lib/cache.js";
 import mess from "../../strings.js";
 
@@ -27,9 +27,16 @@ async function handle(sock, messageInfo) {
     const dataUsers = await readUsers();
 
     // Sortir berdasarkan money (paling besar di atas)
+    // --- BAGIAN PERBAIKAN: FILTER OWNER ---
     const sortedUsers = Object.entries(dataUsers)
+      .filter(([id, user]) => {
+        // Kita cek aliases-nya, jika salah satu alias adalah Owner, maka kita buang (filter out)
+        const hasOwnerAlias = user.aliases?.some(alias => isOwner(alias));
+        return !hasOwnerAlias; // Hanya return yang BUKAN owner
+      })
       .sort((a, b) => (b[1]?.money || 0) - (a[1]?.money || 0))
-      .slice(0, 10); // Ambil top 10
+      .slice(0, 10);
+    // ---------------------------------------
 
     const aliasList = sortedUsers
       .map(([id, user]) => {

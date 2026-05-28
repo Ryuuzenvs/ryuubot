@@ -69,6 +69,7 @@ _Contoh 2: wm youtube | creative_`,
 export default {
   handle,
   Commands: ['wm'],
-  OnlyPremium: false,
+  OnlyPremium: true,
   OnlyOwner: false,
+  limitDeduction: 3,
 };

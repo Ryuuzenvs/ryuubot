@@ -1,10 +1,7 @@
 import yts from 'yt-search';
-import ApiAutoresbotModule from 'api-autoresbot';
-const ApiAutoresbot = ApiAutoresbotModule.default || ApiAutoresbotModule;
-
+import axios from 'axios';
 import config from '../../config.js';
 import { logCustom } from '../../lib/logger.js';
-import { downloadToBuffer } from '../../lib/utils.js';
 
 // Fungsi kirim pesan dengan quote
 async function sendMessageWithQuote(sock, remoteJid, message, text) {
@@ -24,34 +21,6 @@ async function searchYouTube(query) {
   return searchResults.all.find((item) => item.type === 'video') || searchResults.all[0];
 }
 
-// Fungsi delay (jeda)
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-// Fungsi untuk memanggil API dengan retry (maksimal 3x, jeda 5 detik)
-async function fetchWithRetry(api, endpoint, params, maxRetries = 6, delayMs = 7000) {
-  let lastError;
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      const response = await api.get(endpoint, params);
-      if (response && response.status && response.data.url) {
-        //console.log(`✅ API berhasil pada percobaan ke-${attempt}`);
-        return response;
-      }
-      throw new Error(`Response tidak valid (percobaan ${attempt})`);
-    } catch (err) {
-      lastError = err;
-      //console.warn(`❌ Percobaan ke-${attempt} gagal: ${err.message}`);
-      if (attempt < maxRetries) {
-        // console.log(`⏳ Menunggu ${delayMs / 1000} detik sebelum mencoba lagi...`);
-        await delay(delayMs);
-      }
-    }
-  }
-  throw lastError;
-}
-
 // Fungsi utama
 async function handle(sock, messageInfo) {
   const { remoteJid, message, content, prefix, command } = messageInfo;
@@ -67,81 +36,73 @@ async function handle(sock, messageInfo) {
       );
     }
 
+    // Beri reaksi sedang memproses
     await sendReaction(sock, message, '⏰');
 
     // Pencarian YouTube
     const video = await searchYouTube(query);
 
     if (!video || !video.url) {
-      return sendMessageWithQuote(
-        sock,
-        remoteJid,
-        message,
-        '⛔ _Tidak dapat menemukan video yang sesuai_',
-      );
+      await sendReaction(sock, message, '❌');
+      return sendMessageWithQuote(sock, remoteJid, message, '⛔ _Tidak dapat menemukan video yang sesuai_');
     }
 
+    // Batasi durasi maksimal 1 jam (3600 detik) demi keamanan resource
     if (video.seconds > 3600) {
-      return sendMessageWithQuote(
-        sock,
-        remoteJid,
-        message,
-        '_Maaf, video terlalu besar untuk dikirim melalui WhatsApp._',
-      );
+      await sendReaction(sock, message, '❌');
+      return sendMessageWithQuote(sock, remoteJid, message, '_Maaf, durasi video terlalu panjang (maksimal 1 jam)._');
     }
 
-    const caption = `*YOUTUBE DOWNLOADER*\n\n◧ Title: ${video.title}\n◧ Duration: ${video.timestamp}\n◧ Uploaded: ${video.ago}\n◧ Views: ${video.views}\n◧ Description: ${video.description}`;
+    const caption = `*YOUTUBE DOWNLOADER*\n\n◧ Title: ${video.title}\n◧ Duration: ${video.timestamp}\n◧ Uploaded: ${video.ago}\n◧ Views: ${video.views}\n◧ Description: ${video.description || '-'}`;
 
-    // Inisialisasi API dan gunakan fetchWithRetry
-    const api = new ApiAutoresbot(config.APIKEY);
-    const response = await fetchWithRetry(
-      api,
-      '/api/downloader/ytplay',
-      { url: video.url, format: 'm4a' },
-      7,
-      9000,
+    // Tembak API Nexray Gratisan milik Zann
+    const { data } = await axios.get(`https://api.nexray.web.id/downloader/ytmp3?url=${encodeURIComponent(video.url)}`);
+
+    if (!data || !data.result || !data.result.url) {
+      throw new Error("Gagal mendapatkan URL audio dari API Nexray.");
+    }
+
+    const audioUrl = data.result.url;
+
+    // 1. Kirim info text beserta Thumbnail Video terlebih dahulu
+    await sock.sendMessage(
+      remoteJid,
+      { image: { url: video.thumbnail }, caption },
+      { quoted: message },
     );
 
-    if (response && response.status) {
-      const url_media = response.data.url;
+    // 2. Kirim File Audio dengan tampilan Audio Card (contextInfo) mewah ala iPhone/Spotify
+    // JIKA MAU JADI VOICE NOTE (VN):
+    // 2. Kirim File Audio sebagai MP3 biasa (Tanpa PTT, Tanpa ContextInfo ribet)
+    await sock.sendMessage(
+      remoteJid,
+      {
+        audio: { url: audioUrl },
+        mimetype: 'audio/mpeg', // Kembali ke mpeg agar cocok dengan output API Nexray
+        ptt: false,             // Matikan fitur VN agar tidak merusak file
+        fileName: `${video.title}.mp3`,
+      },
+      { quoted: message },
+    );
 
-      // Kirim image dengan caption
-      await sock.sendMessage(
-        remoteJid,
-        { image: { url: video.thumbnail }, caption },
-        { quoted: message },
-      );
+    // Beri reaksi sukses
+    await sendReaction(sock, message, '✅');
 
-      // Download file audio ke buffer
-      const audioBuffer = await downloadToBuffer(url_media, 'mp3');
-
-      await sock.sendMessage(
-        remoteJid,
-        {
-          audio: audioBuffer,
-          fileName: `yt.mp3`,
-          mimetype: 'audio/mp4',
-        },
-        { quoted: message },
-      );
-    } else {
-      await sendReaction(sock, message, '❗');
-    }
   } catch (error) {
     console.error('Error while handling command:', error);
     logCustom('info', content, `ERROR-COMMAND-${command}.txt`);
+    
+    await sendReaction(sock, message, '😭');
 
-    const errorMessage = `⚠️ Maaf, terjadi kesalahan saat memproses permintaan Anda. Mohon coba lagi nanti.\n\n💡 Detail: ${
-      error.message || error
-    }`;
+    const errorMessage = `⚠️ Maaf, terjadi kesalahan saat memproses permintaan Anda.\n\n💡 Detail: ${error.message || error}`;
     await sendMessageWithQuote(sock, remoteJid, message, errorMessage);
   }
 }
 
 export default {
   handle,
-  Commands: ['play'],
+  Commands: ['play', 'playaudio'],
   OnlyPremium: false,
   OnlyOwner: false,
-  limitDeduction: 10,
+  limitDeduction: 1, // Potongan limit dikurangi karena gratis tis tis!
 };

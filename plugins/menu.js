@@ -96,11 +96,12 @@ _Contoh: *.menu ai* atau *.allmenu* untuk menampilkan semua menu_`;
 }
 
 function buildAllMenu(pushName, roleUser, date, menuData) {
+  // Mengembalikan data penuh (tidak dipotong) untuk pengetesan kali ini
   return `
 ╭─────────────
-│ ᴺᵃᵐᵉ  : *${pushName || 'Unknown'}*
-│ ˢᵗᵃᵗᵘˢ : *${roleUser}*
-│ ᴰᵃᵗᵉ   : *${date}*
+│ Name  : *${pushName || 'Unknown'}*
+│ Status : *${roleUser}*
+│ Date   : *${date}*
 ├────
 ╰──────────────
 
@@ -129,7 +130,7 @@ async function sendMenuAudio(sock, jid, quoted) {
 }
 
 /* =========================
-   MAIN HANDLER
+   MAIN HANDLER (DEBUG & TROUBLESHOOT MODE)
 ========================= */
 
 async function handle(sock, messageInfo) {
@@ -140,108 +141,76 @@ async function handle(sock, messageInfo) {
   const category = (content || '').toLowerCase();
 
   const menuData = await loadMenuOnce();
-
   let result;
 
   /* ========= CATEGORY MENU ========= */
-
   if (category && menuData[category]) {
     const response = formatMenu(category, menuData[category]);
-
     result = await reply(m, style(response));
+    
   } else if (command === 'menu') {
     /* ========= MENU UTAMA ========= */
     const response = buildMainMenu(menuData);
-
     result = await reply(m, style(response));
+    
   } else if (command === 'allmenu') {
+    console.log(`\n[DEBUG ALLMENU] Triggered oleh: ${sender} (${pushName})`);
+    
     /* ========= ALL MENU ========= */
     const response = buildAllMenu(pushName, roleUser, date, menuData);
+    console.log(`[DEBUG ALLMENU] String menu berhasil dibuat. Panjang string: ${response.length} karakter.`);
 
-    const buffer = await readFileAsBuffer(MENU_MEDIA_FILE);
-
-    let mediaMessage = {
-      text: style(response),
-      contextInfo: {
-        externalAdReply: {
-          showAdAttribution: false,
-          title: `Halo ${pushName}`,
-          body: `Resbot ${global.version}`,
-          thumbnail: buffer,
-          jpegThumbnail: buffer,
-          thumbnailUrl: GROUP_LINK,
-          sourceUrl: GROUP_LINK,
-          mediaType: 1,
-          renderLargerThumbnail: true,
-        },
-      },
-    };
-
-    if (MENU_MEDIA_TYPE === 'gif') {
-      mediaMessage = {
-        caption: style(response),
-        contextInfo: {
-          externalAdReply: {
-            showAdAttribution: false,
-            title: `Halo ${pushName}`,
-            body: `Resbot ${global.version}`,
-            thumbnail: buffer,
-            jpegThumbnail: buffer,
-            //thumbnailUrl: GROUP_LINK,
-            //sourceUrl: GROUP_LINK,
-            mediaType: 1,
-            //renderLargerThumbnail: true,
-          },
-        },
-      };
+    let buffer;
+    try {
+      buffer = await readFileAsBuffer(MENU_MEDIA_FILE);
+      console.log(`[DEBUG ALLMENU] File media ditemukan. Ukuran buffer: ${buffer.length} bytes.`);
+    } catch (fileError) {
+      console.error(`[DEBUG ALLMENU ERROR] Gagal membaca file media di ${MENU_MEDIA_FILE}:`, fileError);
     }
 
-    if (MENU_MEDIA_TYPE === 'video') {
-      mediaMessage = {
-        caption: style(response),
-        contextInfo: {
-          externalAdReply: {
-            showAdAttribution: false,
-            title: `Halo ${pushName}`,
-            body: `Resbot ${global.version}`,
-            thumbnail: buffer,
-            jpegThumbnail: buffer,
-            //thumbnailUrl: GROUP_LINK,
-            //sourceUrl: GROUP_LINK,
-            mediaType: 1,
-            //renderLargerThumbnail: true,
-          },
-        },
-      };
-    }
+    // TROUBLESHOOT KEDUA: Kita buang total object externalAdReply yang dicurigai memicu filter spam WA
+    let mediaMessage = {};
 
-    /* ====== SESUAIKAN MEDIA ====== */
-
-    switch (MENU_MEDIA_TYPE) {
-      case 'image':
-        mediaMessage.image = buffer;
-        break;
-
-      case 'video':
-        mediaMessage.video = buffer;
-        break;
-
-      case 'gif':
-        mediaMessage.video = buffer;
-        mediaMessage.gifPlayback = true;
-        break;
-
-      default:
-        mediaMessage.image = buffer;
+    if (buffer) {
+      if (MENU_MEDIA_TYPE === 'video') {
+        mediaMessage = {
+          video: buffer,
+          caption: style(response)
+        };
+      } else if (MENU_MEDIA_TYPE === 'gif') {
+        mediaMessage = {
+          video: buffer,
+          gifPlayback: true,
+          caption: style(response)
+        };
+      } else {
+        // Default: 'image'
+        mediaMessage = {
+          image: buffer,
+          caption: style(response)
+        };
+      }
+      console.log(`[DEBUG ALLMENU] Objek mediaMessage berhasil disusun dengan type: ${MENU_MEDIA_TYPE} (Tanpa adReply).`);
+    } else {
+      mediaMessage = { text: style(response) };
+      console.log(`[DEBUG ALLMENU] Fallback ke text karena buffer kosong.`);
     }
 
     /* ====== KIRIM ====== */
-
-    result = await sock.sendMessage(remoteJid, mediaMessage, { quoted: message });
+    try {
+      console.log(`[DEBUG ALLMENU] Mencoba mengirim pesan ke ${remoteJid}...`);
+      result = await sock.sendMessage(remoteJid, mediaMessage, { quoted: message });
+      console.log(`[DEBUG ALLMENU] Status Kirim: BERHASIL. Message Timestamp: ${result?.messageTimestamp || 'N/A'}`);
+    } catch (sendError) {
+      console.error('[DEBUG ALLMENU ERROR] Catch block terpicu saat sendMessage:', sendError);
+      
+      console.log(`[DEBUG ALLMENU] Mencoba pengiriman darurat murni TEXT ONLY...`);
+      result = await sock.sendMessage(remoteJid, { text: style(response) }, { quoted: message });
+      console.log(`[DEBUG ALLMENU] Pengiriman darurat murni text: ${result ? 'BERHASIL' : 'GAGAL'}`);
+    }
   }
 
   /* ========= AUDIO MENU ========= */
-
   if (command === 'allmenu' || (command === 'menu' && !category)) {
     await sendMenuAudio(sock, remoteJid, result);
   }

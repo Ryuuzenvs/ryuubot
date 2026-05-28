@@ -150,7 +150,7 @@ async function handle(sock, messageInfo) {
 export default {
   handle,
   Commands: ['hd', 'remini'],
-  OnlyPremium: false,
+  OnlyPremium: true,
   OnlyOwner: false,
   limitDeduction: 10,
 };

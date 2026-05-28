@@ -50,7 +50,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["cekidgc"],
+  Commands: ["cekidgc", "idgc"],
   OnlyPremium: false,
   OnlyOwner: false,
   limitDeduction: 1,

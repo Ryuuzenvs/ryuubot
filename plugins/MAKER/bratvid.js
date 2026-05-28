@@ -1,6 +1,4 @@
-import ApiAutoresbotModule from "api-autoresbot";
-const ApiAutoresbot = ApiAutoresbotModule.default || ApiAutoresbotModule;
-
+import axios from "axios"; // Gunakan axios untuk tembak endpoint gratis
 import config from "../../config.js";
 import { sendImageAsSticker } from "../../lib/exif.js";
 import { logCustom } from "../../lib/logger.js";
@@ -20,11 +18,11 @@ async function handle(sock, messageInfo) {
         {
           text: `_⚠️ Format Penggunaan:_ \n\n_💬 Contoh:_ _*${
             prefix + command
-          } resbot*_`,
+          } teks animasi*_`,
         },
         { quoted: message }
       );
-      return; // Hentikan eksekusi jika tidak ada konten
+      return; 
     }
 
     // Kirimkan pesan loading dengan reaksi emoji
@@ -32,27 +30,45 @@ async function handle(sock, messageInfo) {
       react: { text: "⏰", key: message.key },
     });
 
-    // Bersihkan konten
-    const sanitizedContent = encodeURIComponent(
-      text.trim().replace(/\n+/g, " ")
-    );
+    // Bersihkan konten & encode agar aman di URL
+    const sanitizedContent = encodeURIComponent(text.trim().replace(/\n+/g, " "));
 
-    // Buat instance API dan ambil data dari endpoint
-    const api = new ApiAutoresbot(config.APIKEY);
-    const buffer = await api.getBuffer("/api/maker/bratvid", {
-      text: sanitizedContent,
-    });
-    //https://api.autoresbot.com/api/maker/bratvid?apikey=apikey_premium_9b85434f815b696e7809b61a4755b8a8&text=oi%20mnati%20aja
+    let buffer = false;
+    try {
+      // Menembak endpoint bratvid gratis milik Ourin via Axios
+      const response = await axios.get(
+        `https://api.nexray.web.id/maker/bratvid?text=${sanitizedContent}`,
+        { responseType: "arraybuffer" } // WAJIB arraybuffer karena output-nya video/mp4 mentah
+      );
+      buffer = Buffer.from(response.data, "binary");
+    } catch (e) {
+      buffer = false;
+    }
+
     const options = {
       packname: config.sticker_packname,
       author: config.sticker_author,
     };
 
-    // Kirim stiker
-    await sendImageAsSticker(sock, remoteJid, buffer, options, message);
+    if (buffer) {
+      // Kirim stiker video menggunakan buffer yang didapat
+      await sendImageAsSticker(sock, remoteJid, buffer, options, message);
+      
+      // Berikan reaksi sukses jika berhasil terkirim
+      await sock.sendMessage(remoteJid, {
+        react: { text: "✅", key: message.key },
+      });
+    } else {
+      await sock.sendMessage(
+        remoteJid,
+        {
+          text: "Gagal mengambil data dari API BratVid Gratis. Coba lagi nanti.",
+        },
+        { quoted: message }
+      );
+    }
   } catch (error) {
     logCustom("info", content, `ERROR-COMMAND-${command}.txt`);
-    // Tangani kesalahan dan kirimkan pesan error ke pengguna
     const errorMessage = `Maaf, terjadi kesalahan saat memproses permintaan Anda. Coba lagi nanti.\n\nError: ${error.message}`;
     await sock.sendMessage(
       remoteJid,
@@ -63,10 +79,11 @@ async function handle(sock, messageInfo) {
     );
   }
 }
+
 export default {
   handle,
   Commands: ["bratvid"],
   OnlyPremium: false,
   OnlyOwner: false,
-  limitDeduction: 10,
+  limitDeduction: 3, // Kamu bisa turunkan limitnya karena sekarang gratis!
 };

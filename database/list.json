@@ -1,1 +1,29 @@
-{}
+{
+  "owner": {
+    "createdAt": "2026-05-23T11:19:38.026Z",
+    "updatedAt": "2026-05-28T06:18:49.437Z",
+    "list": {
+      "putri": {
+        "content": {
+          "text": "dongo emg anaknya",
+          "media": null
+        },
+        "addedAt": "2026-05-23T11:19:38.026Z"
+      },
+      "ryuu": {
+        "content": {
+          "text": "ini jg don go",
+          "media": null
+        },
+        "addedAt": "2026-05-23T11:20:31.617Z"
+      },
+      "al": {
+        "content": {
+          "text": "anak kontol em",
+          "media": null
+        },
+        "addedAt": "2026-05-28T06:18:49.437Z"
+      }
+    }
+  }
+}

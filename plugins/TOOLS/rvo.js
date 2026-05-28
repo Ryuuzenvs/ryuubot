@@ -77,7 +77,8 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["rvo"],
-  OnlyPremium: true,
+  Commands: ["rvo", "vro"],
+  OnlyPremium: false,
+  limitDeduction: 0,
   OnlyOwner: false,
 };

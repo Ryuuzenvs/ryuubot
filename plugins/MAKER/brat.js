@@ -1,5 +1,4 @@
-import ApiAutoresbotModule from "api-autoresbot";
-const ApiAutoresbot = ApiAutoresbotModule.default || ApiAutoresbotModule;
+import axios from "axios"; // Tambahkan axios untuk fetch buffer dari URL baru
 import config from "../../config.js";
 import { sendImageAsSticker } from "../../lib/exif.js";
 import { logCustom } from "../../lib/logger.js";
@@ -23,7 +22,7 @@ async function handle(sock, messageInfo) {
         },
         { quoted: message }
       );
-      return; // Hentikan eksekusi jika tidak ada konten
+      return; 
     }
 
     // Kirimkan pesan loading dengan reaksi emoji
@@ -31,19 +30,17 @@ async function handle(sock, messageInfo) {
       react: { text: "⏰", key: message.key },
     });
 
-    // Bersihkan konten
-    const sanitizedContent = encodeURIComponent(
-      text.trim().replace(/\n+/g, " ")
-    );
-
-    // Buat instance API dan ambil data dari endpoint
-    const api = new ApiAutoresbot(config.APIKEY);
+    // Bersihkan konten & encode agar aman di URL
+    const sanitizedContent = encodeURIComponent(text.trim());
 
     let buffer = false;
     try {
-      buffer = await api.getBuffer("/api/maker/brat", {
-        text: sanitizedContent,
-      });
+      // Menembak endpoint gratis milik Ourin menggunakan axios dengan responseType arraybuffer
+      const response = await axios.get(
+        `https://api.yupra.my.id/api/image/brat?text=${sanitizedContent}`,
+        { responseType: "arraybuffer" }
+      );
+      buffer = Buffer.from(response.data, "binary");
     } catch (e) {
       buffer = false;
     }
@@ -54,21 +51,25 @@ async function handle(sock, messageInfo) {
     };
 
     if (buffer) {
-      // Kirim stiker
+      // Kirim stiker menggunakan buffer yang didapat
       await sendImageAsSticker(sock, remoteJid, buffer, options, message);
+      
+      // Kirim reaksi sukses jika stiker berhasil dikirim
+      await sock.sendMessage(remoteJid, {
+        react: { text: "✅", key: message.key },
+      });
     } else {
       await sock.sendMessage(
         remoteJid,
         {
-          text: "Ada kesalahan periksa apikey anda, ketik .apikey",
+          text: "Gagal mengambil data dari API Brat Gratis. Coba lagi nanti.",
         },
         { quoted: message }
       );
     }
   } catch (error) {
     logCustom("info", content, `ERROR-COMMAND-${command}.txt`);
-    // Tangani kesalahan dan kirimkan pesan error ke pengguna
-    const errorMessage = `Maaf, terjadi kesalahan saat memproses permintaan Anda. Coba lagi nanti.\n\nError: ${error.message}`;
+    const errorMessage = `Maaf, terjadi kesalahan saat memproses permintaan Anda.\n\nError: ${error.message}`;
     await sock.sendMessage(
       remoteJid,
       {
@@ -84,5 +85,5 @@ export default {
   Commands: ["brat"],
   OnlyPremium: false,
   OnlyOwner: false,
-  limitDeduction: 1,
+  limitDeduction: 3,
 };

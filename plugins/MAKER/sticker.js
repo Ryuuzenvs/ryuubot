@@ -59,4 +59,5 @@ export default {
   Commands: ["sticker", "stiker", "s"],
   OnlyPremium: false,
   OnlyOwner: false,
+  limitDeduction: 1,
 };
