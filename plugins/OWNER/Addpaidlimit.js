@@ -38,7 +38,7 @@ async function handle(sock, messageInfo) {
 
     // Tambahkan ke field paidLimit
 
-    await updateUser(docId, {
+    await updateUser(userJid, {
 
       paidLimit: (userData.paidLimit || 0) + limitToAdd,
 
