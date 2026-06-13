@@ -85,15 +85,32 @@ if (mode === 'development') {
 }
 
 // Fungsi utama untuk memproses pesan
+// Ganti bagian awal fungsi processMessage kamu menjadi seperti ini:
 async function processMessage(sock, messageInfo) {
   const { remoteJid, isGroup, message, sender, pushName, fullText, prefix, command } = messageInfo;
+
+  // ╔════════════════════════════════════════════════════════════╗
+  // ║               TRACKING DEBUGGING UTAMA                     ║
+  // ╚════════════════════════════════════════════════════════════╝
+  console.log(chalk.yellow(`\n=== [DEBUG] ADA PESAN MASUK ===`));
+  console.log(chalk.cyan(`• RemoteJid : `), remoteJid);
+  console.log(chalk.cyan(`• Sender    : `), sender);
+  console.log(chalk.cyan(`• IsGroup   : `), isGroup);
+  console.log(chalk.cyan(`• PushName  : `), pushName);
+  console.log(chalk.cyan(`• Prefix    : `), prefix);
+  console.log(chalk.cyan(`• Command   : `), command);
+  console.log(chalk.cyan(`• FullText  : `), fullText);
+  console.log(chalk.yellow(`================================\n`));
 
   const isPremiumUsers = isPremiumUser(sender);
   const isOwnerUsers = isOwner(sender);
 
   try {
     const shouldContinue = await handler.preProcess(sock, messageInfo);
-    if (!shouldContinue) return; // Jika handler.js memutuskan untuk berhenti
+    
+    // DEBUG 2: Cek apakah lolos dari preProcess handler
+    console.log(chalk.magenta(`[DEBUG] Lolos preProcess? ->`), shouldContinue);
+    if (!shouldContinue) return; 
 
     // Rate limiter
     let truncatedContent = fullText.length > 10 ? fullText.slice(0, 10) + '...' : fullText;
@@ -113,7 +130,6 @@ async function processMessage(sock, messageInfo) {
     }
 
     if (truncatedContent.trim() && prefix) {
-      // Pastikan tidak kosong
       const logMessage =
         config.mode === 'production'
           ? () => log(pushName, truncatedContent)
@@ -122,16 +138,28 @@ async function processMessage(sock, messageInfo) {
       logMessage();
     }
 
+    // DEBUG 3: Cek kondisi filter Destination sebelum dieksekusi
+    console.log(chalk.blue(`[DEBUG] Cek Destination:`));
+    console.log(chalk.blue(`• config.bot_destination : `), config.bot_destination);
+    console.log(chalk.blue(`• isOwnerUsers           : `), isOwnerUsers);
+
     // Handle Destination
     if (
       (config.bot_destination.toLowerCase() === 'private' && isGroup) ||
       (config.bot_destination.toLowerCase() === 'group' && !isGroup)
     ) {
       if (!isOwnerUsers) {
+        // DEBUG 4: Jalur block destination terpicu
+        console.log(chalk.red(`[DEBUG] !!! CHAT BLOCKED OLEH DESTINATION FILTER !!!`));
         logWithTime('SYSTEM', `Destination handle only - ${config.bot_destination} chat`);
         return;
       }
     }
+
+    console.log(chalk.green(`[DEBUG] Lolos filter destination! Mulai scanning plugins...`));
+
+    
+    // ... Sisa kode ke bawah (looping plugins) biarkan bawaan aslinya
 
     let commandFound = false;
 

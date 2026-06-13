@@ -6,31 +6,44 @@ async function handle(sock, messageInfo) {
   const benefitText = `
 *─── [ 🌟 BENEFIT LAYANAN BOT ] ───*
 
-📌 *PBC REGULER (Private Bot Chat)*
-- Dibuatkan grup khusus (Private Room) antara kamu & bot.
-- *Bebas Rate Limit Grup:* Tidak terganggu antrean spam user lain.
-- Akses fitur standar bot secara personal.
-
-📌 *PREMUSER (Premium User)*
-- Akses semua fitur berlabel *OnlyPremium*.
-- *Unlimited Limit:* Gunakan bot sepuasnya tanpa takut kehabisan limit.
-- _Note: Tidak termasuk akses Private Room._
-
-📌 *PBC PREMIUM (Private Bot Premium)*
-- Mendapatkan semua benefit *PBC Reguler*.
-- Mendapatkan status *Premuser* (Unlimited Limit & Premium Features).
-- Paket lengkap untuk penggunaan pribadi yang maksimal.
-
 📌 *SEWA GROUP (Reguler vs Premium)*
 • *SEWA REGULER:* Bot aktif di grup, semua user menggunakan limit masing-masing. Tidak ada free premium.
-• *SEWA PREMIUM:* - Bot aktif di grup.
-  - *Free Premium untuk 5 Akun* (Bebas pilih anggota).
-  - Tambah slot premium: *+Rp 2.000/akun*.
+• *SEWA PREMIUM:* Bot aktif di grup.
+ - Free Premium untuk 5 Akun(Bebas pilih anggota).
+ - Tambah slot premium: *+Rp 2.000/akun*.
 
-📌 *JADI BOT & OWNER*
+📌 *OWNER (INCLUDE JADIBOT)*
 - Hak penuh mengatur bot di luar aturan standar (selama masa aktif).
 - Bebas menjual ulang layanan atau membagikan akses ke orang lain.
 - Kendali fitur lebih luas dibandingkan user biasa.
+
+📌 *PAID GC (PREM + GRUP BERBAYAR)*
+- Akses penuh masuk ke dalam Group Berbayar (Paid GC).
+- Bot standby dan aktif merespon di dalam grup selama 24/7 tanpa henti.
+- Sudah otomatis mendapatkan status Premium (Free Premium)
+
+📌 *PREMIUM USER*
+- Limit otomatis berubah menjadi Unlimited.
+- Membuka semua akses fitur premium yang terkunci untuk user biasa.
+
+📌 *ONLY RVO*
+- Nomor WhatsApp kamu sendiri di-clone / dijadikan bot.
+- Sistem bot khusus yang hanya bisa digunakan untuk menggunakan fitur RVO (Read View Once).
+
+📌 *BIKIN BOT (FULL FITUR)*
+- Nomor WhatsApp kamu sendiri di-clone / dijadikan bot mandiri.
+- Akses super lengkap ke seluruh fitur bot tanpa ada yang dikunci.
+- Bisa digunakan untuk kebutuhan pribadi, respons chat otomatis, maupun dimasukkan ke grup lain.
+
+📌 *CUSTOM FITUR*
+- Request tambah atau modifikasi fitur khusus sesuai dengan kebutuhanmu.
+- Sistem pengerjaan langsung disesuaikan dengan script bot yang digunakan.
+- Harga menyesuaikan dengan tingkat kesulitan fitur yang diminta.
+
+*─── [ CATATAN ] ───*
+ * Patuhi *.rules* yang berlaku agar benefit tidak hangus.
+ * Konsultasi lebih lanjut? Ketik *.owner*
+*Hai @6285188510933, pilih paket yang sesuai kebutuhanmu!*
 
 *─── [ CATATAN ] ───*
 - Patuhi *.rules* yang berlaku agar benefit tidak hangus.

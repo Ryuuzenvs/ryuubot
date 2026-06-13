@@ -30,7 +30,7 @@ async function handle(sock, messageInfo) {
 
   // 3. Logic Gacha 50/50
   // Math.random() < 0.5 artinya peluang menang 50%
-  const isWin = Math.random() < 0.5;
+  const isWin = Math.random() < 0.3;
   let finalMoney;
   let responseText;
 

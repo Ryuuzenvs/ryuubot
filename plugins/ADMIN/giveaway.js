@@ -39,6 +39,31 @@ async function handle(sock, messageInfo) {
     return;
   }
 
+if (command === "listikut") {
+    const pSet = global.giveawayParticipants[remoteJid];
+    if (!pSet || pSet.size === 0) {
+      await sock.sendMessage(
+        remoteJid,
+        { text: `❌ Belum ada peserta yang bergabung dalam giveaway di grup ini.` },
+        { quoted: message }
+      );
+      return;
+    }
+
+    const listPeserta = Array.from(pSet);
+    const teksList = listPeserta.map((p, i) => `${i + 1}. @${p.split("@")[0]}`).join("\n");
+
+    await sock.sendMessage(
+      remoteJid,
+      {
+        text: `📋 *Daftar Peserta Giveaway (${listPeserta.length}):*\n\n${teksList}`,
+        mentions: listPeserta,
+      },
+      { quoted: message }
+    );
+    return;
+  }
+
   // Mulai Pengacakan Giveaway
   if (command === "mulaigiveaway") {
     if (!global.giveawayParticipants[remoteJid]) {
@@ -118,7 +143,7 @@ async function startGiveaway(sock, remoteJid, message, jumlahPemenang) {
 
 export default {
   handle,
-  Commands: ["giveaway", "mulaigiveaway"],
+Commands: ["giveaway", "mulaigiveaway", "listikut"], // <- Tambahkan "listikut" di sini
   OnlyPremium: false,
   OnlyOwner: false,
 };

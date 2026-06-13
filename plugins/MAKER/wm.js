@@ -1,6 +1,5 @@
 import fs from 'fs';
 import { downloadQuotedMedia, downloadMedia } from '../../lib/utils.js';
-
 import { Sticker, StickerTypes } from 'wa-sticker-formatter';
 
 async function sendError(sock, remoteJid, message, errorMessage) {
@@ -8,12 +7,11 @@ async function sendError(sock, remoteJid, message, errorMessage) {
 }
 
 async function handle(sock, messageInfo) {
-  const { remoteJid, message, content, prefix, command, isQuoted, type } = messageInfo;
+  // Ambil data sender dari messageInfo
+  const { remoteJid, message, prefix, command, isQuoted, type, sender } = messageInfo;
   const mediaType = isQuoted ? isQuoted.type : type;
 
   try {
-    const [packname = '', author = ''] = content.split('|').map((s) => s.trim());
-
     // Validasi tipe media
     if (!['image', 'sticker'].includes(mediaType)) {
       return sendError(
@@ -24,18 +22,12 @@ async function handle(sock, messageInfo) {
       );
     }
 
-    // Validasi konten input
-    if (!content.trim()) {
-      return sendError(
-        sock,
-        remoteJid,
-        message,
-        `_Contoh: *wm az creative*_
+    // Mengambil nomor WA sender saja (menghilangkan @s.whatsapp.net)
+    const senderNumber = sender.split('@')[0];
 
-_Contoh 1: wm nama_
-_Contoh 2: wm youtube | creative_`,
-      );
-    }
+    // Set otomatis packname dan author menggunakan nomor sender
+    const packname = `Sticker By ${senderNumber}`;
+    const author = 'RyuuBot';
 
     // Unduh media
     const mediaPath = `./tmp/${
@@ -46,7 +38,7 @@ _Contoh 2: wm youtube | creative_`,
       throw new Error('File media tidak ditemukan setelah diunduh.');
     }
 
-    // Buat stiker dengan watermark
+    // Buat stiker dengan watermark otomatis dari sender
     const sticker = new Sticker(mediaPath, {
       pack: packname,
       author: author,
@@ -56,6 +48,12 @@ _Contoh 2: wm youtube | creative_`,
 
     const buffer = await sticker.toBuffer();
     await sock.sendMessage(remoteJid, { sticker: buffer });
+    
+    // Hapus file temporary setelah selesai digunakan agar storage tidak penuh (Good Practice)
+    if (fs.existsSync(mediaPath)) {
+      fs.unlinkSync(mediaPath);
+    }
+
   } catch (error) {
     await sendError(
       sock,

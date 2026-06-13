@@ -3,22 +3,39 @@ import fs from 'fs';
 import path from 'path';
 import mess from '../../strings.js';
 import axios from 'axios';
-import ApiAutoresbotModule from 'api-autoresbot';
-const ApiAutoresbot = ApiAutoresbotModule.default || ApiAutoresbotModule;
 import config from '../../config.js';
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const DEBUG = false;
 
 const http = axios.create({
-  timeout: 30000,
+  timeout: 180000,
   validateStatus: () => true,
 });
+async function debugReply(m, text) {
+  if (DEBUG) {
+    return await reply(m, text);
+  }
+}
 
 async function handle(sock, messageInfo) {
+  // Ambil semua variabel instansiasi awal
   const { m, remoteJid, message, prefix, command, type, isQuoted } = messageInfo;
+  let mediaPath = '';
+  
+  // Variabel penampung status untuk kebutuhan debug akhir jika lolos ke catch global
+  let debugState = {
+    step: 'Inisialisasi',
+    mediaType: null,
+    downloadedMediaName: null,
+    localFileExists: false,
+    uguuUrlResult: null,
+    apiHDFaaResult: null
+  };
 
   try {
     const mediaType = isQuoted ? isQuoted.type : type;
+    debugState.mediaType = mediaType;
+
     if (mediaType !== 'image') {
       return await reply(m, `⚠️ _Kirim/Balas gambar dengan caption *${prefix + command}*_`);
     }
@@ -28,122 +45,169 @@ async function handle(sock, messageInfo) {
     });
 
     // ===============================
-    // DOWNLOAD MEDIA (WA SAFE)
+    // DEBUG 1: DOWNLOAD MEDIA WA
     // ===============================
+    debugState.step = 'Download Media WA';
     let media;
-
     try {
       media = isQuoted ? await downloadQuotedMedia(message) : await downloadMedia(message);
+      debugState.downloadedMediaName = media;
     } catch (err) {
-      if (err.code === 'ECONNRESET' || err.message?.includes('terminated')) {
-        return await reply(
-          m,
-          '❌ Gagal mengunduh gambar dari WhatsApp.\n\nSilakan kirim ulang gambar dan coba lagi.',
-        );
-      }
-
-      throw err;
+      // JIKA GAGAL DI SINI, KIRIM DUMP VARIABEL NYATA KE USER
+      const dumpWA = {
+        error_msg: err.message,
+        error_stack: err.stack,
+        messageInfo_type: type,
+        isQuoted_object: isQuoted ? { type: isQuoted.type, mimetype: isQuoted.mimetype } : 'Bukan Quoted',
+        raw_message_keys: Object.keys(message || {}),
+        raw_message_content: message // Mengintip isi object message Baileys
+      };
+      
+      return await reply(
+        m,
+        `❌ *[DEBUG STAGE: DOWNLOAD WA]*\n\n` +
+        `*Error:* ${dumpWA.error_msg}\n\n` +
+        `*Dump Variables:* \n\`\`\`json\n${JSON.stringify(dumpWA, null, 2)}\n\`\`\``
+      );
     }
 
-    const mediaPath = path.join('tmp', media);
+    mediaPath = path.join('tmp', media);
+    debugState.localFileExists = fs.existsSync(mediaPath);
 
     if (!fs.existsSync(mediaPath)) {
-      return await reply(m, '❌ File gambar tidak ditemukan.\nSilakan kirim ulang gambar.');
+      return await reply(
+        m, 
+        `❌ *[DEBUG STAGE: LOCAL CHECK]*\n\n` +
+        `File tidak ada di folder tmp.\n` +
+        `*Path dicari:* ${mediaPath}\n` +
+        `*Nama Media:* ${media}`
+      );
     }
 
     // ===============================
-    // UPLOAD
+    // DEBUG 2: UPLOAD TO UGUU
     // ===============================
-    const api = new ApiAutoresbot(config.APIKEY);
-    const upload = await api.tmpUpload(mediaPath);
+    debugState.step = 'Upload Uguu';
+    const fileBuffer = fs.readFileSync(mediaPath);
+    const boundary = `----WebKitFormBoundary${Math.random().toString(16).substring(2)}`;
+    
+    const postData = Buffer.concat([
+      Buffer.from(`--${boundary}\r\n`),
+      Buffer.from(`Content-Disposition: form-data; name="files[]"; filename="image.jpg"\r\n`),
+      Buffer.from(`Content-Type: image/jpeg\r\n\r\n`),
+      fileBuffer,
+      Buffer.from(`\r\n--${boundary}--\r\n`)
+    ]);
 
-    if (!upload || upload.code !== 200) {
-      return await reply(m, '❌ Gagal mengupload gambar.\nSilakan coba beberapa saat lagi.');
-    }
-
-    const imageUrl = upload.data.url;
-
-    // ===============================
-    // CREATE JOB
-    // ===============================
-    const createRes = await http.get('https://api.autoresbot.com/api/tools/remini', {
-      params: { url: imageUrl },
-      headers: {
-        Authorization: `Bearer ${config.APIKEY}`,
-      },
-    });
-
-    if (!createRes.data?.job_id) {
-      return await reply(m, '❌ Gagal memproses gambar.\nSilakan coba lagi.');
-    }
-
-    const jobId = createRes.data.job_id;
-
-    // ===============================
-    // POLLING
-    // ===============================
-    const maxRetry = 10;
-    const delayMs = 7000;
-    let attempt = 0;
-    let finalImageUrl = null;
-
-    while (attempt < maxRetry) {
-      attempt++;
-
-      try {
-        const pollRes = await http.get('https://api.autoresbot.com/api/tools/remini', {
-          params: { job_id: jobId },
-          headers: {
-            Authorization: `Bearer ${config.APIKEY}`,
-          },
-        });
-
-        const data = pollRes.data;
-
-        if (data.status === 'done') {
-          finalImageUrl = data.result;
-          break;
+    let uploadRes;
+    try {
+      uploadRes = await axios.post('https://uguu.se/upload.php', postData, {
+        headers: {
+          'Content-Type': `multipart/form-data; boundary=${boundary}`,
+          'Content-Length': postData.length
         }
-
-        if (data.status === 'failed') {
-          return await reply(m, '❌ Proses HD gagal.\nSilakan coba lagi.');
-        }
-      } catch (pollError) {
-        if (pollError.code !== 'ECONNRESET') {
-          throw pollError;
-        }
-      }
-
-      await delay(delayMs);
+      });
+    } catch (upErr) {
+      return await reply(
+        m,
+        `❌ *[DEBUG STAGE: UPLOAD UGUU]*\n\n` +
+        `*Error:* ${upErr.message}\n` +
+        `*Response Axios:* ${JSON.stringify(upErr.response?.data || {})}`
+      );
     }
 
-    if (!finalImageUrl) {
-      return await reply(m, '❌ Waktu proses terlalu lama.\nSilakan coba lagi nanti.');
+    const imageUrl = uploadRes.data?.files?.[0]?.url;
+    debugState.uguuUrlResult = imageUrl;
+
+    if (!imageUrl) {
+      return await reply(
+        m,
+        `❌ *[DEBUG STAGE: UGUU PARSING]*\n\n` +
+        `Uguu tidak merespon URL.\n` +
+        `*Raw Response Data:* \n\`\`\`json\n${JSON.stringify(uploadRes.data, null, 2)}\n\`\`\``
+      );
     }
 
     // ===============================
-    // DOWNLOAD FINAL IMAGE
-    // ===============================
-    const imageRes = await http.get(finalImageUrl, {
+// DEBUG 3: HIT API HD
+// ===============================
+debugState.step = 'Hit API HD';
+
+let res;
+
+try {
+  res = await http.get(
+    `https://api-faa.my.id/faa/superhd?url=${encodeURIComponent(imageUrl)}`,
+    {
       responseType: 'arraybuffer',
+      timeout: 180000
+    }
+  );
+} catch (err) {
+  return await reply(
+    m,
+    `❌ *[DEBUG STAGE: HIT API HD]*\n\n` +
+    `Error: ${err.message}`
+  );
+}
+
+if (res.status !== 200) {
+  return await reply(
+    m,
+    `❌ *[DEBUG STAGE: API STATUS]*\n\n` +
+    `Status: ${res.status}`
+  );
+}
+
+if (DEBUG) {
+  await debugReply(
+    m,
+    `✅ *[DEBUG API HD]*\n\n` +
+    `Status: ${res.status}\n` +
+    `Content-Type: ${res.headers['content-type'] || 'unknown'}`
+  );
+}
+
+const mediaBuffer = Buffer.from(res.data);
+
+await sock.sendMessage(
+  remoteJid,
+  {
+    image: mediaBuffer,
+    caption: mess.general.success,
+  },
+  { quoted: message }
+);
+
+await sock.sendMessage(remoteJid, {
+  react: {
+    text: '✅',
+    key: message.key,
+  },
+});
+
+return;
+
+    // Reaksi sukses
+    await sock.sendMessage(remoteJid, {
+      react: { text: '✅', key: message.key },
     });
 
-    if (imageRes.status !== 200) {
-      return await reply(m, '❌ Gagal mengambil hasil gambar.\nSilakan coba lagi.');
-    }
-
-    const MediaBuffer = Buffer.from(imageRes.data);
-
-    await sock.sendMessage(
-      remoteJid,
-      {
-        image: MediaBuffer,
-        caption: mess.general.success,
-      },
-      { quoted: message },
-    );
   } catch (error) {
-    await reply(m, '❌ Terjadi kesalahan saat memproses gambar.\nSilakan coba lagi nanti.');
+    // Menangkap error tak terduga di luar try-catch spesifik
+    console.error(error);
+    await reply(
+      m, 
+      `❌ *[CRITICAL GLOBAL ERROR]*\n\n` +
+      `*Gagal di Step:* ${debugState.step}\n` +
+      `*Message:* ${error.message}\n\n` +
+      `*Dump State Saat Crash:* \n\`\`\`json\n${JSON.stringify(debugState, null, 2)}\n\`\`\`\n\n` +
+      `*Stack Trace:* \n\`\`\`text\n${error.stack}\n\`\`\``
+    );
+  } finally {
+    if (mediaPath && fs.existsSync(mediaPath)) {
+      fs.unlinkSync(mediaPath);
+    }
   }
 }
 
@@ -152,5 +216,5 @@ export default {
   Commands: ['hd', 'remini'],
   OnlyPremium: true,
   OnlyOwner: false,
-  limitDeduction: 10,
+  limitDeduction: 1,
 };

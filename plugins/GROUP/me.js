@@ -18,11 +18,12 @@ async function handle(sock, messageInfo) {
     : isPremiumUser(sender)
     ? "Premium"
     : userData.role;
-
+sender
   let teks = `
 ╭─── _*MY PROFILE*_ 
 ├────
 ├──
+│ Id : ${sender || 0}
 │ Level : *${userData.level || 0}*
 │ Limit : *${userData.limit || 0}*
 │ Paid Limit : *${userData.paidLimit || 0}*

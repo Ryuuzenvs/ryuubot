@@ -32,5 +32,20 @@
   },
   "120363408682783408@g.us": {
     "add": "selamat datang di nidialo tercinta @name  yang ada di Indonesia\nDisini kamu akan di didik oleh Mister Bibbzy"
+  },
+  "120363406655996186@g.us": {
+    "add": "@name selamat datang di CC blaze one\n\nIntro:\nNama:\nUmur:\nAskot:",
+    "templatewelcome": "1"
+  },
+  "120363427996527246@g.us": {
+    "templatewelcome": "5"
+  },
+  "120363427365229377@g.us": {
+    "add": "selamat datang\n@name\n@date\n@day\n@time\n@group",
+    "closeTime": "22:30",
+    "templatewelcome": "1",
+    "openTime": "05:30",
+    "setlist": "RozakStore",
+    "setproses": "PROCESS"
   }
 }

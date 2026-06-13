@@ -1,7 +1,7 @@
 import { findUser, updateUser } from "../../lib/users.js";
 
 async function handle(sock, messageInfo) {
-  const { remoteJid, isGroup, message, content, sender, pushName } =
+   const { remoteJid, isGroup, message, content, sender, pushName } =
     messageInfo;
   if (!isGroup) return; // Only Grub
 

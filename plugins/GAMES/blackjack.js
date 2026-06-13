@@ -4,7 +4,7 @@ import {
 } from "../../database/temporary_db/blackjack.js";
 import { findUser, updateUser } from "../../lib/users.js";
 
-let mode = "hard"; // normal, hard, setan (mode setan gk mungkin menang)
+let mode = "setan"; // normal, hard, setan (mode setan gk mungkin menang)
 
 let kartu_blackjack_player = [];
 let kartu_blackjack_computer = [];

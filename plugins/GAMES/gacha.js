@@ -63,7 +63,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["gachagenshin","gachahsr", "pull", "g"],
+  Commands: ["gachagenshin","gachahsr", "pull", "g"], 
   OnlyPremium: false,
   OnlyOwner: false,
 };

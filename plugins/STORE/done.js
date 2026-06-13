@@ -115,7 +115,7 @@ ${quotedSender} _Terima kasih sudah order!_`;
 
 export default {
   handle,
-  Commands: ["done", "d", "selesai"],
+  Commands: ["done", "selesai"],
   OnlyPremium: false,
   OnlyOwner: false,
 };

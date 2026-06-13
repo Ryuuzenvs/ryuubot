@@ -1,7 +1,7 @@
 {
   "owner": {
     "createdAt": "2026-05-23T11:19:38.026Z",
-    "updatedAt": "2026-05-28T06:18:49.437Z",
+    "updatedAt": "2026-06-12T11:49:58.589Z",
     "list": {
       "putri": {
         "content": {
@@ -23,6 +23,40 @@
           "media": null
         },
         "addedAt": "2026-05-28T06:18:49.437Z"
+      },
+      "rvo": {
+        "content": {
+          "text": ".rvo",
+          "media": null
+        },
+        "addedAt": "2026-06-01T10:04:48.154Z"
+      },
+      "milang": {
+        "content": {
+          "text": "anak dongo",
+          "media": "sticker_1780314804695.webp"
+        },
+        "addedAt": "2026-06-01T11:53:24.748Z"
+      },
+      "lang": {
+        "content": {
+          "text": "anak kontol",
+          "media": null
+        },
+        "addedAt": "2026-06-12T11:49:58.589Z"
+      }
+    }
+  },
+  "120363427365229377@g.us": {
+    "createdAt": "2026-06-13T11:20:45.000Z",
+    "updatedAt": "2026-06-13T11:20:45.000Z",
+    "list": {
+      "payment": {
+        "content": {
+          "text": " halo @name untuk pembayaran hanya qris",
+          "media": null
+        },
+        "addedAt": "2026-06-13T11:20:45.000Z"
       }
     }
   }

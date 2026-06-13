@@ -17,7 +17,7 @@ N:Owner ${no}
 FN:Owner ${no}
 TEL;waid=${item.split("@")[0]}:${item.split("@")[0]}
 EMAIL;type=INTERNET:${config.owner_email}
-URL:https://autoresbot.com
+URL:ryuu.page.gd
 ADR:;;${config.region};;;
 END:VCARD`;
 

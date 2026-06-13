@@ -28,7 +28,7 @@ const mess = {
     isAdmin: '⚠️ _Perintah ini Hanya Untuk Admin_',
     isGroup: '⚠️ _Perintah ini Hanya digunakan di grup_',
     limit:
-      '⚠️ _Limit kamu sudah habis_ \n\n*HANYA RP.100* untuk mendapatkan 100 limit.\n\n_Ketik *.claim* untuk mendapatkan limit_ _Atau 💎 Berlangganan Member Premium agar limitmu tanpa batas_',
+      '⚠️ _Limit kamu sudah habis_ \n\n*HANYA 100* PERAK untuk mendapatkan 100 limit.\n\nJika kamu memiliki *PAID LIMIT* silakan ketik .convertlimit\n\n_Ketik *.claim* untuk mendapatkan limit_ _Atau 💎 Berlangganan Member Premium agar limitmu tanpa batas_',
     success: '✅ _Success Kak_',
     isBlocked: '⚠️ _Kamu sedang di block dari penggunaan bot ini_', // kalau block seluruhnya
     isBaned: '⚠️ _Kamu sedang di ban pada grub ini_', // kalau ban hanya grub itu saja
@@ -57,8 +57,8 @@ const mess = {
     antitagsw: '⚠️ @sender _Terdeteksi Tag Sw di grub ini_',
     antibot: '⚠️ @sender _Terdeteksi Adalah Bot_',
     afk: '🚫 *Jangan tag dia!*\n\n❏ _@sender sedang AFK sejak *@durasi*_@alasan',
-    afk_message: '🕊️ @sender telah kembali dari AFK sejak _*@durasi*_.@alasan',
-    sewa_notif: '⚠️ _*Peringatan!*_\n\n_Masa Sewabot :_ @date',
+    afk_message: '🕊️ sender telah kembali dari AFK sejak _*@durasi*_.@alasan',
+    sewa_notif: '', //=⚠️ _*Peringatan!*_\n\n_Masa Sewabot :_ @date
     sewa_out: `❌ _*Masa SewaBOT Telah Habis*_\n_Bot akan keluar otomatis_\n\nTerima kasih sudah menggunakan layanan sewa autoresbot.\n\n*Nomor Owner*\nwa.me/@ownernumber`,
     notifultah: '_Selamat ulang tahun! 🎉🎂_ @sender',
   },

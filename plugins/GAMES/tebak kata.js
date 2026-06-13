@@ -59,7 +59,7 @@ async function handle(sock, messageInfo) {
     // Tambahkan pengguna ke database
     addUser(remoteJid, {
       answer: jawaban.toLowerCase(),
-      hadiah: 10, // jumlah money jika menang
+      hadiah: 3, // jumlah money jika menang
       command: fullText,
       timer: timer,
     });

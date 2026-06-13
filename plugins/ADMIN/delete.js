@@ -47,7 +47,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["del", "delete"],
+  Commands: ["del", "delete", "d"],
   OnlyPremium: false,
   OnlyOwner: false,
 };

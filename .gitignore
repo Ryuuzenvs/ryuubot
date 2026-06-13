@@ -15,3 +15,4 @@ yarn-error.log
 config.js
 tmp\logs\.e10f36bbc4a55945aad553833a179d04af3070bf-audit.json
 .menu
+/database

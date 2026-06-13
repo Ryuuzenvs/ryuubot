@@ -82,7 +82,7 @@ function buildMainMenu(menuData) {
 ┏━『 *MENU UTAMA* 』
 ┃
 ${Object.keys(menuData)
-  .map((key) => `┣⌬ ${key}`)
+  .map((key) => `┣⌬ .menu ${key}`)
   .join('\n')}
 ┗━━━━━━━◧
 

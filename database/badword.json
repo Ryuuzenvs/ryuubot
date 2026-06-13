@@ -15,5 +15,28 @@
     "listBadword": [],
     "createdAt": "2026-04-25T11:31:31.191Z",
     "updatedAt": "2026-04-25T11:31:31.193Z"
+  },
+  "120363424127805653@g.us": {
+    "listBadword": [],
+    "createdAt": "2026-06-04T01:46:45.523Z",
+    "updatedAt": "2026-06-04T01:46:45.523Z"
+  },
+  "120363427365229377@g.us": {
+    "listBadword": [
+      "tolol",
+      "jnck",
+      "kacung",
+      "cung",
+      "cunk",
+      "Cok",
+      "Asu",
+      "tempek",
+      "4su",
+      "tuempek",
+      "JANCOX",
+      "anjing"
+    ],
+    "createdAt": "2026-06-13T00:22:34.216Z",
+    "updatedAt": "2026-06-13T01:10:52.079Z"
   }
 }
