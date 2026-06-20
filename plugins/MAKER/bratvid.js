@@ -37,7 +37,7 @@ async function handle(sock, messageInfo) {
     try {
       // Menembak endpoint bratvid gratis milik Ourin via Axios
       const response = await axios.get(
-        `https://api.nexray.web.id/maker/bratvid?text=${sanitizedContent}`,
+        `https://api.nexray.eu.cc/maker/bratvid?text=${sanitizedContent}`,
         { responseType: "arraybuffer" } // WAJIB arraybuffer karena output-nya video/mp4 mentah
       );
       buffer = Buffer.from(response.data, "binary");
@@ -62,7 +62,7 @@ async function handle(sock, messageInfo) {
       await sock.sendMessage(
         remoteJid,
         {
-          text: "Gagal mengambil data dari API BratVid Gratis. Coba lagi nanti.",
+          text: "Gagal mengambil data dari API BratVid. Coba lagi nanti.",
         },
         { quoted: message }
       );

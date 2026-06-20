@@ -9,23 +9,7 @@ async function handle(sock, messageInfo) {
     const cleanM = m ? util.inspect(m, { depth: 2, json: false }) : "m is undefined/null";
 
     const debugText = `
-🔍 *HASIL DEBUG MESSAGE INFO* 🔍
-
-📌 *1. remoteJid (ID Room/Chat):*
-${remoteJid}
-
-👤 *2. sender (ID Pengirim):*
 ${sender}
-
-✉️ *3. message (Struktur Pesan Mentah):*
-\`\`\`javascript
-${cleanMessage.slice(0, 1500)}... (truncated)
-\`\`\`
-
-📱 *4. m (Objek Modifikasi):*
-\`\`\`javascript
-${cleanM.slice(0, 1500)}... (truncated)
-\`\`\`
 `.trim();
 
     await sock.sendMessage(

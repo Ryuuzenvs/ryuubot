@@ -67,10 +67,7 @@ if (major < 20 || major >= 21) {
 
     await checkAndInstallModules([
       'follow-redirects',
-      'jimp@1.6.0',
-      'qrcode-reader',
       'wa-sticker-formatter',
-      'api-autoresbot@1.0.6',
     ]);
 
     const { start_app } = await import('./lib/startup.js');

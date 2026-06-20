@@ -42,10 +42,22 @@
   },
   "120363427365229377@g.us": {
     "add": "selamat datang\n@name\n@date\n@day\n@time\n@group",
-    "closeTime": "22:30",
+    "closeTime": "23:10",
     "templatewelcome": "1",
-    "openTime": "05:30",
+    "openTime": "06:00",
     "setlist": "RozakStore",
-    "setproses": "PROCESS"
+    "setproses": "PROSES\n\nJAM:@time\nTanggal:@tanggal\nGrub:@grub\nCatatan:@catatan\n\n@sender sedang di proses"
+  },
+  "120363407471586477@g.us": {
+    "add": "halo sayang"
+  },
+  "120363429097813498@g.us": {
+    "add": "selamat datang di gc butut emnih\n@name\n@date\n@time\n\n> kalau disuruh intro, ya intro kcung\n*kartu intro*\n* nama:\n* kelas:\n* umur:\n* asal:\n* gender:\n _mogbet ya maniess😘_"
+  },
+  "120363427143747499@g.us": {
+    "add": "@name\n@date\njsdbsixnosnx"
+  },
+  "120363410041750269@g.us": {
+    "add": "Selamat @greeting, @name!\n‎Selamat datang di grup @group.\n‎\n‎Hari ini: @day, @date (@time)\n‎Jumlah Member: @size\n‎\n‎*SELAMAT DATANG MEMBER BARU*\nSEMOGA BETAH\n\nNAMA :\nUMUR :\nASKOT :\n‎\n‎Semoga betah dan jangan lupa patuhi rules ya!"
   }
 }

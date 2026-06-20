@@ -2,6 +2,11 @@ import axios from "axios";
 import config from "../../config.js";
 import { logCustom } from "../../lib/logger.js";
 import { extractLink } from "../../lib/utils.js";
+import { isOwner, isPremiumUser } from "../../lib/users.js";
+
+//config 
+const LIMIT_SIZE_FREE = 20; // MB
+const LIMIT_SIZE_PREM = 100; // MB
 
 // Fungsi kirim pesan dengan quote
 async function sendMessageWithQuote(sock, remoteJid, message, text) {
@@ -11,6 +16,20 @@ async function sendMessageWithQuote(sock, remoteJid, message, text) {
 // Validasi URL TikTok
 function isTikTokUrl(url) {
   return /tiktok\.com/i.test(url);
+}
+
+async function getFileSizeMB(url) {
+  try {
+    const head = await axios.head(url, {
+      timeout: 15000,
+      maxRedirects: 5,
+    });
+
+    const bytes = parseInt(head.headers["content-length"] || "0");
+    return bytes / 1024 / 1024;
+  } catch {
+    return 0;
+  }
 }
 
 // Scraper Gratis TikWM (Porting dari Ourin)
@@ -54,7 +73,14 @@ async function tiktokDl(url) {
 
 // Handler Utama Plugin
 async function handle(sock, messageInfo) {
-  const { remoteJid, message, content, prefix, command } = messageInfo;
+const {
+  remoteJid,
+  message,
+  content,
+  prefix,
+  command,
+  sender
+} = messageInfo;
 
   if (!content || !content.trim()) {
     return sendMessageWithQuote(
@@ -89,6 +115,40 @@ async function handle(sock, messageInfo) {
       // --- HANDLER UNTUK KONTEN VIDEO ---
       // Cari video HD terlebih dahulu, jika tidak ada pakai no_watermark biasa
       const targetVideo = response.data.find(e => e.type === "nowatermark_hd") || response.data.find(e => e.type === "nowatermark");
+
+        const sizeMB = await getFileSizeMB(targetVideo.url);
+
+const isOwnerUser = isOwner(sender);
+const isPremUser = isPremiumUser(sender);
+
+let allowedSize = LIMIT_SIZE_FREE;
+
+if (isPremUser) {
+  allowedSize = LIMIT_SIZE_PREM;
+}
+
+if (isOwnerUser) {
+  allowedSize = Infinity;
+}
+
+if (sizeMB > allowedSize) {
+  return await sendMessageWithQuote(
+    sock,
+    remoteJid,
+    message,
+`❌ Ukuran video terlalu besar.
+
+📦 Ukuran Video : ${sizeMB.toFixed(2)} MB
+
+👤 Free User : Maks ${LIMIT_SIZE_FREE} MB
+⭐ Premium User : Maks ${LIMIT_SIZE_PREM} MB
+👑 Owner : Unlimited
+
+Video ini melebihi batas akun kamu.
+
+Ketik *.harga* untuk melihat paket premium dan owner.`
+  );
+}
 
       if (!targetVideo || !targetVideo.url) throw new Error("URL Video tidak ditemukan.");
 

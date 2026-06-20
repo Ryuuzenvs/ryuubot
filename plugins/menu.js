@@ -88,6 +88,7 @@ ${Object.keys(menuData)
 
 *.owner* UNTUK MENGHUBUNGI OWNER
 *.pricelist* UNTUK MELIHAT HARGA PRODUK
+*.role* UNTUK MELIHAT DETAIL ROLE
 *.rules* UNTUK MELIHAT RULES
 *.benefit* UNTUK MELIHAT KEUNTUNGAN
             

@@ -1,7 +1,7 @@
 {
   "owner": {
     "createdAt": "2026-05-23T11:19:38.026Z",
-    "updatedAt": "2026-06-12T11:49:58.589Z",
+    "updatedAt": "2026-06-15T13:13:59.225Z",
     "list": {
       "putri": {
         "content": {
@@ -44,19 +44,46 @@
           "media": null
         },
         "addedAt": "2026-06-12T11:49:58.589Z"
+      },
+      "bot": {
+        "content": {
+          "text": "what's up",
+          "media": null
+        },
+        "addedAt": "2026-06-15T12:27:45.659Z"
+      },
+      "tutorrvo": {
+        "content": {
+          "text": "📌 Tutorial Penggunaan RVO\nPm diri sendiri\n\n📖 .htu kalau perlu baca aja\n\n⚙️ .rvo mode modenya\n\n🔄 Pilihan Mode (Ada 2):\n\n🌐 Public\nAktifkan RVO selama 1 menit.\n\n🔒 Self\nKunci RVO biar tidak dipakai semua orang.\n\n⏳ Setelah 1 menit dari mode Public, RVO akan otomatis kembali ke mode Self.\n\n💡 Contoh Penggunaan (Ex):\n• .rvo mode public",
+          "media": null
+        },
+        "addedAt": "2026-06-15T13:13:59.225Z"
       }
     }
   },
   "120363427365229377@g.us": {
     "createdAt": "2026-06-13T11:20:45.000Z",
-    "updatedAt": "2026-06-13T11:20:45.000Z",
+    "updatedAt": "2026-06-18T14:14:18.212Z",
     "list": {
-      "payment": {
+      "payment qris": {
         "content": {
-          "text": " halo @name untuk pembayaran hanya qris",
+          "text": " HALO @name untuk pembayaran sedang proses",
           "media": null
         },
-        "addedAt": "2026-06-13T11:20:45.000Z"
+        "addedAt": "2026-06-18T13:47:43.785Z"
+      }
+    }
+  },
+  "120363424172954041@g.us": {
+    "createdAt": "2026-06-18T14:06:38.686Z",
+    "updatedAt": "2026-06-18T14:06:38.686Z",
+    "list": {
+      "resp": {
+        "content": {
+          "text": " res",
+          "media": null
+        },
+        "addedAt": "2026-06-18T14:06:38.686Z"
       }
     }
   }

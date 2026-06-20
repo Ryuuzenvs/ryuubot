@@ -1,11 +1,11 @@
 import { sendMessageWithMention } from "../lib/utils.js";
-import { listOwner } from "../lib/users.js";
+import { listCoreOwner } from "../lib/users.js";
 import config from "../config.js";
 
 export async function handle(sock, messageInfo) {
   const { remoteJid, message, sender, senderType } = messageInfo;
 
-  const data = listOwner();
+  const data = listCoreOwner();
 
   let list = [];
   let no = 1;

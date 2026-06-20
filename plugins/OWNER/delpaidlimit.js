@@ -7,15 +7,15 @@ async function handle(sock, messageInfo) {
   // --- 1. Validasi Input ---
   if (!content?.trim()) {
     const tex = `_⚠️ Format: *${prefix + command} @tag [jumlah/all]*_\n\n` +
-                `_💬 Contoh: *${prefix + command} @tag 50* atau *${prefix + command} @tag all*_`;
+                `_💬 Contoh: *${prefix + command} @tag 5* atau *${prefix + command} @tag all*_`;
     return sock.sendMessage(remoteJid, { text: tex }, { quoted: message });
   }
 
-  const [rawNumber, rawMoney] = content.split(" ").map((s) => s.trim());
+  const [rawNumber, rawLimit] = content.split(" ").map((s) => s.trim());
 
-  if (!rawNumber || !rawMoney) {
+  if (!rawNumber || !rawLimit) {
     return sock.sendMessage(remoteJid, { 
-      text: `⚠️ _Format salah! Masukkan tag dan jumlah money / all._` 
+      text: `⚠️ _Format salah! Masukkan tag dan jumlah paid limit / all._` 
     }, { quoted: message });
   }
 
@@ -31,37 +31,37 @@ async function handle(sock, messageInfo) {
     }
 
     const [docId, userData] = dataUsers;
-    const currentMoney = userData.money || 0;
+    const currentPaidLimit = userData.paidLimit || 0;
     
-    let moneyToDel = 0;
+    let limitToDel = 0;
     let isAll = false;
 
-    // Cek apakah owner mengetik 'all'
-    if (rawMoney.toLowerCase() === "all") {
-      moneyToDel = currentMoney;
+    // Cek argumen 'all'
+    if (rawLimit.toLowerCase() === "all") {
+      limitToDel = currentPaidLimit;
       isAll = true;
     } else {
-      moneyToDel = parseInt(rawMoney, 10);
-      if (isNaN(moneyToDel) || moneyToDel <= 0) {
+      limitToDel = parseInt(rawLimit, 10);
+      if (isNaN(limitToDel) || limitToDel <= 0) {
         return sock.sendMessage(remoteJid, { 
-          text: `⚠️ _Jumlah money harus berupa angka positif atau kata 'all'!_` 
+          text: `⚠️ _Jumlah paid limit harus berupa angka positif atau kata 'all'!_` 
         }, { quoted: message });
       }
     }
 
     // --- 3. Eksekusi Pengurangan ---
-    const newMoney = isAll ? 0 : currentMoney - moneyToDel;
+    const newPaidLimit = isAll ? 0 : currentPaidLimit - limitToDel;
 
     await updateUser(targetJid, {
-      money: newMoney, // Lib otomatis handle Math.max(0, newMoney)
+      paidLimit: Math.max(0, newPaidLimit), // Force agar tidak minus ke file json
     });
 
     // --- 4. Konfirmasi ---
-    const textDel = isAll ? `Semua (*-${moneyToDel}*)` : `*-${moneyToDel}*`;
-    const caption = `✅ *PENGURANGAN MONEY BERHASIL*\n\n` +
+    const textDel = isAll ? `Semua (*-${limitToDel}*)` : `*-${limitToDel}*`;
+    const caption = `✅ *PENGURANGAN PAID LIMIT BERHASIL*\n\n` +
                     `◧ Target: @${targetJid.split("@")[0]}\n` +
                     `◧ Dikurangi: ${textDel}\n` +
-                    `◧ Sisa Money: *${Math.max(0, newMoney)}*`;
+                    `◧ Sisa Paid Limit: *${Math.max(0, newPaidLimit)}*`;
 
     await sendMessageWithMention(
       sock,
@@ -72,14 +72,14 @@ async function handle(sock, messageInfo) {
     );
 
   } catch (err) {
-    console.error("Error delmoney:", err);
+    console.error("Error delpaidlimit:", err);
     await sock.sendMessage(remoteJid, { text: "❌ Terjadi kesalahan teknis." });
   }
 }
 
 export default {
   handle,
-  Commands: ["delmoney", "tarikmoney"],
+  Commands: ["delpaidlimit", "tarikpaidlimit", "delpl"],
   OnlyPremium: false,
   OnlyOwner: true,
 };

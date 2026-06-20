@@ -8,7 +8,7 @@ async function handle(sock, messageInfo) {
 
     const { m, remoteJid, content } = messageInfo; // Tambahkan content di sini
 
-    const imagePath = path.resolve("./assets/qris2.jpg");
+    const imagePath = path.resolve("./assets/qris1.jpg");
 
     try {
 
@@ -38,7 +38,7 @@ async function handle(sock, messageInfo) {
 
             image: fs.readFileSync(imagePath),
 
-            caption: `*── 💳 PEMBAYARAN QRIS ──*${nominalText}\n\nSilakan scan kode QR di atas untuk melakukan pembayaran.\n\n_Mohon sertakan bukti transfer setelah melakukan pembayaran._ \n\n*Dengan membeli user atau customer sudah membaca .rules, dan .benefit serta paham atas segala resiko pembelian jika kesalahan ada di sisi pembeli, penjual tidak berkewajiban atas hak pembeli, segala bentuk transaksi tidak dapat di kembalikan.*`,
+            caption: `*── 💳 PEMBAYARAN QRIS ──*${nominalText}\n\nSilakan scan kode QR di atas untuk melakukan pembayaran.\n\n_Mohon sertakan bukti transfer setelah melakukan pembayaran._`,
 
         }, { quoted: m });
 
@@ -56,7 +56,7 @@ export default {
 
     handle,
 
-    Commands: ["qris", "qr", "pay"],
+    Commands: ["qris1"],
 
     OnlyPremium: false,
 

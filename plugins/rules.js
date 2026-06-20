@@ -17,6 +17,7 @@ async function handle(sock, messageInfo) {
 2. *LARANGAN KERAS:*
    - Dilarang menelepon/VC bot. Sistem akan otomatis *BLACKLIST* permanen.
    - Dilarang spam command. Jika bot tidak membalas, artinya kamu terkena *.ratelimit*. Tunggu durasi berakhir.
+   - Dilarang Menyalahgunakan fitur Premium untuk member Reguler (Joki/Sharing) = PENCABUTAN STATUS PREMIUM SEKETIKA
 
 3. *JAM OPERASIONAL:*
    - Open Feedback/Respon Manual: *07.00 - 19.00 WIB*.
@@ -28,6 +29,8 @@ async function handle(sock, messageInfo) {
    - Bebas di jual belikan asal ADA KONFIRMASI TRX KEPADA OWNER UTAMA dan OWNER UTAMA HARUS SETUJU UNTUK MELAKUKAN CMD ITU.
    - Setinggi tinggi nya value yang dapat di berikan oleh OWNER PENYEWA, HANYA BOLEH SETARA 200% harga sewa penyewa.
    - Melanggar APAPUN RULES DI NO 4 INI, OWNER UTAMA BERHAK ATAS WEWENANG UNTUK MERALAT STATUS OWNER.
+  - Fitur bikin bot sudah fix 100%. Segala bentuk perubahan atau revisi di luar kesepakatan akan dikenakan denda. 
+  - Bikin BOT Permanen: Wajib bayar server bulanan (User/Pakai Sendiri: Rp.5.000/bln | Reseller: Rp.10.000/bln).
 
 5. *SISTEM PANEL, SEWA BOT MENGGUNAKAN E-GUARANTEE CARD (KARTU GARANSI):*
    - Pembelian Panel, sewa bot mendapatkan "Kartu Garansi Digital".
@@ -37,7 +40,13 @@ async function handle(sock, messageInfo) {
 6. *KEBIJAKAN PENGGUNA:*
    - Harap baca ketentuan & benefit sebelum membeli. 
    - *No Refund* untuk kesalahan pembelian dari sisi user.
-   - Owner berhak memblokir user yang sengaja mencari celah/bug untuk merusak sistem bot.
+   - Owner berhak memblokir user
+ yang sengaja mencari celah/bug untuk merusak sistem bot.
+
+7. *DISCLAIMER ONLY RVO*
+  - ​Layanan RVO Premium aktif secara otomatis penuh 24/7 jam.
+  - ​Layanan RVO Reguler hanya aktif jika diminta untuk dinyalakan ke owner dari jam 14.00-22.00 WIB.
+  - Nomor WhatsApp yang digunakan untuk bot TIDAK BOLEH berstatus mencurigakan di mata sistem WhatsApp (misalnya: nomor baru buat, sering di-report, atau bekas terkena spam/banned). segala bentuk penindakan whatsapp ke no yang terkait tidak owner tanggung karna itu adalah phone number issue.
 
 _Hai Kak @${sender.split("@")[0]}, patuhi rules demi kenyamanan bersama!_
 `;

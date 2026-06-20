@@ -1,0 +1,59 @@
+import { sendMessageWithMention } from "../lib/utils.js";
+
+async function handle(sock, messageInfo) {
+  const { remoteJid, message, sender, senderType } = messageInfo;
+
+  const benefitText = `
+
+*─── [ 👥 DAFTAR ROLE & HAK AKSES ] ───*
+
+📌 *1. USER / FREE USER*
+• *Akses:* Semua fitur dasar/free bot.
+• *Batasan:* Penggunaan dibatasi oleh sistem *Limit*. Jika limit habis, fitur dasar tidak bisa digunakan hingga reset.
+• *Cara Dapatkan:* Role otomatis untuk semua pengguna baru.
+
+📌 *2. PAID LIMIT USER*
+• *Akses:* Menambah jumlah kuota limit harian atau instan.
+• *Batasan:* Tetap hanya bisa mengakses fitur kategori Free, namun dengan jumlah limit yang lebih banyak sesuai paket pembelian.
+
+📌 *3. PREMIUM USER*
+• *Akses:* Fitur khusus (Premium Only) terbuka sepenuhnya.
+• *Benefit:* Sistem limit berubah menjadi *Unlimited* (Tanpa Batas) selama masa aktif premium masih berlaku.
+• *Cara Dapatkan:* Sewa status premium ke Owner.
+
+📌 *4. OWNER*
+• *Akses:* Mengendalikan bot, menggunakan fitur khusus administrasi bot.
+• *Benefit:* - Bisa mengubah status user lain ("addstats").
+  - Hak untuk menjual ulang layanan bot secara terbatas.
+• *Cara Dapatkan:* Membeli lisensi/role Owner ke Founder.
+
+📌 *5. FOUNDER / OWNER TINGKAT ATAS*
+• *Akses:* Level tertinggi di atas Owner biasa, kebal dari segala pembatasan.
+• *Benefit:*
+  - Penggunaan command dan seluruh fitur bot tanpa batas 24/7.
+  - Memiliki jalur khusus untuk request apa pun langsung ke Owner Utama (termasuk urusan server panel, script, dll).
+• *Cara Dapatkan:* *TIDAK BISA DIBELI*. Hanya diberikan khusus atas kontribusi besar atau kerja sama erat dengan Owner Utama.
+
+*─── [ CATATAN ] ───*
+- Penyalahgunaan hak akses role dapat mengakibatkan status di-ban/revoke.
+- Tertarik melakukan upgrade? Hubungi admin dengan ketik *.owner*
+
+_Hai @${sender.split("@")[0]}, pilih paket yang sesuai kebutuhanmu!_
+`;
+
+  await sendMessageWithMention(
+    sock,
+    remoteJid,
+    benefitText.trim(),
+    message,
+    senderType
+  );
+}
+
+export default {
+  handle,
+  Commands: ["role", "roles"],
+  OnlyPremium: false,
+  OnlyOwner: false,
+};
+

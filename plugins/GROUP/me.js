@@ -1,24 +1,47 @@
-import { findUser } from "../../lib/users.js";
-import { isOwner, isPremiumUser } from "../../lib/users.js";
+import { findUser, isOwner, isPremiumUser, getOwnerDurationDetails } from "../../lib/users.js";
 
 async function handle(sock, messageInfo) {
-   
-  const { remoteJid, message, sender, pushName } = messageInfo;
-   
+  const { remoteJid, message, sender } = messageInfo;
 
-  // Ambil data pengguna
   const dataUsers = await findUser(sender);
-    console.log("DEBUG USER DATA:", dataUsers);
   if (!dataUsers) return;
 
   const [docId, userData] = dataUsers;
 
-  const role = isOwner(sender)
+  const isOwnerUser = isOwner(sender);
+  const isPrem = isPremiumUser(sender);
+
+  const role = isOwnerUser
     ? "Owner"
-    : isPremiumUser(sender)
+    : isPrem
     ? "Premium"
     : userData.role;
-sender
+
+  let premiumStatus = "Tidak Aktif";
+  
+  if (isOwnerUser) {
+    const number = sender.split("@")[0];
+    const ownerDuration = getOwnerDurationDetails(number);
+
+    if (ownerDuration === "PERMANENT") {
+      premiumStatus = "Permanen (Owner)";
+    } else {
+      const pDate = new Date(ownerDuration);
+      premiumStatus = pDate.toLocaleDateString("id-ID", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }) + " (Owner)";
+    }
+  } else if (isPrem && userData.premium) {
+    const pDate = new Date(userData.premium);
+    premiumStatus = pDate.toLocaleDateString("id-ID", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+
   let teks = `
 ╭─── _*MY PROFILE*_ 
 ├────
@@ -29,6 +52,7 @@ sender
 │ Paid Limit : *${userData.paidLimit || 0}*
 │ Money : *${userData.money || 0}*
 │ Role : *${role}*
+│ Premium : *${premiumStatus}*
 │
 ├────
 ╰────────────────────────`;
