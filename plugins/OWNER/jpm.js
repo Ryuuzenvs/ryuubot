@@ -1,12 +1,13 @@
 import { groupFetchAllParticipating } from "../../lib/cache.js";
 import { downloadQuotedMedia, downloadMedia } from "../../lib/utils.js";
+import config from "../../config.js"; // Import file config utama
 import fs from "fs";
 import path from "path";
 import axios from "axios";
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const jeda = 5; // 5 detik
-
 let isRunning = false;
 
 function detectFirstWhatsAppGroupLink(text) {
@@ -17,9 +18,7 @@ function detectFirstWhatsAppGroupLink(text) {
 
 async function fetchGroupInfo(url) {
   try {
-    const apiUrl = `https://api.autoresbot.com/api/stalker/whatsapp-group?url=${encodeURIComponent(
-      url
-    )}`;
+    const apiUrl = `https://api.autoresbot.com/api/stalker/whatsapp-group?url=${encodeURIComponent(url)}`;
     const response = await axios.get(apiUrl);
     return response.data;
   } catch (error) {
@@ -40,33 +39,43 @@ async function handle(sock, messageInfo) {
     type,
   } = messageInfo;
 
-  const useMentions = false; // Ubah menjadi true jika ingin menggunakan mention
+  // --- VALIDASI OWNER CONFIG (HIGHEST RANK) ---
+  // Membersihkan senderJid (misal: '6285188510933@s.whatsapp.net' menjadi '6285188510933')
+  const senderNumber = sender.split("@")[0];
+  
+  // Ambil array DATA_OWNER dari config.js
+  const ownerConfigList = config.owner_number || [];
 
+  if (!ownerConfigList.includes(senderNumber)) {
+    return await sock.sendMessage(
+      remoteJid,
+      { text: `🚫 *Akses Ditolak:* Fitur JPM ini hanya dapat digunakan oleh Founder Owner.` },
+      { quoted: message }
+    );
+  }
+  // --------------------------------------------
+
+  const useMentions = false; 
   const link = detectFirstWhatsAppGroupLink(content);
 
   try {
     if (isRunning) {
       return await sock.sendMessage(
         remoteJid,
-        {
-          text: `⚠️ _Proses Jpm Sedang Berlangsung._ _Silakan tunggu hingga selesai._`,
-        },
+        { text: `⚠️ _Proses Jpm Sedang Berlangsung._ _Silakan tunggu hingga selesai._` },
         { quoted: message }
       );
     }
 
-    // Validasi input kosong atau tidak sesuai format
     if (!content || content.trim() === "") {
       return sendErrorMessage(sock, remoteJid, message, prefix, command);
     }
 
     isRunning = true;
-    // Tampilkan reaksi sementara untuk memproses
     await sock.sendMessage(remoteJid, {
       react: { text: "⏰", key: message.key },
     });
 
-    // Ambil metadata grup
     const groupFetchAll = await groupFetchAllParticipating(sock);
     if (!groupFetchAll) {
       isRunning = false;
@@ -77,9 +86,8 @@ async function handle(sock, messageInfo) {
       );
     }
 
-    // Filter grup berdasarkan kondisi tertentu
     const groupIds = Object.values(groupFetchAll)
-      .filter((group) => group.isCommunity == false) // Sesuaikan kondisi
+      .filter((group) => group.isCommunity == false) 
       .map((group) => group.id);
 
     if (groupIds.length === 0) {
@@ -91,9 +99,8 @@ async function handle(sock, messageInfo) {
       );
     }
 
-    // Ambil informasi pesan
     const mediaType = isQuoted ? `${isQuoted.type}Message` : `${type}Message`;
-    const pesangc = content; // Isi pesan untuk dikirim
+    const pesangc = content; 
 
     let imageLink;
     if (link) {
@@ -118,7 +125,6 @@ async function handle(sock, messageInfo) {
       buffer = fs.readFileSync(mediaPath);
     }
 
-    // Kirim pesan ke semua grup
     for (const groupId of groupIds) {
       const participants = Object.values(
         groupFetchAll[groupId]?.participants || []
@@ -144,13 +150,11 @@ async function handle(sock, messageInfo) {
         });
       }
 
-      // Jeda 5 detik
       await sleep(jeda * 1000);
     }
 
     isRunning = false;
 
-    // Kirim konfirmasi sukses
     await sock.sendMessage(
       remoteJid,
       { text: `✅ Pesan berhasil dikirim ke ${groupIds.length} grup` },
@@ -178,9 +182,10 @@ function sendErrorMessage(sock, remoteJid, message, prefix, command) {
     { quoted: message }
   );
 }
+
 export default {
   handle,
   Commands: ["jpm"],
   OnlyPremium: false,
-  OnlyOwner: true,
+  OnlyOwner: false, // Diubah ke false karena validasinya sudah kita handle manual secara strict di atas
 };

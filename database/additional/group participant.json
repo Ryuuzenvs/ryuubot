@@ -59,5 +59,17 @@
   },
   "120363410041750269@g.us": {
     "add": "Selamat @greeting, @name!\n‎Selamat datang di grup @group.\n‎\n‎Hari ini: @day, @date (@time)\n‎Jumlah Member: @size\n‎\n‎*SELAMAT DATANG MEMBER BARU*\nSEMOGA BETAH\n\nNAMA :\nUMUR :\nASKOT :\n‎\n‎Semoga betah dan jangan lupa patuhi rules ya!"
+  },
+  "120363427536542321@g.us": {
+    "add": "。➀  𝗸𝗮𝗿𝘁𝘂 𝗶𝗻𝘁𝗿𝗼\n   𓂃˚. ˚ 𓍯 ⁺ ✿ ⠲\n⊂⊃ ˚.∘₊ 𝗻ׄ𝝰𝗺⃕𝝰 :\n⊂⊃ ˚.∘₊  𝝰𝗴𝝴ֵ :\n⊂⊃ ˚.∘₊ 𝗰𝗹ִ𝝰𝘀𝘀 :\n⊂⊃ ˚.∘₊ 𝗳𝗿𖦹𝗺⃕  :\n⊂⊃ ˚.∘₊ 𝗴𝝴ֵ𝗻ׄ𝗱𝝴ֵ𝗿 :\n𝘀𝝰𝗹ִ𝗸𝝴ֵ𝗻ׄ 𝝸ׄ𝝰 𝗺⃕𖦹𝗴𝝴ֵ 𝗯ׄ𝝴ֵ𝘁ׄ𝝰𝗵 \n𝗷𝝰𝗻ׄ𝗹ִ𝘂֧𝞀ִ 𝗯ׄ𝝰𝗰𝝰 𝗿𝘂֧𝗹ִ𝝴ֵ𝘀 ⁺  ✶ ⠲\n\nιɳƚɾσ ɳყα ƙαƙααα"
+  },
+  "120363408009353641@g.us": {
+    "add": "TY YAK DAH JOIN DI GRUP @group\n\nNama:  @name\ntanggal join :@date\nHari join: @day",
+    "closeTime": "23:00",
+    "openTime": "05:30"
+  },
+  "120363427916524474@g.us": {
+    "add": "TY SUDAH JOIN DI GB EL STORE\n\nNama:@name\nHari:@day\nJam:@time\nTanggal:@date\n\nSemoga betah ya😋",
+    "templatewelcome": "2"
   }
 }

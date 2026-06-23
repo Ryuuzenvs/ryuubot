@@ -5,8 +5,8 @@ import { extractLink } from "../../lib/utils.js";
 import { isOwner, isPremiumUser } from "../../lib/users.js";
 
 //config 
-const LIMIT_SIZE_FREE = 20; // MB
-const LIMIT_SIZE_PREM = 100; // MB
+const LIMIT_SIZE_FREE = 1; // MB
+const LIMIT_SIZE_PREM = 50; // MB
 
 // Fungsi kirim pesan dengan quote
 async function sendMessageWithQuote(sock, remoteJid, message, text) {

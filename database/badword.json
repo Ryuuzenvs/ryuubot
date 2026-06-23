@@ -46,5 +46,16 @@
     "listBadword": [],
     "createdAt": "2026-06-13T23:24:06.745Z",
     "updatedAt": "2026-06-13T23:24:06.745Z"
+  },
+  "120363408009353641@g.us": {
+    "listBadword": [
+      "ANJING",
+      "tuempek",
+      "CONTOL",
+      "KONTOL",
+      "SCAM"
+    ],
+    "createdAt": "2026-06-23T14:53:17.270Z",
+    "updatedAt": "2026-06-23T14:53:51.057Z"
   }
 }

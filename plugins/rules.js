@@ -43,9 +43,12 @@ async function handle(sock, messageInfo) {
    - Owner berhak memblokir user
  yang sengaja mencari celah/bug untuk merusak sistem bot.
 
-7. *DISCLAIMER ONLY RVO*
+   7. *DISCLAIMER ONLY RVO*
   - ​Layanan RVO Premium aktif secara otomatis penuh 24/7 jam.
-  - ​Layanan RVO Reguler hanya aktif jika diminta untuk dinyalakan ke owner dari jam 14.00-22.00 WIB.
+  - ​Layanan RVO Reguler hanya aktif jika diminta untuk dinyalakan ke owner dari jam 14.00-22.00 WIB, durasi aktif bot adalah 30 menit setelah dinyalakan. 
+-Foto sekali lihat (RVO) yang dikirim sebelum pair code bot selesai dilakukan tidak akan bisa dibuka
+
+   8. *SYARAT NOMOR UNTUK PAIR (BIKIN BOT, ONLY RVO DLL)*
   - Nomor WhatsApp yang digunakan untuk bot TIDAK BOLEH berstatus mencurigakan di mata sistem WhatsApp (misalnya: nomor baru buat, sering di-report, atau bekas terkena spam/banned). segala bentuk penindakan whatsapp ke no yang terkait tidak owner tanggung karna itu adalah phone number issue.
 
 _Hai Kak @${sender.split("@")[0]}, patuhi rules demi kenyamanan bersama!_

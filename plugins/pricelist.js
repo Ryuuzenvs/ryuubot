@@ -6,7 +6,7 @@ async function handle(sock, messageInfo) {
 
   const priceText = `
 ..    ▓⃞💰 *𝗣𝗥𝗜𝗖𝗘𝗟𝗜𝗦𝗧 𝗟𝗔𝗬𝗔𝗡𝗔𝗡 𝗕𝗢𝗧*
-.𖤓 ✦. *𝗟𝗜𝗠𝗜𝗧 (𝗡𝗘𝗪 𝗣𝗥𝗢𝗠𝗢!)*
+.𖤓 ✦. *𝗟𝗜𝗠𝗜T*
 ㅤㅤㅤ .. 📌
 ㅤ    *· ✦ 🖇꯭ ׁ 100 : Rp.1.000*
 ㅤ    *· ✦ 🖇꯭ ׁ 1.000 : Rp.5.000*
@@ -79,6 +79,9 @@ async function handle(sock, messageInfo) {
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *5.000 Limit* : *Rp.16.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *10.000 Limit* : *Rp.25.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *20.000 Limit* : *Rp.40.000*
+✦. *JASA*
+ㅤ    *· ✦ 🖇꯭ ׁ hias pricelist teks* : *2.000*
+ㅤ    *· ✦ 🖇꯭ ׁ hias qr : START Rp.5.000*
 ✦. *NOKOS*
 ㅤㅤㅤ .. 📌
 ㅤ    *· ✦ 🖇꯭ ׁ INDO : Rp.5.000*
