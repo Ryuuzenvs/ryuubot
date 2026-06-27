@@ -70,6 +70,16 @@
   },
   "120363427916524474@g.us": {
     "add": "TY SUDAH JOIN DI GB EL STORE\n\nNama:@name\nHari:@day\nJam:@time\nTanggal:@date\n\nSemoga betah ya😋",
-    "templatewelcome": "2"
+    "templatewelcome": "3",
+    "closeTime": "23:15",
+    "openTime": "06:00",
+    "remove": "selamat tinggal yang ngelarang peraturan grup/emang mau keluar😹\n\n@name\n@date\n@day\n@group"
+  },
+  "120363406481646127@g.us": {
+    "closeTime": "23:00",
+    "openTime": "6:00"
+  },
+  "120363409251678038@g.us": {
+    "add": "WELCOME TO SILENTX @NAMA"
   }
 }

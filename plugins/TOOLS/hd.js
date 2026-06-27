@@ -5,24 +5,18 @@ import mess from '../../strings.js';
 import axios from 'axios';
 import config from '../../config.js';
 
-const DEBUG = false;
+// Ubah ke true jika kamu ingin detail error dikirim langsung ke chat WhatsApp
+const DEBUG = false; 
 
 const http = axios.create({
   timeout: 180000,
   validateStatus: () => true,
 });
-async function debugReply(m, text) {
-  if (DEBUG) {
-    return await reply(m, text);
-  }
-}
 
 async function handle(sock, messageInfo) {
-  // Ambil semua variabel instansiasi awal
   const { m, remoteJid, message, prefix, command, type, isQuoted } = messageInfo;
   let mediaPath = '';
   
-  // Variabel penampung status untuk kebutuhan debug akhir jika lolos ke catch global
   let debugState = {
     step: 'Inisialisasi',
     mediaType: null,
@@ -45,7 +39,7 @@ async function handle(sock, messageInfo) {
     });
 
     // ===============================
-    // DEBUG 1: DOWNLOAD MEDIA WA
+    // STAGE 1: DOWNLOAD MEDIA WA
     // ===============================
     debugState.step = 'Download Media WA';
     let media;
@@ -53,39 +47,47 @@ async function handle(sock, messageInfo) {
       media = isQuoted ? await downloadQuotedMedia(message) : await downloadMedia(message);
       debugState.downloadedMediaName = media;
     } catch (err) {
-      // JIKA GAGAL DI SINI, KIRIM DUMP VARIABEL NYATA KE USER
-      const dumpWA = {
-        error_msg: err.message,
-        error_stack: err.stack,
-        messageInfo_type: type,
-        isQuoted_object: isQuoted ? { type: isQuoted.type, mimetype: isQuoted.mimetype } : 'Bukan Quoted',
-        raw_message_keys: Object.keys(message || {}),
-        raw_message_content: message // Mengintip isi object message Baileys
-      };
-      
-      return await reply(
-        m,
-        `❌ *[DEBUG STAGE: DOWNLOAD WA]*\n\n` +
-        `*Error:* ${dumpWA.error_msg}\n\n` +
-        `*Dump Variables:* \n\`\`\`json\n${JSON.stringify(dumpWA, null, 2)}\n\`\`\``
-      );
+      if (DEBUG) {
+        // Jika DEBUG = true, kirim dump variabel lengkap ke user
+        const dumpWA = {
+          error_msg: err.message,
+          error_stack: err.stack,
+          messageInfo_type: type,
+          isQuoted_object: isQuoted ? { type: isQuoted.type, mimetype: isQuoted.mimetype } : 'Bukan Quoted',
+          raw_message_keys: Object.keys(message || {}),
+          raw_message_content: message
+        };
+        return await reply(
+          m,
+          `❌ *[DEBUG STAGE: DOWNLOAD WA]*\n\n` +
+          `*Error:* ${dumpWA.error_msg}\n\n` +
+          `*Dump Variables:* \n\`\`\`json\n${JSON.stringify(dumpWA, null, 2)}\n\`\`\``
+        );
+      } else {
+        // Jika DEBUG = false, tampilkan pesan error yang aman untuk user umum
+        return await reply(m, `❌ Gagal mengunduh media dari WhatsApp. Silakan coba lagi.`);
+      }
     }
 
     mediaPath = path.join('tmp', media);
     debugState.localFileExists = fs.existsSync(mediaPath);
 
     if (!fs.existsSync(mediaPath)) {
-      return await reply(
-        m, 
-        `❌ *[DEBUG STAGE: LOCAL CHECK]*\n\n` +
-        `File tidak ada di folder tmp.\n` +
-        `*Path dicari:* ${mediaPath}\n` +
-        `*Nama Media:* ${media}`
-      );
+      if (DEBUG) {
+        return await reply(
+          m, 
+          `❌ *[DEBUG STAGE: LOCAL CHECK]*\n\n` +
+          `File tidak ada di folder tmp.\n` +
+          `*Path dicari:* ${mediaPath}\n` +
+          `*Nama Media:* ${media}`
+        );
+      } else {
+        return await reply(m, `❌ Terjadi kesalahan sistem internal (File tidak ditemukan).`);
+      }
     }
 
     // ===============================
-    // DEBUG 2: UPLOAD TO UGUU
+    // STAGE 2: UPLOAD TO UGUU
     // ===============================
     debugState.step = 'Upload Uguu';
     const fileBuffer = fs.readFileSync(mediaPath);
@@ -108,102 +110,100 @@ async function handle(sock, messageInfo) {
         }
       });
     } catch (upErr) {
-      return await reply(
-        m,
-        `❌ *[DEBUG STAGE: UPLOAD UGUU]*\n\n` +
-        `*Error:* ${upErr.message}\n` +
-        `*Response Axios:* ${JSON.stringify(upErr.response?.data || {})}`
-      );
+      if (DEBUG) {
+        return await reply(
+          m,
+          `❌ *[DEBUG STAGE: UPLOAD UGUU]*\n\n` +
+          `*Error:* ${upErr.message}\n` +
+          `*Response Axios:* ${JSON.stringify(upErr.response?.data || {})}`
+        );
+      } else {
+        return await reply(m, `❌ Gagal memproses gambar (Server Upload Error).`);
+      }
     }
 
     const imageUrl = uploadRes.data?.files?.[0]?.url;
     debugState.uguuUrlResult = imageUrl;
 
     if (!imageUrl) {
-      return await reply(
-        m,
-        `❌ *[DEBUG STAGE: UGUU PARSING]*\n\n` +
-        `Uguu tidak merespon URL.\n` +
-        `*Raw Response Data:* \n\`\`\`json\n${JSON.stringify(uploadRes.data, null, 2)}\n\`\`\``
-      );
+      if (DEBUG) {
+        return await reply(
+          m,
+          `❌ *[DEBUG STAGE: UGUU PARSING]*\n\n` +
+          `Uguu tidak merespon URL.\n` +
+          `*Raw Response Data:* \n\`\`\`json\n${JSON.stringify(uploadRes.data, null, 2)}\n\`\`\``
+        );
+      } else {
+        return await reply(m, `❌ Gagal memproses gambar (Parsing Error).`);
+      }
     }
 
     // ===============================
-// DEBUG 3: HIT API HD
-// ===============================
-debugState.step = 'Hit API HD';
+    // STAGE 3: HIT API HD
+    // ===============================
+    debugState.step = 'Hit API HD';
+    let res;
 
-let res;
-
-try {
-  res = await http.get(
-    `https://api-faa.my.id/faa/superhd?url=${encodeURIComponent(imageUrl)}`,
-    {
-      responseType: 'arraybuffer',
-      timeout: 180000
+    try {
+      res = await http.get(
+        `https://api-faa.my.id/faa/superhd?url=${encodeURIComponent(imageUrl)}`,
+        {
+          responseType: 'arraybuffer',
+          timeout: 180000
+        }
+      );
+    } catch (err) {
+      if (DEBUG) {
+        return await reply(m, `❌ *[DEBUG STAGE: HIT API HD]*\n\nError: ${err.message}`);
+      } else {
+        return await reply(m, `❌ Gagal menjernihkan gambar (Server API Timeout/Error).`);
+      }
     }
-  );
-} catch (err) {
-  return await reply(
-    m,
-    `❌ *[DEBUG STAGE: HIT API HD]*\n\n` +
-    `Error: ${err.message}`
-  );
-}
 
-if (res.status !== 200) {
-  return await reply(
-    m,
-    `❌ *[DEBUG STAGE: API STATUS]*\n\n` +
-    `Status: ${res.status}`
-  );
-}
+    if (res.status !== 200) {
+      if (DEBUG) {
+        return await reply(m, `❌ *[DEBUG STAGE: API STATUS]*\n\nStatus: ${res.status}`);
+      } else {
+        return await reply(m, `❌ Gagal menjernihkan gambar (Server merespon dengan kode ${res.status}).`);
+      }
+    }
 
-if (DEBUG) {
-  await debugReply(
-    m,
-    `✅ *[DEBUG API HD]*\n\n` +
-    `Status: ${res.status}\n` +
-    `Content-Type: ${res.headers['content-type'] || 'unknown'}`
-  );
-}
+    const mediaBuffer = Buffer.from(res.data);
 
-const mediaBuffer = Buffer.from(res.data);
+    // Kirim Hasil Akhir
+    await sock.sendMessage(
+      remoteJid,
+      {
+        image: mediaBuffer,
+        caption: mess.general.success,
+      },
+      { quoted: message }
+    );
 
-await sock.sendMessage(
-  remoteJid,
-  {
-    image: mediaBuffer,
-    caption: mess.general.success,
-  },
-  { quoted: message }
-);
-
-await sock.sendMessage(remoteJid, {
-  react: {
-    text: '✅',
-    key: message.key,
-  },
-});
-
-return;
-
-    // Reaksi sukses
     await sock.sendMessage(remoteJid, {
       react: { text: '✅', key: message.key },
     });
 
+    return;
+
   } catch (error) {
-    // Menangkap error tak terduga di luar try-catch spesifik
-    console.error(error);
-    await reply(
-      m, 
-      `❌ *[CRITICAL GLOBAL ERROR]*\n\n` +
-      `*Gagal di Step:* ${debugState.step}\n` +
-      `*Message:* ${error.message}\n\n` +
-      `*Dump State Saat Crash:* \n\`\`\`json\n${JSON.stringify(debugState, null, 2)}\n\`\`\`\n\n` +
-      `*Stack Trace:* \n\`\`\`text\n${error.stack}\n\`\`\``
-    );
+    // Selalu log ke terminal developer agar kamu tahu backend-mu crash di mana
+    console.error('CRITICAL ERROR:', error);
+    
+    if (DEBUG) {
+      // Hanya kirim dump teknis jika DEBUG true
+      await reply(
+        m, 
+        `❌ *[CRITICAL GLOBAL ERROR]*\n\n` +
+        `*Gagal di Step:* ${debugState.step}\n` +
+        `*Message:* ${error.message}\n\n` +
+        `*Dump State Saat Crash:* \n\`\`\`json\n${JSON.stringify(debugState, null, 2)}\n\`\`\`\n\n` +
+        `*Stack Trace:* \n\`\`\`text\n${error.stack}\n\`\`\``
+      );
+    } else {
+      // Jika false, kasih pesan maaf standar ke user
+      await reply(m, `❌ Terjadi kesalahan internal yang tidak terduga pada sistem.`);
+    }
   } finally {
     if (mediaPath && fs.existsSync(mediaPath)) {
       fs.unlinkSync(mediaPath);

@@ -1,0 +1,523 @@
+ryuu@ryuu-R430-R480-R440:/var/www/html/botwa$ tree -I "node_modules|session|tmp|backupplugin"
+.
+├── assets
+│   ├── pair.mp4
+│   ├── qris1.jpg
+│   ├── qris2.jpg
+│   └── qris.jpg
+├── autoresbot backup.zip
+├── autoresbot.js
+├── catatan update.txt
+├── config (copy 1).js
+├── config.js
+├── config.ryuu.js
+├── database
+│   ├── additional
+│   │   ├── absen.json
+│   │   ├── group participant.json
+│   │   ├── server_panel.json
+│   │   ├── totalchat.json
+│   │   └── user_panel.json
+│   ├── assets
+│   │   ├── 1.webp
+│   │   ├── 2.webp
+│   │   ├── 3.webp
+│   │   ├── 4.webp
+│   │   ├── 5.webp
+│   │   ├── 6.webp
+│   │   ├── allmenu.jpg
+│   │   └── game truth dare.jpg
+│   ├── audio
+│   │   ├── malam.opus
+│   │   ├── pagi.opus
+│   │   ├── petang.opus
+│   │   ├── readme.txt
+│   │   ├── sahur.opus
+│   │   ├── siang.opus
+│   │   └── sore.opus
+│   ├── badword.json
+│   ├── bot.db
+│   ├── group_backup.json
+│   ├── group.json
+│   ├── guarantee.json
+│   ├── jadibot.json
+│   ├── list.json
+│   ├── media
+│   │   └── sticker_1780314804695.webp
+│   ├── mediaFiles.json
+│   ├── menu.js
+│   ├── owner_duration.json
+│   ├── owner.json
+│   ├── redeem.json
+│   ├── sewa.json
+│   ├── slr.json
+│   ├── templates
+│   │   └── list.js
+│   ├── temporary_db
+│   │   ├── blackjack.js
+│   │   ├── cak lontong.js
+│   │   ├── family100.js
+│   │   ├── math.js
+│   │   ├── suit.js
+│   │   ├── tebak angka.js
+│   │   ├── tebak bendera.js
+│   │   ├── tebak bom.js
+│   │   ├── tebak gambar.js
+│   │   ├── tebak hewan.js
+│   │   ├── tebak kalimat.js
+│   │   ├── tebak kata.js
+│   │   ├── tebak lagu.js
+│   │   ├── tebak lirik.js
+│   │   └── tictactoe.js
+│   └── users.json
+├── developer.txt
+├── handle
+│   ├── afk.js
+│   ├── autoblock_chatprivate.js
+│   ├── badword_pribadi.js
+│   ├── chat.js
+│   ├── first chat.js
+│   ├── GAMES
+│   │   ├── blackjack.js
+│   │   ├── cak lontong.js
+│   │   ├── family100.js
+│   │   ├── math.js
+│   │   ├── suit.js
+│   │   ├── tebak angka.js
+│   │   ├── tebak bendera.js
+│   │   ├── tebak bom.js
+│   │   ├── tebak gambar.js
+│   │   ├── tebak hewan.js
+│   │   ├── tebak kalimat.js
+│   │   ├── tebak kata.js
+│   │   ├── tebak lagu.js
+│   │   ├── tebak lirik.js
+│   │   └── tictactoe.js
+│   ├── list.js
+│   ├── MODE ON
+│   │   ├── handler.js
+│   │   └── mute.js
+│   ├── respon.js
+│   ├── sewa.js
+│   ├── update_notif.js
+│   └── usersHandle.js
+├── htr.txt
+├── index.js
+├── lib
+│   ├── absen.js
+│   ├── autoai.js
+│   ├── autorusuh.js
+│   ├── autosimi.js
+│   ├── badwordDetection.js
+│   ├── badword.js
+│   ├── cache.js
+│   ├── chatManager.js
+│   ├── connection.js
+│   ├── exif.js
+│   ├── features.js
+│   ├── fileHelper.js
+│   ├── gacha.js
+│   ├── games
+│   │   ├── math.js
+│   │   └── tictactoe.js
+│   ├── globalCache.js
+│   ├── group.js
+│   ├── handler.js
+│   ├── jadibot.js
+│   ├── list.js
+│   ├── logger.js
+│   ├── panel.js
+│   ├── participants.js
+│   ├── participant_update.js
+│   ├── plugins.js
+│   ├── scheduled.js
+│   ├── scrape
+│   │   ├── quote.js
+│   │   ├── remini.js
+│   │   └── tiktok.js
+│   ├── serializeMessage.js
+│   ├── sewa.js
+│   ├── slr.js
+│   ├── spamDetection.js
+│   ├── startup.js
+│   ├── totalchat.js
+│   ├── users.js
+│   ├── utils.js
+│   └── version.js
+├── package.json
+├── package-lock.json
+├── plugins
+│   ├── ADMIN
+│   │   ├── add badword.js
+│   │   ├── add.js
+│   │   ├── antilink.js
+│   │   ├── approve.js
+│   │   ├── banfitur.js
+│   │   ├── ban.js
+│   │   ├── del badword.js
+│   │   ├── delete.js
+│   │   ├── demote all.js
+│   │   ├── demote.js
+│   │   ├── edit deskripsi.js
+│   │   ├── edit subject.js
+│   │   ├── fixchat.js
+│   │   ├── gcsider.js
+│   │   ├── giveaway.js
+│   │   ├── grub open close.js
+│   │   ├── hidetag.js
+│   │   ├── kick.js
+│   │   ├── kicksider.js
+│   │   ├── list absen.js
+│   │   ├── list admin.js
+│   │   ├── list alluser.js
+│   │   ├── listban.js
+│   │   ├── list member.js
+│   │   ├── list noabsen.js
+│   │   ├── mute.js
+│   │   ├── off.js
+│   │   ├── on.js
+│   │   ├── promote all.js
+│   │   ├── promote.js
+│   │   ├── resetgc.js
+│   │   ├── reset link grub.js
+│   │   ├── setclosegc.js
+│   │   ├── set demote.js
+│   │   ├── set left.js
+│   │   ├── setopengc.js
+│   │   ├── setpp grub.js
+│   │   ├── set promote.js
+│   │   ├── set templatelist.js
+│   │   ├── set templatewelcome.js
+│   │   ├── set welcome.js
+│   │   ├── slr.js
+│   │   ├── tag all.js
+│   │   ├── teswelcome.js
+│   │   ├── top.js
+│   │   ├── total chat.js
+│   │   ├── total chat - reset.js
+│   │   ├── unbanfitur.js
+│   │   ├── unban.js
+│   │   └── warning.js
+│   ├── AI
+│   │   ├── ai.js
+│   │   ├── ai.txt
+│   │   ├── simi.js
+│   │   ├── vnanime.js
+│   │   ├── vn.js
+│   │   └── voiceai.js
+│   ├── ANIME
+│   │   └── anime.js
+│   ├── benefit.js
+│   ├── BERITA
+│   │   └── berita.js
+│   ├── DOWNLOAD
+│   │   ├── fb.js
+│   │   ├── instagramfoto.js
+│   │   ├── instagram.js
+│   │   ├── pinterest.js
+│   │   ├── play.js
+│   │   ├── spotify.js
+│   │   ├── tiktok.js
+│   │   ├── tiktokmp3.js
+│   │   ├── tiktok search.js
+│   │   ├── tiktok slide.js
+│   │   ├── twiter.js
+│   │   ├── ytmp3.js
+│   │   ├── ytmp4.js
+│   │   └── ytsearch.js
+│   ├── EDITOR
+│   │   ├── blur.js
+│   │   ├── duotone.js
+│   │   ├── flipx.js
+│   │   ├── flipy.js
+│   │   ├── grayscale.js
+│   │   ├── resize.js
+│   │   ├── rotate.js
+│   │   ├── sepia.js
+│   │   ├── tajam.js
+│   │   ├── wanted.js
+│   │   └── wasted.js
+│   ├── GAMES
+│   │   ├── bet.js
+│   │   ├── blackjack.js
+│   │   ├── cak lontong.js
+│   │   ├── cek kodam.js
+│   │   ├── dare.js
+│   │   ├── family100.js
+│   │   ├── gacha.js
+│   │   ├── math.js
+│   │   ├── snakes.js
+│   │   ├── suit.js
+│   │   ├── tebak angka.js
+│   │   ├── tebak bendera.js
+│   │   ├── tebak bom.js
+│   │   ├── tebak gambar.js
+│   │   ├── tebak hewan.js
+│   │   ├── tebak hewan.txt
+│   │   ├── tebak kalimat.js
+│   │   ├── tebak kata.js
+│   │   ├── tebak lagu.js
+│   │   ├── tebak lirik.js
+│   │   ├── tictactoe.js
+│   │   └── truth.js
+│   ├── garansi.js
+│   ├── GROUP
+│   │   ├── absen.js
+│   │   ├── afk.js
+│   │   ├── badword.js
+│   │   ├── bot.js
+│   │   ├── buy limit.js
+│   │   ├── cek premium grub.js
+│   │   ├── cek premium.js
+│   │   ├── ceksewa.js
+│   │   ├── claim.js
+│   │   ├── Convertlimit.js
+│   │   ├── getpic.js
+│   │   ├── ikut.js
+│   │   ├── info grub.js
+│   │   ├── link grub.js
+│   │   ├── me2.js
+│   │   ├── me.js
+│   │   ├── me(replace).txt
+│   │   ├── redeem.js
+│   │   ├── send limit.js
+│   │   ├── send money.js
+│   │   ├── set akun.js
+│   │   └── ultah.js
+│   ├── guide.js
+│   ├── INFORMATION
+│   │   ├── arti mimpi.js
+│   │   ├── arti nama.js
+│   │   ├── codcek.js
+│   │   ├── ffcek.js
+│   │   ├── info gempa.js
+│   │   ├── kbbi.js
+│   │   ├── ml.js
+│   │   ├── pubg.js
+│   │   └── stalktiktok.js
+│   ├── ISLAMI
+│   │   ├── azan.js
+│   │   ├── doa.js
+│   │   ├── hadist.js
+│   │   ├── jadwalsholat2.js
+│   │   ├── jadwal sholat.js
+│   │   ├── list surah.js
+│   │   ├── niatsholat.js
+│   │   ├── surah.js
+│   │   └── zikir.js
+│   ├── KERANG AJAIB
+│   │   ├── bisakah.js
+│   │   ├── cek bucin.js
+│   │   ├── cek cantik.js
+│   │   ├── cek ganteng.js
+│   │   ├── cek gila.js
+│   │   ├── cek mati.js
+│   │   ├── cek tolol.js
+│   │   ├── cek umur.js
+│   │   ├── jadian.js
+│   │   └── kapankah.js
+│   ├── listitem.js
+│   ├── MAKER
+│   │   ├── attp2.js
+│   │   ├── attp.js
+│   │   ├── brat2.js
+│   │   ├── bratcustom.js
+│   │   ├── brat.js
+│   │   ├── bratvid.js
+│   │   ├── iqc.js
+│   │   ├── qc2.js
+│   │   ├── qc.js
+│   │   ├── qcstick.js
+│   │   ├── smeme.js
+│   │   ├── sticker.js
+│   │   ├── tovid.js
+│   │   ├── ttp.js
+│   │   ├── twibbon.js
+│   │   ├── wm.js
+│   │   └── wmprem.js
+│   ├── menu.js
+│   ├── MORE
+│   │   ├── apikey.js
+│   │   ├── cek apikey.js
+│   │   ├── grubbot.js
+│   │   ├── ratelimit.js
+│   │   ├── report.js
+│   │   ├── runtime.js
+│   │   ├── sc.js
+│   │   ├── style10.js
+│   │   ├── style2.js
+│   │   ├── style3.js
+│   │   ├── style4.js
+│   │   ├── style5.js
+│   │   ├── style6.js
+│   │   ├── style7.js
+│   │   ├── style8.js
+│   │   ├── style9.js
+│   │   ├── style.js
+│   │   ├── tutor.js
+│   │   └── version.js
+│   ├── OWNER
+│   │   ├── add global badword.js
+│   │   ├── add level.js
+│   │   ├── add limit.js
+│   │   ├── add money.js
+│   │   ├── addmoneyme.js
+│   │   ├── add owner.js
+│   │   ├── Addpaidlimit.js
+│   │   ├── add plugin.js
+│   │   ├── addpremgrub.js
+│   │   ├── add premium.js
+│   │   ├── addredeem.js
+│   │   ├── add respon.js
+│   │   ├── backup.js
+│   │   ├── blacklist.js
+│   │   ├── block.js
+│   │   ├── buat story.js
+│   │   ├── cleandb.js
+│   │   ├── clearchat.js
+│   │   ├── clear sesi.js
+│   │   ├── create grub.js
+│   │   ├── deletejadibot.js
+│   │   ├── del global badword.js
+│   │   ├── delmoney.js
+│   │   ├── del owner.js
+│   │   ├── delpaidlimit.js
+│   │   ├── del plugin.js
+│   │   ├── delpremgrub.js
+│   │   ├── del premium.js
+│   │   ├── del response.js
+│   │   ├── del sewa.js
+│   │   ├── demote me.js
+│   │   ├── garansi.js
+│   │   ├── gc tag.js
+│   │   ├── info system.js
+│   │   ├── ipserver.js
+│   │   ├── jadibot.js
+│   │   ├── join.js
+│   │   ├── jpm.js
+│   │   ├── jpmtag.js
+│   │   ├── list blacklist.js
+│   │   ├── list block.js
+│   │   ├── listjadibot.js
+│   │   ├── listnosewa.js
+│   │   ├── listowner.js
+│   │   ├── list prem gc.js
+│   │   ├── list prem.js
+│   │   ├── list respon.js
+│   │   ├── list sewa delete.js
+│   │   ├── list sewa.js
+│   │   ├── liststats.js
+│   │   ├── offterm.js
+│   │   ├── out all grub.js
+│   │   ├── out grub.js
+│   │   ├── outnosewa.js
+│   │   ├── pairvid.js
+│   │   ├── promote me.js
+│   │   ├── reset.js
+│   │   ├── resetlevel.js
+│   │   ├── resetlimit.js
+│   │   ├── resetmoney.js
+│   │   ├── restart.js
+│   │   ├── self.js
+│   │   ├── set bio.js
+│   │   ├── set name.js
+│   │   ├── setppbot.js
+│   │   ├── sewabotid.js
+│   │   ├── sewabot.js
+│   │   ├── stopjadibot.js
+│   │   ├── tambah sewa.js
+│   │   ├── toadmin.js
+│   │   ├── total sewa.js
+│   │   ├── unblacklist.js
+│   │   ├── unblock.js
+│   │   ├── updatebaileys.js
+│   │   ├── update.js
+│   │   ├── upswgc.js
+│   │   ├── usage.js
+│   │   └── viewcode.js
+│   ├── owner.js
+│   ├── PANEL
+│   │   ├── 1gb - unlimited.js
+│   │   ├── create adminpanel.js
+│   │   ├── create server.js
+│   │   ├── create user.js
+│   │   ├── delete server.js
+│   │   ├── delete user.js
+│   │   ├── find user.js
+│   │   ├── list server.js
+│   │   ├── list user.js
+│   │   ├── reset server.js
+│   │   ├── reset user.js
+│   │   ├── save user.js
+│   │   └── status panel.js
+│   ├── pricelist.js
+│   ├── PUSHKONTAK
+│   │   ├── list gc.js
+│   │   ├── pushkontak.js
+│   │   ├── savekontak.js
+│   │   ├── savekontakwm.js
+│   │   ├── totalgc2.js
+│   │   └── totalgc.js
+│   ├── RANDOM
+│   │   ├── random image.js
+│   │   └── random text.js
+│   ├── roles.js
+│   ├── rules.js
+│   ├── STORE
+│   │   ├── addlist.js
+│   │   ├── delete list.js
+│   │   ├── done.js
+│   │   ├── list.js
+│   │   ├── proses.js
+│   │   ├── renamelist.js
+│   │   ├── reset list.js
+│   │   ├── setdone.js
+│   │   ├── setlist.js
+│   │   ├── setproses.js
+│   │   └── updatelist.js
+│   ├── TEXTPRO
+│   │   ├── textpro 2.js
+│   │   └── textpro.js
+│   └── TOOLS
+│       ├── cek dns.js
+│       ├── cek host.js
+│       ├── cek id gc.js
+│       ├── cek user.js
+│       ├── checkip.js
+│       ├── emoji mix.js
+│       ├── get.js
+│       ├── git.js
+│       ├── gold.js
+│       ├── hd.js
+│       ├── image.js
+│       ├── inspect.js
+│       ├── lid.js
+│       ├── lorem.js
+│       ├── now.js
+│       ├── numberbot.js
+│       ├── ping2.js
+│       ├── ping.js
+│       ├── qr create.js
+│       ├── qris1.js
+│       ├── qris.js
+│       ├── removebg.js
+│       ├── roles.js
+│       ├── rvo.js
+│       ├── ssweb.js
+│       ├── toimg.js
+│       ├── tom4a.js
+│       ├── to mp3.js
+│       ├── to url2.js
+│       ├── to url.js
+│       ├── to vn.js
+│       ├── translate.js
+│       └── voicechanger.js
+├── README.md
+├── restaring.txt
+├── strings.js
+├── tmp\logs\.e10f36bbc4a55945aad553833a179d04af3070bf-audit.json
+├── tree
+└── version.txt
+
+36 directories, 483 files
+

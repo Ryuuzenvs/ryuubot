@@ -134,17 +134,10 @@
   },
   "120363427628424973@g.us": {
     "linkGrub": "https://chat.whatsapp.com/LbRlEj2a4pG0eQgTxOAACe",
-    "start": "15 June 2026",
-    "expired": 1781939911645,
+    "start": "24 June 2026",
+    "expired": 1782361230820,
     "createdAt": "2026-06-15T06:18:32.453Z",
-    "updatedAt": "2026-06-15T06:18:32.453Z"
-  },
-  "120363429097813498@g.us": {
-    "linkGrub": "https://chat.whatsapp.com/ETfKvQbm1zrGyfbNf3JJzD",
-    "start": "18 June 2026",
-    "expired": 1782350047891,
-    "createdAt": "2026-06-18T00:14:08.909Z",
-    "updatedAt": "2026-06-18T00:14:08.909Z"
+    "updatedAt": "2026-06-24T03:20:32.764Z"
   },
   "120363427428379591@g.us": {
     "linkGrub": "https://chat.whatsapp.com/JnZRnQ5kzD21v0C2jTSfCc",
@@ -152,13 +145,6 @@
     "expired": 1786959485111,
     "createdAt": "2026-06-18T08:38:06.746Z",
     "updatedAt": "2026-06-18T08:38:06.746Z"
-  },
-  "120363410041750269@g.us": {
-    "linkGrub": "https://chat.whatsapp.com/GIPLu6XsuNOE1d8jezTom4",
-    "start": "18 June 2026",
-    "expired": 1782398515556,
-    "createdAt": "2026-06-18T13:41:59.901Z",
-    "updatedAt": "2026-06-18T13:41:59.901Z"
   },
   "120363330917880338@g.us": {
     "linkGrub": "https://chat.whatsapp.com/HhyElBiGwQiHse0k8burRq",
@@ -209,13 +195,6 @@
     "createdAt": "2026-06-22T12:38:01.373Z",
     "updatedAt": "2026-06-22T12:38:01.373Z"
   },
-  "120363408009353641@g.us": {
-    "linkGrub": "https://chat.whatsapp.com/LutOQjU22gV71OBOVhGojP",
-    "start": "23 June 2026",
-    "expired": 1782551613380,
-    "createdAt": "2026-06-23T08:13:34.681Z",
-    "updatedAt": "2026-06-23T08:13:34.681Z"
-  },
   "120363425726137525@g.us": {
     "linkGrub": "https://chat.whatsapp.com/CxZFeFb8Y7C3L4tE3LjTc3",
     "start": "23 June 2026",
@@ -236,5 +215,19 @@
     "expired": 1868546848590,
     "createdAt": "2026-06-23T15:47:30.269Z",
     "updatedAt": "2026-06-23T15:47:30.269Z"
+  },
+  "120363406481646127@g.us": {
+    "linkGrub": "https://chat.whatsapp.com/DQLiq6CpZfOIp1aAdXbHN8",
+    "start": "25 June 2026",
+    "expired": 1784116898147,
+    "createdAt": "2026-06-25T09:54:03.010Z",
+    "updatedAt": "2026-06-25T11:01:39.836Z"
+  },
+  "120363409251678038@g.us": {
+    "linkGrub": "https://chat.whatsapp.com/C5fAGI3ouqVFoq7rGJlOyN",
+    "start": "26 June 2026",
+    "expired": 1785064268392,
+    "createdAt": "2026-06-26T10:11:09.364Z",
+    "updatedAt": "2026-06-26T10:11:09.364Z"
   }
 }
