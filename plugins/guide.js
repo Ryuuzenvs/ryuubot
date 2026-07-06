@@ -98,6 +98,6 @@ export default {
   handle,
   Commands: ["guide", "guideantisuswa", "guidewa"],
   OnlyPremium: false,
-  OnlyOwner: false,
+  OnlyOwner: true,
 };
 

@@ -1,18 +1,4 @@
-/*
-⚠️ PERINGATAN:
-Script ini **TIDAK BOLEH DIPERJUALBELIKAN** dalam bentuk apa pun!
 
-╔══════════════════════════════════════════════╗
-║                🛠️ INFORMASI SCRIPT           ║
-╠══════════════════════════════════════════════╣
-║ 📦 Version   : 5.1.3
-║ 👨‍💻 Developer  : Azhari Creative              ║
-║ 🌐 Website    : https://autoresbot.com       ║
-║ 💻 GitHub  : github.com/autoresbot/resbot-md ║
-╚══════════════════════════════════════════════╝
-
-📌 Script ini Open Source dan gratis.
-*/
 // ─── Import modul internal via path relatif ───────────
 import './lib/version.js';
 import { checkAndInstallModules, clearDirectory } from './lib/utils.js';

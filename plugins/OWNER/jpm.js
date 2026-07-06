@@ -49,7 +49,7 @@ async function handle(sock, messageInfo) {
   if (!ownerConfigList.includes(senderNumber)) {
     return await sock.sendMessage(
       remoteJid,
-      { text: `🚫 *Akses Ditolak:* Fitur JPM ini hanya dapat digunakan oleh Founder Owner.` },
+      { text: `🚫 *Akses Ditolak:* Fitur ini hanya dapat digunakan oleh Founder Owner.` },
       { quoted: message }
     );
   }

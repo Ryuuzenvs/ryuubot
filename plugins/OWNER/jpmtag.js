@@ -1,5 +1,6 @@
 import { groupFetchAllParticipating } from "../../lib/cache.js";
 import { downloadQuotedMedia, downloadMedia } from "../../lib/utils.js";
+import config from "../../config.js"; // Import file config utama
 import fs from "fs";
 import path from "path";
 
@@ -40,6 +41,22 @@ async function handle(sock, messageInfo) {
     isQuoted,
     type,
   } = messageInfo;
+
+// --- VALIDASI OWNER CONFIG (HIGHEST RANK) ---
+  // Membersihkan senderJid (misal: '6285188510933@s.whatsapp.net' menjadi '6285188510933')
+  const senderNumber = sender.split("@")[0];
+  
+  // Ambil array DATA_OWNER dari config.js
+  const ownerConfigList = config.owner_number || [];
+
+  if (!ownerConfigList.includes(senderNumber)) {
+    return await sock.sendMessage(
+      remoteJid,
+      { text: `🚫 *Akses Ditolak:* Fitur ini hanya dapat digunakan oleh Founder Owner.` },
+      { quoted: message }
+    );
+  }
+  // --------------------------------------------
 
   const useMentions = true; // Ubah menjadi true jika ingin menggunakan mention
 
