@@ -103,6 +103,6 @@ export default {
   handle,
   Commands: ['play', 'playaudio'],
   OnlyPremium: false,
-  OnlyOwner: false,
+  OnlyOwner: true,
   limitDeduction: 1, // Potongan limit dikurangi karena gratis tis tis!
 };

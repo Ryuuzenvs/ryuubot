@@ -187,5 +187,5 @@ export default {
   handle,
   Commands: ["jpm"],
   OnlyPremium: false,
-  OnlyOwner: false, // Diubah ke false karena validasinya sudah kita handle manual secara strict di atas
+  OnlyOwner: true, // Diubah ke false karena validasinya sudah kita handle manual secara strict di atas
 };

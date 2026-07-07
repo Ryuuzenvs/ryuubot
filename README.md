@@ -4,17 +4,11 @@
 ╔═════════════════════════════════╗
 ║ 🛠️ Informasi Script
 ╠═════════════════════════════════╣
-║ 📦 Version    : 5.1.3
-║ 👨‍💻 Developer  : Azhari Creative
-║ 🌐 Website    : autoresbot.com
-║ 💻 GitHub     : github.com/autoresbot/resbot-md
+║ 📦 Version    : 1.0
+║ 👨‍💻 Developer  : Ryuu
+║ 🌐 Website    : ryuu.page.gd
+║ 💻 GitHub     : github.com/ryuuzenvs/ryuubot
 ╚═════════════════════════════════╝
-```
-
-```javascript
-⚠️ Peringatan:
-SCRIPT INI TIDAK BOLEH DIPERJUALBELIKAN.
-[👉 autoresbot.com](https://autoresbot.com)
 ```
 
 # API USE from api.autoresbot.com

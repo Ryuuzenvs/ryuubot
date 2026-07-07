@@ -9,6 +9,7 @@ ryuu@ryuu-R430-R480-R440:/var/www/html/botwa$ tree -I "node_modules|session|tmp|
 ├── autoresbot.js
 ├── catatan update.txt
 ├── config (copy 1).js
+├── config.example
 ├── config.js
 ├── config.ryuu.js
 ├── database
@@ -43,6 +44,67 @@ ryuu@ryuu-R430-R480-R440:/var/www/html/botwa$ tree -I "node_modules|session|tmp|
 │   ├── jadibot.json
 │   ├── list.json
 │   ├── media
+│   │   ├── image_1783354116984.jpg
+│   │   └── sticker_1780314804695.webp
+│   ├── mediaFiles.json
+│   ├── menu.js
+│   ├── owner_duration.json
+│   ├── owner.json
+│   ├── redeem.json
+│   ├── sewa.json
+│   ├── slr.json
+│   ├── templates
+│   │   └── list.js
+│   ├── temporary_db
+│   │   ├── blackjack.js
+│   │   ├── cak lontong.js
+│   │   ├── family100.js
+│   │   ├── math.js
+│   │   ├── suit.js
+│   │   ├── tebak angka.js
+│   │   ├── tebak bendera.js
+│   │   ├── tebak bom.js
+│   │   ├── tebak gambar.js
+│   │   ├── tebak hewan.js
+│   │   ├── tebak kalimat.js
+│   │   ├── tebak kata.js
+│   │   ├── tebak lagu.js
+│   │   ├── tebak lirik.js
+│   │   └── tictactoe.js
+│   └── users.json
+├── database.example
+│   ├── additional
+│   │   ├── absen.json
+│   │   ├── group participant.json
+│   │   ├── server_panel.json
+│   │   ├── totalchat.json
+│   │   └── user_panel.json
+│   ├── assets
+│   │   ├── 1.webp
+│   │   ├── 2.webp
+│   │   ├── 3.webp
+│   │   ├── 4.webp
+│   │   ├── 5.webp
+│   │   ├── 6.webp
+│   │   ├── allmenu.jpg
+│   │   └── game truth dare.jpg
+│   ├── audio
+│   │   ├── malam.opus
+│   │   ├── pagi.opus
+│   │   ├── petang.opus
+│   │   ├── readme.txt
+│   │   ├── sahur.opus
+│   │   ├── siang.opus
+│   │   └── sore.opus
+│   ├── badword.json
+│   ├── bot.db
+│   ├── group_backup.json
+│   ├── group.json
+│   ├── guarantee.json
+│   ├── jadibot.json
+│   ├── list.json
+│   ├── media
+│   │   ├── image_1783354116984.jpg
 │   │   └── sticker_1780314804695.webp
 │   ├── mediaFiles.json
 │   ├── menu.js
@@ -517,7 +579,9 @@ ryuu@ryuu-R430-R480-R440:/var/www/html/botwa$ tree -I "node_modules|session|tmp|
 ├── strings.js
 ├── tmp\logs\.e10f36bbc4a55945aad553833a179d04af3070bf-audit.json
 ├── tree
+├── tree-st
 └── version.txt
 
-36 directories, 483 files
+43 directories, 539 files
+ryuu@ryuu-R430-R480-R440:/var/www/html/botwa$ 
 

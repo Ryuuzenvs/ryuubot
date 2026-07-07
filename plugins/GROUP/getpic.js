@@ -55,7 +55,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["getpic"],
+  Commands: ["getpic", "getpp"],
   OnlyPremium: false,
   OnlyOwner: false,
 };
