@@ -384,8 +384,8 @@
     "money": 0,
     "limit": 3,
     "paidLimit": 0,
-    "level_cache": 100,
-    "level": 17,
+    "level_cache": 1,
+    "level": 18,
     "role": "user",
     "achievement": "gamers",
     "status": "active",
@@ -394,7 +394,7 @@
       "alasan": null
     },
     "createdAt": "2026-05-28T11:45:57.394Z",
-    "updatedAt": "2026-07-07T12:07:28.261Z",
+    "updatedAt": "2026-07-07T12:53:57.354Z",
     "gachaPity": 66,
     "gachaGuaranteed": true,
     "totalLimited": 27
@@ -1753,7 +1753,7 @@
     "money": 0,
     "limit": 3,
     "paidLimit": 0,
-    "level_cache": 60,
+    "level_cache": 66,
     "level": 11,
     "role": "user",
     "achievement": "gamers",
@@ -1763,7 +1763,7 @@
       "alasan": null
     },
     "createdAt": "2026-05-31T12:37:29.696Z",
-    "updatedAt": "2026-07-07T12:51:18.086Z"
+    "updatedAt": "2026-07-07T12:54:30.422Z"
   },
   "d6d8f8cdb1233afe19e7e0e796a": {
     "username": "user_6285285950972@s.whatsapp.net",
@@ -10881,14 +10881,14 @@
     "money": 0,
     "limit": 3,
     "paidLimit": 0,
-    "level_cache": 12,
+    "level_cache": 15,
     "level": 20,
     "role": "user",
     "achievement": "gamers",
     "status": "aktif",
     "afk": null,
     "createdAt": "2026-06-18T08:38:59.875Z",
-    "updatedAt": "2026-07-07T11:28:46.400Z",
+    "updatedAt": "2026-07-07T12:54:48.640Z",
     "lastClaim": 1783167892024,
     "premium": "2026-08-17T09:01:17.237Z"
   },
@@ -11343,14 +11343,14 @@
     "money": 0,
     "limit": 3,
     "paidLimit": 0,
-    "level_cache": 50,
+    "level_cache": 51,
     "level": 9,
     "role": "user",
     "achievement": "gamers",
     "status": "aktif",
     "afk": null,
     "createdAt": "2026-06-18T11:42:22.913Z",
-    "updatedAt": "2026-07-07T11:43:48.272Z",
+    "updatedAt": "2026-07-07T12:54:25.297Z",
     "lastClaim": 1781783352763
   },
   "aabafea2ac0ea95319eda9eeebb": {
@@ -24159,7 +24159,7 @@
     "money": 0,
     "limit": 3,
     "paidLimit": 0,
-    "level_cache": 67,
+    "level_cache": 71,
     "level": 4,
     "role": "user",
     "achievement": "gamers",
@@ -24169,7 +24169,7 @@
       "alasan": null
     },
     "createdAt": "2026-06-28T12:44:59.190Z",
-    "updatedAt": "2026-07-07T12:06:45.584Z"
+    "updatedAt": "2026-07-07T12:54:45.288Z"
   },
   "81b280d5bc5daae419f0e45c4d5": {
     "username": "user_6285654675762@s.whatsapp.net",
@@ -40796,7 +40796,7 @@
     "money": 30,
     "limit": 3,
     "paidLimit": 0,
-    "level_cache": 64,
+    "level_cache": 65,
     "level": 1,
     "role": "user",
     "achievement": "gamers",
@@ -40806,7 +40806,7 @@
       "alasan": null
     },
     "createdAt": "2026-07-07T11:45:06.967Z",
-    "updatedAt": "2026-07-07T12:53:07.707Z"
+    "updatedAt": "2026-07-07T12:53:10.579Z"
   },
   "58dcb1059c78bbd919f3c6d8f5d": {
     "username": "user_164936089075913@lid",
