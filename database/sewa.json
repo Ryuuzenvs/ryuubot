@@ -76,13 +76,6 @@
     "createdAt": "2026-06-03T12:01:23.406Z",
     "updatedAt": "2026-06-03T12:01:23.406Z"
   },
-  "120363406655996186@g.us": {
-    "linkGrub": "https://chat.whatsapp.com/GT9IIghZYxKCfO4HQQou7u",
-    "start": "03 June 2026",
-    "expired": 1783087552350,
-    "createdAt": "2026-06-03T13:05:53.004Z",
-    "updatedAt": "2026-06-03T13:05:53.005Z"
-  },
   "120363426160917592@g.us": {
     "linkGrub": "https://chat.whatsapp.com/C8EYVTunhA17jEr8nZcJ1C",
     "start": "09 June 2026",
@@ -300,11 +293,39 @@
     "createdAt": "2026-07-03T03:23:18.947Z",
     "updatedAt": "2026-07-03T03:23:18.948Z"
   },
-  "120363409312798300@g.us": {
-    "linkGrub": "https://chat.whatsapp.com/D3Gg2h3T9wU9zuoapYR5Og",
-    "start": "03 July 2026",
-    "expired": 1783333411439,
-    "createdAt": "2026-07-03T09:23:32.562Z",
-    "updatedAt": "2026-07-03T09:23:32.562Z"
+  "120363426255527092@g.us": {
+    "linkGrub": "https://chat.whatsapp.com/BDggPFo50EGDYhyMJINd7m",
+    "start": "06 July 2026",
+    "expired": 1785936550353,
+    "createdAt": "2026-07-06T12:29:11.429Z",
+    "updatedAt": "2026-07-06T12:29:11.429Z"
+  },
+  "120363429001913318@g.us": {
+    "linkGrub": "https://chat.whatsapp.com/DP0tf5WIU000pJvAwGn80E",
+    "start": "06 July 2026",
+    "expired": 1785943538320,
+    "createdAt": "2026-07-06T14:25:39.354Z",
+    "updatedAt": "2026-07-06T14:25:39.354Z"
+  },
+  "120363429503343807@g.us": {
+    "linkGrub": "https://chat.whatsapp.com/Cd1KpoYiXGr8BPIn9eQrAl",
+    "start": "07 July 2026",
+    "expired": 1783995743055,
+    "createdAt": "2026-07-07T01:22:23.690Z",
+    "updatedAt": "2026-07-07T01:22:23.690Z"
+  },
+  "120363408274764359@g.us": {
+    "linkGrub": "https://chat.whatsapp.com/ImJVmGyt8cE5pjrRSyhWwp",
+    "start": "07 July 2026",
+    "expired": 1783480111909,
+    "createdAt": "2026-07-07T02:08:32.486Z",
+    "updatedAt": "2026-07-07T02:08:32.486Z"
+  },
+  "120363425519359670@g.us": {
+    "linkGrub": "https://chat.whatsapp.com/II0fLONwnRMBvCtqQUV8Jz",
+    "start": "07 July 2026",
+    "expired": 1783495321491,
+    "createdAt": "2026-07-07T06:22:02.099Z",
+    "updatedAt": "2026-07-07T06:22:02.099Z"
   }
 }

@@ -51,7 +51,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["infosistem", "infosystem"],
+  Commands: ["infosistem", "infosystem", "is"],
   OnlyPremium: false,
   OnlyOwner: true,
 };
