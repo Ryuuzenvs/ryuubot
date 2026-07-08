@@ -1,8 +1,27 @@
+import config from "../../config.js";
 import fs from "fs";
+import { reply } from "../../lib/utils.js"; // PERBAIKAN: Menambahkan import reply
 const dbPath = "./database/redeem.json";
 
 async function handle(sock, messageInfo) {
-  const { remoteJid, message, content, prefix, command } = messageInfo;
+  const { m, remoteJid, message, content, prefix, command, sender } = messageInfo;
+
+  // --- VALIDASI OWNER CONFIG (HIGHEST RANK) ---
+  if (!sender) return;
+  // Membersihkan senderJid (misal: '6285188510933@s.whatsapp.net' menjadi '6285188510933')
+  const senderNumber = sender.split("@")[0];
+  
+  // Ambil array DATA_OWNER dari config.js
+  const ownerConfigList = config.owner_number || [];
+
+  if (!ownerConfigList.includes(senderNumber)) {
+    // PERBAIKAN: Gunakan fungsi reply(m, ...) agar lebih aman dan tidak murni text crash
+    return await reply(
+      m,
+      `🚫 *Akses Ditolak:* Fitur ini hanya dapat digunakan oleh Founder Owner.`
+    );
+  }
+  // --------------------------------------------
 
   if (!content?.trim()) {
     return sock.sendMessage(remoteJid, { 

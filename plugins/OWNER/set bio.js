@@ -1,5 +1,24 @@
+import config from "../../config.js";
 async function handle(sock, messageInfo) {
-  const { remoteJid, message, content, prefix, command } = messageInfo;
+  const { remoteJid, message, content, prefix, command, sender } = messageInfo;
+
+ //- VALIDASI OWNER CONFIG (HIGHEST RANK) ---
+  // Membersihkan senderJid (misal: '6285188510933@s.whatsapp.net' menjadi '6285188510933')
+  const senderNumber = sender.split("@")[0];
+  
+  // Ambil array DATA_OWNER dari config.js
+  const ownerConfigList = config.owner_number || [];
+
+  if (!ownerConfigList.includes(senderNumber)) {
+    return await sock.sendMessage(
+      remoteJid,
+      { text: `🚫 *Akses Ditolak:* Fitur ini hanya dapat digunakan oleh Founder Owner.` },
+      { quoted: message }
+    );
+  }
+  // --------------------------------------------
+
+
 
   try {
     // Validasi input nama

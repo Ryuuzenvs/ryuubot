@@ -3,8 +3,10 @@ import { addOwner } from "../../lib/users.js";
 import config from "../../config.js"; // Import file config utama
 
 async function handle(sock, messageInfo) {
-  const { m, prefix, command, content , sender} = messageInfo;
+  const { m, prefix, command, content, sender } = messageInfo;
+  
   // --- VALIDASI OWNER CONFIG (HIGHEST RANK) ---
+  if (!sender) return;
   // Membersihkan senderJid (misal: '6285188510933@s.whatsapp.net' menjadi '6285188510933')
   const senderNumber = sender.split("@")[0];
   
@@ -12,10 +14,10 @@ async function handle(sock, messageInfo) {
   const ownerConfigList = config.owner_number || [];
 
   if (!ownerConfigList.includes(senderNumber)) {
-    return await sock.sendMessage(
-      remoteJid,
-      { text: `🚫 *Akses Ditolak:* Fitur ini hanya dapat digunakan oleh Founder Owner.` },
-      { quoted: message }
+    // PERBAIKAN: Gunakan fungsi reply(m, ...) agar lebih aman dan tidak murni text crash
+    return await reply(
+      m,
+      `🚫 *Akses Ditolak:* Fitur ini hanya dapat digunakan oleh Founder Owner.`
     );
   }
   // --------------------------------------------

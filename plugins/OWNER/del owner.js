@@ -1,8 +1,25 @@
+import config from "../../config.js";
 import { reply } from "../../lib/utils.js";
 import { delOwner } from "../../lib/users.js";
 
 async function handle(sock, messageInfo) {
-  const { m, prefix, command, content } = messageInfo;
+  const { m, prefix, command, content, sender } = messageInfo;
+
+  //- VALIDASI OWNER CONFIG (HIGHEST RANK) ---
+  // Membersihkan senderJid (misal: '6285188510933@s.whatsapp.net' menjadi '6285188510933')
+  const senderNumber = sender.split("@")[0];
+  
+  // Ambil array DATA_OWNER dari config.js
+  const ownerConfigList = config.owner_number || [];
+
+  if (!ownerConfigList.includes(senderNumber)) {
+    return await sock.sendMessage(
+      m.chat, // Menggunakan m.chat sebagai pengganti remoteJid
+      { text: `❌ *Akses Ditolak:* Fitur ini hanya dapat digunakan oleh Founder Owner.` },
+      { quoted: m } // Menggunakan m sebagai pengganti message
+    );
+  }
+  // --------------------------------------------
 
   // Validasi input kosong
   if (!content || !content.trim()) {
@@ -25,7 +42,7 @@ async function handle(sock, messageInfo) {
     );
   }
 
-  // Menambahkan nomor ke daftar owner
+  // Menghapus nomor dari daftar owner
   try {
     const result = delOwner(ownerNumber);
     if (result) {
@@ -36,7 +53,7 @@ async function handle(sock, messageInfo) {
     } else {
       return await reply(
         m,
-        `_Nomor ${ownerNumber} sudah dihapus dari daftar owner._`
+        `_Nomor ${ownerNumber} sudah tidak ada di daftar owner._`
       );
     }
   } catch (error) {
