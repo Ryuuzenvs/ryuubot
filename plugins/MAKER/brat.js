@@ -85,5 +85,5 @@ export default {
   Commands: ["brat"],
   OnlyPremium: false,
   OnlyOwner: false,
-  limitDeduction: 3,
+  limitDeduction: 2,
 };
