@@ -1,21 +1,17 @@
 import config from "../../config.js";
 import fs from "fs";
-import { reply } from "../../lib/utils.js"; // PERBAIKAN: Menambahkan import reply
+import { reply } from "../../lib/utils.js"; 
 const dbPath = "./database/redeem.json";
 
 async function handle(sock, messageInfo) {
   const { m, remoteJid, message, content, prefix, command, sender } = messageInfo;
 
-  // --- VALIDASI OWNER CONFIG (HIGHEST RANK) ---
+  // --- VALIDASI OWNER CONFIG ---
   if (!sender) return;
-  // Membersihkan senderJid (misal: '6285188510933@s.whatsapp.net' menjadi '6285188510933')
   const senderNumber = sender.split("@")[0];
-  
-  // Ambil array DATA_OWNER dari config.js
   const ownerConfigList = config.owner_number || [];
 
   if (!ownerConfigList.includes(senderNumber)) {
-    // PERBAIKAN: Gunakan fungsi reply(m, ...) agar lebih aman dan tidak murni text crash
     return await reply(
       m,
       `🚫 *Akses Ditolak:* Fitur ini hanya dapat digunakan oleh Founder Owner.`
@@ -34,7 +30,16 @@ async function handle(sock, messageInfo) {
     return sock.sendMessage(remoteJid, { text: "⚠️ Masukkan kode dan stok (angka)!" }, { quoted: message });
   }
 
-  const db = fs.existsSync(dbPath) ? JSON.parse(fs.readFileSync(dbPath, "utf-8")) : [];
+  // --- SAFE LOAD DATABASE ---
+  let db = [];
+  if (fs.existsSync(dbPath)) {
+    try {
+      const fileData = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+      db = Array.isArray(fileData) ? fileData : [];
+    } catch (e) {
+      db = [];
+    }
+  }
   
   // Cek kalau kode sudah ada
   if (db.find(c => c.code === code.toUpperCase())) {
@@ -44,7 +49,7 @@ async function handle(sock, messageInfo) {
   db.push({
     code: code.toUpperCase(),
     stock: parseInt(stock),
-    claimedBy: [], // List JID user yang sudah klaim
+    claimedBy: [], 
     createdAt: Date.now()
   });
 

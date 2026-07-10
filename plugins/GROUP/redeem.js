@@ -34,9 +34,26 @@ async function handle(sock, messageInfo) {
   if (!dataUsers) return;
   const [docId, userData] = dataUsers;
 
-  // 4. Generate Hadiah Random
-  const rewardMoney = Math.floor(Math.random() * 100) + 50; // 100 - 150 money
-  const rewardLimit = Math.floor(Math.random() * 5) + 1;     // 1 - 6 limit
+  // --- [PERBAIKAN] LOGIKA FITUR PREMIUM BY KODE REDEEM ---
+  let isPremiumReward = false;
+  let rewardDays = 0;
+  let rewardMoney = 0;
+  let rewardLimit = 0;
+  let configRewardMoney = Math.floor(Math.random() * 100) + 50; // 150
+  let configRewardLimit = Math.floor(Math.random() * 5) + 1;     // 1 - 6 limit
+
+  // Cek apakah kode diawali dengan 'PREM' dan memiliki format angka + 'D_' (Contoh: PREM1D_HBD, PREM30D_NEWYEAR)
+  const premMatch = inputCode.match(/^PREM(\d+)D_/);
+
+  if (premMatch) {
+    isPremiumReward = true;
+    rewardDays = parseInt(premMatch[1]); // Mengambil angka setelah PREM (misal: 1 atau 30)
+  } else {
+    // Jika bukan kode premium, jalankan hadiah random biasa
+    rewardMoney =  configRewardMoney;// 100 - 150 money
+    rewardLimit = configRewardLimit;
+  }
+  // ------------------------------------------------------
 
   // 5. Update Database Redeem & User
   try {
@@ -45,18 +62,41 @@ async function handle(sock, messageInfo) {
     db[codeIdx].claimedBy.push(sender);
     fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
 
-    // Tambah reward ke user
-    await updateUser(sender, {
-      money: (userData.money || 0) + rewardMoney,
-      limit: (userData.limit || 0) + rewardLimit
-    });
+    let successText = `🎁 *REDEEM CODE SUCCESS* 🎁\n\nSelamat! Kamu mendapatkan:\n`;
 
-    const successText = `🎁 *REDEEM CODE SUCCESS* 🎁\n\n` +
-                        `Selamat! Kamu mendapatkan:\n` +
-                        `💰 Money: *+${rewardMoney}*\n` +
-                        `🎫 Limit: *+${rewardLimit}*\n\n` +
-                        `_Sisa stok kode: ${db[codeIdx].stock}_`;
+    if (isPremiumReward) {
+      // Hitung kalkulasi tanggal premium (meniru logika addprem.js kamu)
+      const now = new Date();
+      
+      // Jika user sudah premium sebelumnya, tambahkan dari tanggal premium lamanya. Jika belum, dari tanggal sekarang.
+      let baseDate = new Date();
+      if (userData.premium) {
+        const currentPremiumDate = new Date(userData.premium);
+        if (!isNaN(currentPremiumDate) && currentPremiumDate > now) {
+          baseDate = currentPremiumDate;
+        }
+      }
 
+      baseDate.setDate(baseDate.getDate() + rewardDays);
+      userData.premium = baseDate.toISOString();
+
+      // Update data premium ke objek user
+      await updateUser(sender, { premium: userData.premium });
+      
+      successText += `👑 Premium Status: *+${rewardDays} Hari*\n` +
+                     `⏰ Aktif Sampai: _${baseDate.toLocaleString()}_\n\n`;
+    } else {
+      // Tambah reward biasa ke user
+      await updateUser(sender, {
+        money: (userData.money || 0) + rewardMoney,
+        limit: (userData.limit || 0) + rewardLimit
+      });
+
+      successText += `💰 Money: *+${rewardMoney}*\n` +
+                     `🎫 Limit: *+${rewardLimit}*\n\n`;
+    }
+
+    successText += `_Sisa stok kode: ${db[codeIdx].stock}_`;
     await sock.sendMessage(remoteJid, { text: successText }, { quoted: message });
 
   } catch (err) {
@@ -64,7 +104,6 @@ async function handle(sock, messageInfo) {
     await sock.sendMessage(remoteJid, { text: "❌ Terjadi kesalahan saat memproses kode." });
   }
 }
-
 export default {
   handle,
   Commands: ["redeem"],
