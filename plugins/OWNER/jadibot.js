@@ -13,6 +13,7 @@ import pino from "pino";
 const logger = pino({ level: "silent" });
 import { connectToWhatsApp } from "../../lib/connection.js";
 import { updateJadibot } from "../../lib/jadibot.js";
+import config from "../../config.js"; // <-- Import config untuk mengambil custom pairing name
 
 import {
   logWithTime,
@@ -21,6 +22,7 @@ import {
   deleteFolderRecursive,
 } from "../../lib/utils.js";
 import { sessions } from "../../lib/cache.js";
+import chalk from "chalk";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -48,10 +50,25 @@ async function startNewSession(masterSessions, senderId, type_connection) {
   if (!sock.authState.creds.registered && type_connection == "pairing") {
     const phoneNumber = senderId;
     await delay(4000);
-    const code = await sock.requestPairingCode(phoneNumber.trim());
-    logWithTime("System", `Pairing Code : ${code}`);
-    const textResponse = `⏳ _Jadibot ${senderId}_\n
-_Code Pairing :_ ${code}`;
+
+    let code;
+    // Mengambil nama device dari config.js, jika tidak ada fallback ke "RYUUBOTT"
+    const customDeviceName = config.pairingDeviceName || "RYUUBOTT";
+
+    try {
+      // Mengirim request pairing dengan custom device name agar terbaca di WhatsApp server
+      code = await sock.requestPairingCode(phoneNumber.trim(), customDeviceName);
+    } catch (err) {
+      logWithTime("System", `Gagal request dengan nama kustom, menggunakan fallback standard...`, "kuning");
+      code = await sock.requestPairingCode(phoneNumber.trim());
+    }
+
+    // Format kode pairing dengan strip di tengah agar rapi (contoh: ABCD-EFGH)
+    const formattedCode = code.slice(0, 4) + '-' + code.slice(4);
+
+    logWithTime("System", `Pairing Code [${customDeviceName}] : ${formattedCode}`);
+    
+    const textResponse = `⏳ _Jadibot ${senderId}_\n\n_Code Pairing :_ *${formattedCode}*`;
     await masterSessions.sock.sendMessage(
       masterSessions.remoteJid,
       { text: textResponse },
@@ -112,7 +129,7 @@ _Code Pairing :_ ${code}`;
       if (reason === DisconnectReason.restartRequired) {
         logWithTime("System", message);
         if (sock) {
-          await sock.ws.close(); // Tutup WebSocket
+          try { await sock.ws.close(); } catch {}
         }
 
         await connectToWhatsApp(`session/${senderId}`);
@@ -140,7 +157,7 @@ _Code Pairing :_ ${code}`;
         { quoted: masterSessions.message }
       );
       if (sock) {
-        await sock.ws.close(); // Tutup WebSocket
+        try { await sock.ws.close(); } catch {}
         await connectToWhatsApp(`session/${senderId}`);
       }
     }
@@ -152,7 +169,6 @@ _Code Pairing :_ ${code}`;
 async function handle(sock, messageInfo) {
   const { remoteJid, message, sender, prefix, command, content } = messageInfo;
 
-  // Validasi input: Konten harus ada
   if (!content) {
     await sock.sendMessage(
       remoteJid,
@@ -166,10 +182,8 @@ async function handle(sock, messageInfo) {
     return;
   }
 
-  // Ekstrak nomor telepon dari input
-  let targetNumber = content.replace(/\D/g, ""); // Hanya angka
+  let targetNumber = content.replace(/\D/g, "");
 
-  // Validasi panjang nomor telepon
   if (targetNumber.length < 10 || targetNumber.length > 15) {
     await sock.sendMessage(
       remoteJid,
@@ -179,12 +193,10 @@ async function handle(sock, messageInfo) {
     return;
   }
 
-  // Tambahkan domain jika belum ada
   if (!targetNumber.endsWith("@s.whatsapp.net")) {
     targetNumber += "@s.whatsapp.net";
   }
 
-  // Validasi apakah nomor ada di WhatsApp
   const result = await sock.onWhatsApp(targetNumber);
   if (!result || result.length === 0 || !result[0].exists) {
     await sock.sendMessage(
@@ -198,24 +210,20 @@ async function handle(sock, messageInfo) {
   const type_connection = "pairing";
 
   try {
-    // Tampilkan reaksi "loading"
     await sock.sendMessage(remoteJid, {
       react: { text: "⏰", key: message.key },
     });
 
-    // Pastikan folder sesi ada
     const senderId = targetNumber.replace("@s.whatsapp.net", "");
     const sessionPath = path.join(SESSION_PATH, senderId);
 
-    // Mulai sesi baru
     await updateJadibot(senderId, "inactive");
 
-    // Hapus sesi aktif
     const sockSesi = sessions.get(`session/${senderId}`);
     if (sockSesi) {
       await updateJadibot(senderId, "stop");
-      await sockSesi.ws.close(); // Tutup WebSocket
-      sessions.delete(`session/${senderId}`); // Hapus dari daftar sesi
+      try { await sockSesi.ws.close(); } catch {}
+      sessions.delete(`session/${senderId}`);
     }
 
     if (fs.existsSync(sessionPath)) {
