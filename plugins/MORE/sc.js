@@ -4,21 +4,15 @@ import config from "../../config.js";
 async function handle(sock, messageInfo) {
   const { m } = messageInfo;
 
-  const text = `╭「 𝙎𝘾𝙍𝙄𝙋𝙏 𝘼𝙐𝙏𝙊𝙍𝙀𝙎𝘽𝙊𝙏 」
+  const text = `╭「 𝙎𝘾𝙍𝙄𝙋𝙏 _RyuuBotWa_ 」
 │
 │◧ ᴠᴇʀꜱɪᴏɴ : ${global.version}
 │◧ ᴛʏᴘᴇ ᴘʟᴜɢɪɴꜱ ᴇꜱᴍ
 │◧ ɴᴏ ᴇɴᴄ 100%
 │◧ ɴᴏ ʙᴜɢ & ɴᴏ ᴇʀʀᴏʀ 
-│◧ ʜᴀʀɢᴀ ? free
-│◧ ꜰʀᴇᴇ ᴀᴘɪᴋᴇʏ
-│◧ ꜰʀᴇᴇ ᴜᴘᴅᴀᴛᴇ
+│◧ ʜᴀʀɢᴀ ? pm 6285188510933
 │◧ ʙɪꜱᴀ ʀᴜɴ ᴅɪ ᴘᴀɴᴇʟ
-╰────────────────────────◧
-
-╭「 Link Download 」
-
-◧ ᴡᴇʙꜱɪᴛᴇ https://autoresbot.com/download`;
+╰────────────────────────◧`;
 
   await reply(m, text);
 }
