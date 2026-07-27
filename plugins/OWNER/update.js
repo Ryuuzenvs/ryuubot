@@ -4,6 +4,7 @@ import axios from 'axios';
 import unzipper from 'unzipper';
 import fse from 'fs-extra';
 import { fileURLToPath } from 'url';
+import config from '../../config.js'; // <-- Import config.js (sesuaikan path relatifnya jika beda folder)
 
 // Fix __dirname di ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -16,6 +17,15 @@ const WHITELIST_FILE = ['config.js', 'strings.js', 'database'];
 
 export async function handle(sock, messageInfo) {
   const { remoteJid, message } = messageInfo;
+
+// ===== CHECK DISABLE UPDATE =====
+  if (config.disableUpdate) {
+    await sock.sendMessage(remoteJid, {
+      text: '⚠️ Fitur auto-update sedang dinonaktifkan oleh Owner di `.env`.',
+      quoted: message,
+    });
+    return;
+  }
 
   await sock.sendMessage(remoteJid, {
     react: { text: '⏳', key: message.key },
