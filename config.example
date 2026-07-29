@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const CONNECTION = 'pairing'; // qr atau pairing
+const MAX_RECONNECT = 100; // max attempt to reconnect lib/connection.js
+const RECONNECT_DELAY = 5000; // delay connection duration
 const OWNER_NAME = 'RyuuBot';
 const pairCode = process.env.PAIRCODE || "RYUUBOTT";
 const USE_CUSTOM_PAIRING = true; // set true jika ingin custom device name, set false untuk pairing standar/random WA
@@ -14,7 +16,7 @@ const DESTINATION = 'group'; // group , private, both
 const APIKEY = process.env.APIKEY || ''; // apikey dari autoresbot.com (paket apikey)
 const RATE_LIMIT = 3000; // 3 detik/chat
 const SIMILARITY = true; // Pencarian kemiripan command (true, false)
-const MODE = process.env.MODE || 'development'; // [production, development] (jangan di ubah kecuali anda developer)
+const MODE = process.env.MODE || 'production'; // [production, development] (jangan di ubah kecuali anda developer)
 
 const VERSION = global.version; // don't edit
 const EMAIL = 'dhanakaede@gmail.com';
@@ -55,6 +57,8 @@ const SPAM_ACTION = 'both'; // tindakan setelah warning terpenuhi (kick, block, 
 const STATUS_SCHEDULED = true;
 
 const config = {
+max_reconnect: MAX_RECONNECT,
+reconnect_delay: RECONNECT_DELAY,
 disableUpdate: DISABLE_UPDATE, // 
   APIKEY,
 useCustomPairing: USE_CUSTOM_PAIRING,
