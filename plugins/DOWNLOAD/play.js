@@ -56,10 +56,10 @@ async function handle(sock, messageInfo) {
     const caption = `*YOUTUBE DOWNLOADER*\n\n◧ Title: ${video.title}\n◧ Duration: ${video.timestamp}\n◧ Uploaded: ${video.ago}\n◧ Views: ${video.views}\n◧ Description: ${video.description || '-'}`;
 
     // Tembak API Nexray Gratisan milik Zann
-    const { data } = await axios.get(`https://api.nexray.web.id/downloader/ytmp3?url=${encodeURIComponent(video.url)}`);
+    const { data } = await axios.get(`https://api.nexray.web.id/downloader/v1/ytmp3?url=${encodeURIComponent(video.url)}`);
 
     if (!data || !data.result || !data.result.url) {
-      throw new Error("Gagal mendapatkan URL audio dari API Nexray.");
+      throw new Error("Gagal mendapatkan URL audio dari API.");
     }
 
     const audioUrl = data.result.url;
