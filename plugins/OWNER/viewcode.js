@@ -2,42 +2,86 @@ import { reply } from "../../lib/utils.js";
 import fs from "fs";
 import path from "path";
 
+// Fungsi pembantu untuk merender struktur folder & file berbentuk Tree
+function renderDirectoryTree(dirPath, relativePath = "", depth = 0, maxDepth = 4) {
+  if (depth > maxDepth) return "";
+  
+  let result = "";
+  const items = fs.readdirSync(dirPath);
+
+  // Folder/file yang dibahasakan untuk diabaikan agar output tidak melimpah
+  const ignored = [
+    "node_modules", ".git", "session", "tmp", 
+    "backupplugin", "database.example", ".npm"
+  ];
+
+  const filteredItems = items.filter((item) => !ignored.includes(item));
+
+  filteredItems.forEach((item, index) => {
+    const fullPath = path.join(dirPath, item);
+    const relPath = path.join(relativePath, item);
+    const isLast = index === filteredItems.length - 1;
+    const prefix = "│  ".repeat(depth) + (isLast ? "└── " : "├── ");
+
+    let stats;
+    try {
+      stats = fs.statSync(fullPath);
+    } catch {
+      return;
+    }
+
+    if (stats.isDirectory()) {
+      result += `${prefix}📁 *${item}/*\n`;
+      result += renderDirectoryTree(fullPath, relPath, depth + 1, maxDepth);
+    } else if (item.endsWith(".js") || item.endsWith(".json") || item.endsWith(".txt")) {
+      // Menampilkan file .js, .json, dan .txt
+      result += `${prefix}📄 \`${item}\`\n`;
+    }
+  });
+
+  return result;
+}
+
 async function handle(sock, messageInfo) {
   const { m, prefix, command, content } = messageInfo;
 
-  if (!content) {
+  const baseDir = path.resolve(process.cwd());
+  const inputPath = content ? content.trim() : "";
+  const targetPath = path.resolve(baseDir, inputPath);
+
+  // Proteksi Directory Traversal (Tidak bisa keluar dari root project)
+  if (!targetPath.startsWith(baseDir)) {
+    return await reply(m, "⚠️ *Akses ditolak:* _Path berada di luar folder kerja bot._");
+  }
+
+  // Jika file/folder tidak ditemukan
+  if (!fs.existsSync(targetPath)) {
     return await reply(
       m,
-      `_Masukkan format yang valid_\n\n_Contoh:_ *${
-        prefix + command
-      } plugins/menu.js*`
+      `⚠️ *Path tidak ditemukan:* _${inputPath}_\n\n💡 _Gunakan \`${prefix + command} .\` untuk melihat struktur root._`
     );
   }
 
-  // Batas direktori: folder kerja bot
-  const baseDir = path.resolve(process.cwd());
-  const targetPath = path.resolve(baseDir, content);
-
-  // Proteksi agar tidak bisa keluar dari folder kerja
-  if (!targetPath.startsWith(baseDir)) {
-    return await reply(m, "_Akses file ditolak: path tidak valid._");
-  }
-
-  // Validasi file
-  if (!fs.existsSync(targetPath)) {
-    return await reply(m, `_File tidak ditemukan:_ *${content}*`);
-  }
-
-//  if (path.extname(targetPath) !== ".js") {
-//    return await reply(m, `_Hanya file .js yang diperbolehkan_`);
-//  }
-
   try {
+    const stats = fs.statSync(targetPath);
+
+    // BILA TARGET ADALAH DIREKTORI / FOLDER (Tampilkan Tree View)
+    if (stats.isDirectory()) {
+      const displayPath = inputPath === "" || inputPath === "." ? "/" : `./${inputPath}`;
+      let treeOutput = `📂 *Directory Tree:* \`${displayPath}\`\n\n`;
+      treeOutput += renderDirectoryTree(targetPath);
+      
+      treeOutput += `\n💬 *Cara buka file:* _*${prefix + command} ${inputPath ? inputPath + "/" : ""}nama_file.js*_`;
+
+      return await reply(m, treeOutput);
+    }
+
+    // BILA TARGET ADALAH FILE
     const fileContent = fs.readFileSync(targetPath, "utf-8");
 
-    // Jika isi file terlalu panjang, kirim sebagai dokumen
+    // Jika isi file lebih dari 4000 karakter, kirim sebagai dokumen
     if (fileContent.length > 4000) {
-      await reply(m, "_Isi file terlalu panjang, dikirim sebagai dokumen..._");
+      await reply(m, `📄 _File *${path.basename(targetPath)}* terlalu panjang (${fileContent.length} karakter), mengunduh sebagai dokumen..._`);
       return await sock.sendMessage(
         m.key.remoteJid,
         {
@@ -49,14 +93,15 @@ async function handle(sock, messageInfo) {
       );
     }
 
-    // Kirim isi file sebagai teks
+    // Kirim isi file sebagai format kodingan
     return await reply(
       m,
-      `📄 *Isi file:* _${content}_\n\n` + "```js\n" + fileContent + "\n```"
+      `📄 *File:* \`${inputPath}\`\n\n\`\`\`javascript\n${fileContent}\n\`\`\``
     );
+
   } catch (err) {
     console.error(err);
-    return await reply(m, "_Gagal membaca file._");
+    return await reply(m, `❌ *Gagal membaca target:* ${err.message}`);
   }
 }
 
