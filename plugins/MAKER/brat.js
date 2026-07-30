@@ -62,7 +62,7 @@ async function handle(sock, messageInfo) {
       await sock.sendMessage(
         remoteJid,
         {
-          text: "Gagal mengambil data dari API Brat Gratis. Coba lagi nanti.",
+          text: "Gagal mengambil data dari API Brat.",
         },
         { quoted: message }
       );

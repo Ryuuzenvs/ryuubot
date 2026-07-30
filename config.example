@@ -14,6 +14,7 @@ const DISABLE_UPDATE = process.env.DISABLE_UPDATE === 'true'; // Konversi string
 
 const DESTINATION = 'group'; // group , private, both
 const APIKEY = process.env.APIKEY || ''; // apikey dari autoresbot.com (paket apikey)
+const BOT_AUTO-ORDER_APIKEY = process.env.BOT_API_KEY || 'resbot_secret_key_12345'; // apikey dari ryuu.page.gd/wa-store (paket apikey)
 const RATE_LIMIT = 3000; // 3 detik/chat
 const SIMILARITY = true; // Pencarian kemiripan command (true, false)
 const MODE = process.env.MODE || 'production'; // [production, development] (jangan di ubah kecuali anda developer)
