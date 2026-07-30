@@ -14,7 +14,9 @@ const DISABLE_UPDATE = process.env.DISABLE_UPDATE === 'true'; // Konversi string
 
 const DESTINATION = 'group'; // group , private, both
 const APIKEY = process.env.APIKEY || ''; // apikey dari autoresbot.com (paket apikey)
-const BOT_AUTO-ORDER_APIKEY = process.env.BOT_API_KEY || 'resbot_secret_key_12345'; // apikey dari ryuu.page.gd/wa-store (paket apikey)
+const BOT_AUTO_ORDER_APIKEY = process.env.BOT_API_KEY || 'resbot_secret_key_12345'; // apikey dari ryuu.page.gd/wa-store (paket apikey)
+const URL_BOT_AUTO_ORDER = 'ryuu.page.gd/wa-store/public';
+const ID_GROUP_AUTO_ORDER = '120363429467773375@g.us';
 const RATE_LIMIT = 3000; // 3 detik/chat
 const SIMILARITY = true; // Pencarian kemiripan command (true, false)
 const MODE = process.env.MODE || 'production'; // [production, development] (jangan di ubah kecuali anda developer)
@@ -58,6 +60,9 @@ const SPAM_ACTION = 'both'; // tindakan setelah warning terpenuhi (kick, block, 
 const STATUS_SCHEDULED = true;
 
 const config = {
+bot_auto_order_apikey: BOT_AUTO_ORDER_APIKEY,
+url_bot_auto_order: URL_BOT_AUTO_ORDER,
+id_group_auto_order: ID_GROUP_AUTO_ORDER,
 max_reconnect: MAX_RECONNECT,
 reconnect_delay: RECONNECT_DELAY,
 disableUpdate: DISABLE_UPDATE, // 
