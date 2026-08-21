@@ -5,6 +5,7 @@ export const commandWithoutRegister = ['list', 'owner', 'menu', 'claim'];
 import chokidar from 'chokidar';
 import config from './config.js';
 const mode = config.mode;
+const logRolePluginToOwner = config.logRolePluginToOwner
 
 import { findGroup } from './lib/group.js';
 import chalk from 'chalk';
@@ -165,46 +166,41 @@ async function processMessage(sock, messageInfo) {
           return;
         }
 
-        // ╔════════════════════════════════════════════════════════════╗
-        // ║         🌟 TAMBAHAN FITUR LOG CMD OWNER (PERBAIKAN SYNTAX)  ║
-        // ╚════════════════════════════════════════════════════════════╝
-        if (plugin.OnlyOwner && isOwnerUsers) {
-          try {
-            // Menggunakan Date standar bawaan JS agar aman dan ringan
-            const timeLog = new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
-            
-            const logText = `🛠️ *[ OWNER CMD LOG ]*\n\n` +
-                            `• *User:* @${sender.split('@')[0]}\n` +
-                            `• *Nama:* ${pushName || 'Unknown'}\n` +
-                            `• *Cmd:* ${prefix}${command}\n` +
-                            `• *FullText:* ${fullText}\n` +
-                            `• *Jam:* ${timeLog} WIB\n` +
-                            `• *Tempat:* ${isGroup ? 'Group Chat' : 'Private Chat'}`;
+        // 🌟 LOG COMMAND OWNER (Hanya jalan jika config true & pengirim adalah Owner)
+if (logRolePluginToOwner && plugin.OnlyOwner && isOwnerUsers) {
+  try {
+    const timeLog = new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
+    
+    const logText = `🛠️ *[ OWNER CMD LOG ]*\n\n` +
+                    `• *User:* @${sender.split('@')[0]}\n` +
+                    `• *Nama:* ${pushName || 'Unknown'}\n` +
+                    `• *Cmd:* ${prefix}${command}\n` +
+                    `• *FullText:* ${fullText}\n` +
+                    `• *Jam:* ${timeLog} WIB\n` +
+                    `• *Tempat:* ${isGroup ? 'Group Chat' : 'Private Chat'}`;
 
-            // Mengirim log ke SEMUA nomor owner yang terdaftar di config
-            if (config.owner_number && config.owner_number.length > 0) {
-              config.owner_number.forEach(async (number) => {
-                try {
-                  const ownerJid = `${number.trim()}@s.whatsapp.net`;
-                  
-                  // Kirim jika trigger bukan berasal dari chat private owner itu sendiri
-                  if (remoteJid !== ownerJid) {
-                    await sock.sendMessage(ownerJid, { 
-                      text: logText, 
-                      mentions: [sender] 
-                    });
-                  }
-                } catch (sendErr) {
-                  console.error(`❌ Gagal kirim log ke owner ${number}:`, sendErr.message);
-                }
-              });
-            }
-          } catch (logErr) {
-            console.error("❌ Gagal memproses log owner cmd:", logErr.message);
+    if (Array.isArray(config.owner_number) && config.owner_number.length > 0) {
+      // Gunakan for...of agar await berjalan dengan benar secara berurutan
+      for (const number of config.owner_number) {
+        try {
+          const ownerJid = `${number.trim()}@s.whatsapp.net`;
+          
+          // Kirim log ke owner lain (atau semua owner)
+          if (remoteJid !== ownerJid) {
+            await sock.sendMessage(ownerJid, { 
+              text: logText, 
+              mentions: [sender] 
+            });
           }
+        } catch (sendErr) {
+          console.error(`❌ Gagal kirim log ke owner ${number}:`, sendErr.message);
         }
-        // ╚════════════════════════════════════════════════════════════╝
-
+      }
+    }
+  } catch (logErr) {
+    console.error("❌ Gagal memproses log owner cmd:", logErr.message);
+  }
+}
         //  fitur baru disini
         // OnlyAdmin: false, // default false
         //  fitur baru disini

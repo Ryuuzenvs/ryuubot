@@ -20,6 +20,7 @@ const ID_GROUP_AUTO_ORDER = '120363429467773375@g.us';
 const RATE_LIMIT = 3000; // 3 detik/chat
 const SIMILARITY = true; // Pencarian kemiripan command (true, false)
 const MODE = process.env.MODE || 'production'; // [production, development] (jangan di ubah kecuali anda developer)
+const logRolePluginToOwner = false;
 
 const VERSION = global.version; // don't edit
 const EMAIL = 'dhanakaede@gmail.com';
@@ -60,6 +61,7 @@ const SPAM_ACTION = 'both'; // tindakan setelah warning terpenuhi (kick, block, 
 const STATUS_SCHEDULED = true;
 
 const config = {
+logRolePluginToOwner: logRolePluginToOwner,
 bot_auto_order_apikey: BOT_AUTO_ORDER_APIKEY,
 url_bot_auto_order: URL_BOT_AUTO_ORDER,
 id_group_auto_order: ID_GROUP_AUTO_ORDER,
