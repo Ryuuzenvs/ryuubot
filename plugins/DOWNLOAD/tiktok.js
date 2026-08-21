@@ -4,7 +4,7 @@ import { logCustom } from "../../lib/logger.js";
 import { extractLink } from "../../lib/utils.js";
 import { isOwner, isPremiumUser } from "../../lib/users.js";
 
-//config 
+// Config Batas Ukuran (MB)
 const LIMIT_SIZE_FREE = 1; // MB
 const LIMIT_SIZE_PREM = 50; // MB
 
@@ -18,31 +18,16 @@ function isTikTokUrl(url) {
   return /tiktok\.com/i.test(url);
 }
 
-async function getFileSizeMB(url) {
-  try {
-    const head = await axios.head(url, {
-      timeout: 15000,
-      maxRedirects: 5,
-    });
-
-    const bytes = parseInt(head.headers["content-length"] || "0");
-    return bytes / 1024 / 1024;
-  } catch {
-    return 0;
-  }
-}
-
-// Scraper Gratis TikWM (Porting dari Ourin)
+// Scraper Gratis TikWM
 async function tiktokDl(url) {
   let domain = 'https://www.tikwm.com/api/';
   let res = await (await axios.post(domain, {}, {
     headers: {
       'Accept': 'application/json, text/javascript, */*; q=0.01',
-      'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
       'Origin': 'https://www.tikwm.com',
       'Referer': 'https://www.tikwm.com/',
-      'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36',
+      'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36'
     },
     params: { url: url, count: 12, cursor: 0, web: 1, hd: 1 }
   })).data.data;
@@ -51,16 +36,14 @@ async function tiktokDl(url) {
 
   let data = [];
   if (res.duration === 0 || !res.duration) {
-    // Jika konten berupa Slide Foto
     res.images.map(v => {
       data.push({ type: 'photo', url: v });
     });
   } else {
-    // Jika konten berupa Video
     data.push(
-      { type: 'watermark', url: 'https://www.tikwm.com' + res.wmplay },
-      { type: 'nowatermark', url: 'https://www.tikwm.com' + res.play },
-      { type: 'nowatermark_hd', url: 'https://www.tikwm.com' + res.hdplay }
+      { type: 'watermark', url: 'https://www.tikwm.com' + res.wmplay, size: res.wm_size || 0 },
+      { type: 'nowatermark', url: 'https://www.tikwm.com' + res.play, size: res.size || 0 },
+      { type: 'nowatermark_hd', url: 'https://www.tikwm.com' + res.hdplay, size: res.hd_size || 0 }
     );
   }
 
@@ -73,14 +56,14 @@ async function tiktokDl(url) {
 
 // Handler Utama Plugin
 async function handle(sock, messageInfo) {
-const {
-  remoteJid,
-  message,
-  content,
-  prefix,
-  command,
-  sender
-} = messageInfo;
+  const {
+    remoteJid,
+    message,
+    content,
+    prefix,
+    command,
+    sender
+  } = messageInfo;
 
   if (!content || !content.trim()) {
     return sendMessageWithQuote(
@@ -102,40 +85,38 @@ const {
     );
   }
 
-  // Tampilkan reaksi "Loading"
+  // Reaksi "Loading"
   await sock.sendMessage(remoteJid, {
     react: { text: "⏰", key: message.key },
   });
 
   try {
-    // Memanggil scraper gratisan TikWM
     const response = await tiktokDl(validLink);
 
     if (response.duration > 0) {
       // --- HANDLER UNTUK KONTEN VIDEO ---
-      // Cari video HD terlebih dahulu, jika tidak ada pakai no_watermark biasa
       const targetVideo = response.data.find(e => e.type === "nowatermark_hd") || response.data.find(e => e.type === "nowatermark");
 
-        const sizeMB = await getFileSizeMB(targetVideo.url);
+      if (!targetVideo || !targetVideo.url) throw new Error("URL Video tidak ditemukan.");
 
-const isOwnerUser = isOwner(sender);
-const isPremUser = isPremiumUser(sender);
+      // Hitung ukuran file langsung dari data byte API TikWM (Gunakan `let`)
+      let sizeMB = targetVideo.size ? (targetVideo.size / (1024 * 1024)) : 0;
 
-let allowedSize = LIMIT_SIZE_FREE;
+      const isOwnerUser = isOwner(sender);
+      const isPremUser = isPremiumUser(sender);
 
-if (isPremUser) {
-  allowedSize = LIMIT_SIZE_PREM;
-}
+      let allowedSize = LIMIT_SIZE_FREE;
+      if (isPremUser) allowedSize = LIMIT_SIZE_PREM;
+      if (isOwnerUser) allowedSize = Infinity;
 
-if (isOwnerUser) {
-  allowedSize = Infinity;
-}
+      // Log Ringkas
+      console.log(`[TIKTOK LIMIT] User: ${sender.split('@')[0]} | Size: ${sizeMB.toFixed(2)} MB | Limit: ${allowedSize} MB`);
 
-if (sizeMB > allowedSize) {
-  return await sendMessageWithQuote(
-    sock,
-    remoteJid,
-    message,
+      if (sizeMB > allowedSize) {
+        return await sendMessageWithQuote(
+          sock,
+          remoteJid,
+          message,
 `❌ Ukuran video terlalu besar.
 
 📦 Ukuran Video : ${sizeMB.toFixed(2)} MB
@@ -147,12 +128,10 @@ if (sizeMB > allowedSize) {
 Video ini melebihi batas akun kamu.
 
 Ketik *.harga* untuk melihat paket premium dan owner.`
-  );
-}
+        );
+      }
 
-      if (!targetVideo || !targetVideo.url) throw new Error("URL Video tidak ditemukan.");
-
-      // Kirim video langsung via URL streaming (Hemat RAM!)
+      // Kirim video
       await sock.sendMessage(
         remoteJid,
         {
@@ -163,19 +142,16 @@ Ketik *.harga* untuk melihat paket premium dan owner.`
       );
     } else {
       // --- HANDLER UNTUK KONTEN SLIDE FOTO ---
-      // Cek apakah base Baileys kamu mendukung fitur albumMessage (fitur baru) atau harus kirim satu-satu
       if (sock.albumMessage || typeof sock.sendMessage === 'function') {
         const imageAlbum = response.data.map(img => ({
           image: { url: img.url }
         }));
 
-        // Mengirimkan pesan dalam bentuk album/multi-image
         await sock.sendMessage(remoteJid, {
           albumMessage: imageAlbum,
-          caption: response.title || "_Tanpa Caption_" // Caption utama album
+          caption: response.title || "_Tanpa Caption_"
         }, { quoted: message });
       } else {
-        // Fallback: Kirim gambar satu per satu jika library Baileys lawas belum support albumMessage
         for (let i = 0; i < response.data.length; i++) {
           await sock.sendMessage(remoteJid, { 
             image: { url: response.data[i].url }, 
@@ -185,7 +161,7 @@ Ketik *.harga* untuk melihat paket premium dan owner.`
       }
     }
 
-    // Ubah reaksi ke sukses
+    // Reaksi Sukses
     await sock.sendMessage(remoteJid, {
       react: { text: "✅", key: message.key },
     });
