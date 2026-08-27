@@ -1,28 +1,39 @@
-import util from "util"; // Import modul bawaan NodeJS untuk inspeksi objek
+import util from "util";
 
 async function handle(sock, messageInfo) {
-  const { remoteJid, message, sender, m } = messageInfo;
+  const { remoteJid, message, sender, args } = messageInfo;
 
   try {
-    // Gunakan util.inspect dengan depth tertentu agar tidak terlalu panjang, tapi detail tetap kelihatan
-    const cleanMessage = util.inspect(message, { depth: 2, json: false });
-    const cleanM = m ? util.inspect(m, { depth: 2, json: false }) : "m is undefined/null";
+    let targetJid = sender;
 
-    const debugText = `
-${sender}
-`.trim();
+    if (args && args.length > 0) {
+      // Ambil seluruh input teks dan bersihkan karakter non-digit
+      const rawInput = args.join("").replace(/[^0-9]/g, "");
+
+      // Validasi: pastikan input berupa angka dan minimal 8 digit (panjang standar no HP)
+      if (!rawInput || rawInput.length < 8) {
+        await sock.sendMessage(
+          remoteJid,
+          { text: "Format nomor tidak valid. Pastikan memasukkan nomor HP yang benar." },
+          { quoted: message }
+        );
+        return;
+      }
+
+      targetJid = `${rawInput}@s.whatsapp.net`;
+    }
 
     await sock.sendMessage(
       remoteJid,
-      { text: debugText },
+      { text: targetJid },
       { quoted: message }
     );
     return;
   } catch (error) {
-    console.error("Gagal saat debug:", error);
+    console.error("Gagal saat cek ID:", error);
     await sock.sendMessage(
       remoteJid,
-      { text: `Gagal debug: ${error.message}` },
+      { text: `Gagal cek ID: ${error.message}` },
       { quoted: message }
     );
   }

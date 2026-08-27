@@ -1,4 +1,4 @@
-import { reply } from "../../lib/utils.js";
+import {  } from "module";port { reply } from "../../lib/utils.js";
 
 async function handle(sock, messageInfo) {
   const { m, remoteJid, message, prefix, command, content } = messageInfo;
