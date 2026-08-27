@@ -84,8 +84,8 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["brat1", "bratprem"],
-  OnlyPremium: true,
+  Commands: ["brat1", "bratprem", "brat"],
+  OnlyPremium: false,
   OnlyOwner: false,
   limitDeduction: 0,
 };
