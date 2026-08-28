@@ -1,25 +1,25 @@
 import util from "util";
 
 async function handle(sock, messageInfo) {
-  const { remoteJid, message, sender, args } = messageInfo;
+  const { remoteJid, message, sender, content } = messageInfo;
 
   try {
     let targetNumber = "";
 
-    if (args && args.length > 0) {
-      // Ambil angka murni dari input
-      targetNumber = args.join("").replace(/[^0-9]/g, "");
+    if (content && content.trim().length > 0) {
+      // Ambil angka murni dari input chat
+      targetNumber = content.replace(/[^0-9]/g, "");
 
       if (!targetNumber || targetNumber.length < 8) {
         await sock.sendMessage(
           remoteJid,
-          { text: "Format nomor tidak valid. Masukkan nomor HP yang benar." },
+          { text: "Format nomor tidak valid. Masukkan nomor HP yang benar (min. 8 digit)." },
           { quoted: message }
         );
         return;
       }
     } else {
-      // Ambil angka murni dari sender JID (menghilangkan @s.whatsapp.net / @g.us)
+      // Ambil angka murni dari sender JID (membersihkan domain & karakter non-digit)
       targetNumber = sender.split("@")[0].replace(/[^0-9]/g, "");
     }
 
@@ -41,7 +41,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["mynum", "getnum", "nohp", "no"],
+  Commands: ["mynum", "getnum", "nohp"],
   OnlyPremium: false,
   OnlyOwner: true,
 };

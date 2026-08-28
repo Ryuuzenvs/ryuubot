@@ -1,20 +1,21 @@
 import util from "util";
 
 async function handle(sock, messageInfo) {
-  const { remoteJid, message, sender, args } = messageInfo;
+  const { remoteJid, message, sender, args, content } = messageInfo;
 
   try {
     let targetJid = sender;
 
-    if (args && args.length > 0) {
-      // Ambil seluruh input teks dan bersihkan karakter non-digit
-      const rawInput = args.join("").replace(/[^0-9]/g, "");
+    // Cek apakah ada input teks setelah command
+    if (content && content.trim().length > 0) {
+      // Ambil hanya digit angka
+      const rawInput = content.replace(/[^0-9]/g, "");
 
-      // Validasi: pastikan input berupa angka dan minimal 8 digit (panjang standar no HP)
+      // Validasi: nomor wajib ada dan minimal 8 digit
       if (!rawInput || rawInput.length < 8) {
         await sock.sendMessage(
           remoteJid,
-          { text: "Format nomor tidak valid. Pastikan memasukkan nomor HP yang benar." },
+          { text: "Format nomor tidak valid. Pastikan memasukkan nomor HP yang benar (min. 8 digit)." },
           { quoted: message }
         );
         return;
@@ -23,6 +24,7 @@ async function handle(sock, messageInfo) {
       targetJid = `${rawInput}@s.whatsapp.net`;
     }
 
+    // Kirim targetJid (baik dari input maupun dari pengirim)
     await sock.sendMessage(
       remoteJid,
       { text: targetJid },
