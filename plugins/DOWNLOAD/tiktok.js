@@ -5,8 +5,8 @@ import { extractLink } from "../../lib/utils.js";
 import { isOwner, isPremiumUser } from "../../lib/users.js";
 
 // Config Batas Ukuran (MB)
-const LIMIT_SIZE_FREE = config.LIMIT_SIZE_FREE; // MB
-const LIMIT_SIZE_PREM = config.LIMIT_SIZE_PREM; // MB
+const LIMIT_SIZE_FREE = config.LIMIT_SIZE_FREE || 10; // Default fallback jika undefined
+const LIMIT_SIZE_PREM = config.LIMIT_SIZE_PREM || 50;
 
 // Fungsi kirim pesan dengan quote
 async function sendMessageWithQuote(sock, remoteJid, message, text) {
@@ -18,10 +18,27 @@ function isTikTokUrl(url) {
   return /tiktok\.com/i.test(url);
 }
 
+// Helper untuk ambil ukuran file asli jika API mengembalikan 0
+async function getRemoteFileSize(url) {
+  try {
+    const res = await axios.head(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36'
+      },
+      timeout: 5000
+    });
+    const bytes = res.headers['content-length'];
+    return bytes ? parseInt(bytes, 10) : 0;
+  } catch (err) {
+    console.warn("[TIKTOK DEBUG] Gagal fetch Content-Length via HEAD request:", err.message);
+    return 0;
+  }
+}
+
 // Scraper Gratis TikWM
 async function tiktokDl(url) {
   let domain = 'https://www.tikwm.com/api/';
-  let res = await (await axios.post(domain, {}, {
+  let response = await axios.post(domain, {}, {
     headers: {
       'Accept': 'application/json, text/javascript, */*; q=0.01',
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -30,20 +47,26 @@ async function tiktokDl(url) {
       'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36'
     },
     params: { url: url, count: 12, cursor: 0, web: 1, hd: 1 }
-  })).data.data;
+  });
 
+  let res = response.data?.data;
   if (!res) throw new Error("Gagal mengambil data dari API TikWM");
 
   let data = [];
   if (res.duration === 0 || !res.duration) {
-    res.images.map(v => {
-      data.push({ type: 'photo', url: v });
-    });
+    if (Array.isArray(res.images)) {
+      res.images.forEach(v => {
+        data.push({ type: 'photo', url: v });
+      });
+    }
   } else {
+    // Pastikan URL full domain
+    const formatUrl = (path) => path ? (path.startsWith('http') ? path : 'https://www.tikwm.com' + path) : '';
+
     data.push(
-      { type: 'watermark', url: 'https://www.tikwm.com' + res.wmplay, size: res.wm_size || 0 },
-      { type: 'nowatermark', url: 'https://www.tikwm.com' + res.play, size: res.size || 0 },
-      { type: 'nowatermark_hd', url: 'https://www.tikwm.com' + res.hdplay, size: res.hd_size || 0 }
+      { type: 'watermark', url: formatUrl(res.wmplay), size: res.wm_size || 0 },
+      { type: 'nowatermark', url: formatUrl(res.play), size: res.size || 0 },
+      { type: 'nowatermark_hd', url: formatUrl(res.hdplay), size: res.hd_size || 0 }
     );
   }
 
@@ -95,12 +118,20 @@ async function handle(sock, messageInfo) {
 
     if (response.duration > 0) {
       // --- HANDLER UNTUK KONTEN VIDEO ---
-      const targetVideo = response.data.find(e => e.type === "nowatermark_hd") || response.data.find(e => e.type === "nowatermark");
+      const targetVideo = response.data.find(e => e.type === "nowatermark_hd" && e.url) || 
+                          response.data.find(e => e.type === "nowatermark" && e.url);
 
       if (!targetVideo || !targetVideo.url) throw new Error("URL Video tidak ditemukan.");
 
-      // Hitung ukuran file langsung dari data byte API TikWM (Gunakan `let`)
-      let sizeMB = targetVideo.size ? (targetVideo.size / (1024 * 1024)) : 0;
+      let rawByteSize = targetVideo.size || 0;
+
+      // Fallback: Jika API TikWM kasih size 0, cek via HEAD request ke server
+      if (rawByteSize === 0) {
+        console.log(`[TIKTOK DEBUG] Size dari API 0, mencoba pengecekan Content-Length...`);
+        rawByteSize = await getRemoteFileSize(targetVideo.url);
+      }
+
+      let sizeMB = rawByteSize > 0 ? (rawByteSize / (1024 * 1024)) : 0;
 
       const isOwnerUser = isOwner(sender);
       const isPremUser = isPremiumUser(sender);
@@ -109,10 +140,19 @@ async function handle(sock, messageInfo) {
       if (isPremUser) allowedSize = LIMIT_SIZE_PREM;
       if (isOwnerUser) allowedSize = Infinity;
 
-      // Log Ringkas
-      console.log(`[TIKTOK LIMIT] User: ${sender.split('@')[0]} | Size: ${sizeMB.toFixed(2)} MB | Limit: ${allowedSize} MB`);
+      // Log Debugging Lengkap
+      console.log(`\n=== [TIKTOK DEBUG LOG] ===`);
+      console.log(`User Sender   : ${sender}`);
+      console.log(`Raw Size Byte : ${rawByteSize}`);
+      console.log(`Calculated MB : ${sizeMB.toFixed(2)} MB`);
+      console.log(`Allowed Limit : ${allowedSize} MB`);
+      console.log(`Is Owner      : ${isOwnerUser}`);
+      console.log(`Is Premium    : ${isPremUser}`);
+      console.log(`=========================\n`);
 
+      // 1. Cek Batas Limit Akun (Role User)
       if (sizeMB > allowedSize) {
+        console.log(`[TIKTOK RESULT] Blocked by Role Limit (${sizeMB.toFixed(2)} MB > ${allowedSize} MB)`);
         return await sendMessageWithQuote(
           sock,
           remoteJid,
@@ -120,18 +160,29 @@ async function handle(sock, messageInfo) {
 `❌ Ukuran video terlalu besar.
 
 📦 Ukuran Video : ${sizeMB.toFixed(2)} MB
-
 👤 Free User : Maks ${LIMIT_SIZE_FREE} MB
 ⭐ Premium User : Maks ${LIMIT_SIZE_PREM} MB
 👑 Owner : Unlimited
 
 Video ini melebihi batas akun kamu.
-
-Ketik *.harga* untuk melihat paket premium dan owner.`
+Ketik *.harga* untuk melihat paket premium.`
         );
       }
 
-      // Kirim video
+      // 2. Jika Ukuran > 5MB -> Kirim URL Link saja
+      if (sizeMB > 5) {
+        console.log(`[TIKTOK RESULT] Sending URL Link only (${sizeMB.toFixed(2)} MB > 5 MB)`);
+        const linkCaption = `📌 *TikTok Downloader*\n\n` +
+          `📄 *Judul:* ${response.title || '-'}\n` +
+          `📦 *Ukuran File:* ${sizeMB.toFixed(2)} MB\n\n` +
+          `⚠️ *Ukuran video lebih dari 5 MB.* File tidak dikirim langsung untuk menghemat kuota & RAM server.\n\n` +
+          `🔗 *Download Video via Link:* \n${targetVideo.url}`;
+
+        return await sendMessageWithQuote(sock, remoteJid, message, linkCaption);
+      }
+
+      // 3. Jika Ukuran <= 5MB -> Kirim Video Langsung
+      console.log(`[TIKTOK RESULT] Sending Video File Directly (${sizeMB.toFixed(2)} MB <= 5 MB)`);
       await sock.sendMessage(
         remoteJid,
         {
@@ -140,6 +191,7 @@ Ketik *.harga* untuk melihat paket premium dan owner.`
         },
         { quoted: message }
       );
+
     } else {
       // --- HANDLER UNTUK KONTEN SLIDE FOTO ---
       if (sock.albumMessage || typeof sock.sendMessage === 'function') {

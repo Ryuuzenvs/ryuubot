@@ -28,7 +28,7 @@
     "add": "selamat datang @NAME\nJgn lupa intro dlu yaaa\n\n●Nama:\n●asal:\n●Ce/co:\n\nMakasi udah join hehe ,semoga betah yak"
   },
   "120363405763327867@g.us": {
-    "add": "Selamat @greeting, @name!\n\nSelamat datang di grup @group.\n\nHari ini: @day, @date (@time)\n\nJumlah Member: @size\n\nDESKRIPSI GRUP:\n\n@desc\n\nSemoga betah dan jangan lupa patuhi rules ya!"
+    "add": "Selamat @greeting, @name!\n‎Selamat datang di grup @group.\n‎\n‎Hari ini: @day, @date (@time)\n‎Jumlah Member: @size\n‎\n‎📌 DESKRIPSI GRUP:\n‎@desc\n‎\n‎Semoga betah dan jangan lupa patuhi rules ya!"
   },
   "120363408682783408@g.us": {
     "add": "selamat datang di nidialo tercinta @name  yang ada di Indonesia\nDisini kamu akan di didik oleh Mister Bibbzy"
@@ -49,7 +49,7 @@
     "setproses": "PROSES\n\nJAM:@time\nTanggal:@tanggal\nGrub:@grub\nCatatan:@catatan\n\n@sender sedang di proses"
   },
   "120363407471586477@g.us": {
-    "add": "halo sayang"
+    "add": "@name jawa"
   },
   "120363429097813498@g.us": {
     "add": "selamat datang di gc butut emnih\n@name\n@date\n@time\n\n> kalau disuruh intro, ya intro kcung\n*kartu intro*\n* nama:\n* kelas:\n* umur:\n* asal:\n* gender:\n _mogbet ya maniess😘_"
@@ -102,10 +102,20 @@
     "remove": "bai cung, slmt cri cc baru @name"
   },
   "120363426255527092@g.us": {
-    "add": "Selamat @greeting, @name!\n‎Selamat datang di grup @group.\n‎\n‎Hari ini: @day, @date (@time)\n‎Jumlah Member: @size\n‎\n‎📌 DESKRIPSI GRUP:\n‎@desc\n‎\n‎Semoga betah dan jangan lupa patuhi rules ya!",
+    "add": "Selamat @greeting, @name!\n‎Selamat datang di grup @group.\n‎\n‎Hari ini: @day, @date (@time)\n‎Jumlah Member: @size\n‎\n‎📌 DESKRIPSI GRUP:\n‎@desc\nname;\nage;\nAskot;\nsalken yak😊\n‎\n‎Semoga betah dan jangan lupa patuhi rules ya!",
     "remove": "@name keluar"
   },
   "120363411543627895@g.us": {
     "add": "Selamat @greeting, @name!\n‎Selamat datang di grup @group.\n‎\n‎Hari ini: @day, @date (@time)\n‎Jumlah Member: @size\n‎\n‎📌 DESKRIPSI GRUP:\n‎@desc\n‎\n‎Semoga betah dan jangan lupa patuhi rules ya!"
+  },
+  "120363399869134124@g.us": {
+    "add": "𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 *VERLONEX*\n`іᥒ𝗍r᥆᥆ ძᥙᥣᥙᥙ ᥡᥙᥙ` @name\n|| 𝐍𝐀𝐌𝐀 :\n|| ALASAN MASUK VERLONEX :\n\n\n|| 𝐔𝐌𝐔𝐑 :\n|| 𝐀𝐒𝐊𝐎𝐓 :\n|| *COWO OR CEWE* :\n𝘀𝗲𝗿𝗶𝗻𝗴' 𝗻𝗶𝗺𝗯 𝘄𝗮𝗿 𝘆𝗮𝗮, 𝗸𝗶𝘁𝗮 𝗮𝘀𝗶𝗸' 𝗸𝗼𝗸 𝗮𝗻𝘁𝗶 𝗸𝗮𝗰𝗮𝗻𝗴𝗴 ` !",
+    "remove": "selamat tinggal idiot semoga msk neraka @name"
+  },
+  "120363410536509328@g.us": {
+    "add": "@group @name @day @time\n\n pEmBaLaP LiYaR💜🧡\nHAYYIIE NEW MEM\n\nintro💜🧡\n*nama*    :\n*kelas*     :\n*umur*      :\n*askot*      :\nwlc              👉𝗣𝗘𝗠𝗕𝗔𝗟𝗔𝗣 𝗟𝗜𝗬𝗔𝗥👈\n\nINTROVERT DIRALANG MASUK💜🧡"
+  },
+  "120363401092644366@g.us": {
+    "add": "@name di @group silahkan intro ✨\n@desc \n\nhttps://chat.whatsapp.com/FzH9Fw99v5vBpjlz5rgsCD"
   }
 }

@@ -43,5 +43,5 @@ export default {
   handle,
   Commands: ["mynum", "getnum", "nohp"],
   OnlyPremium: false,
-  OnlyOwner: true,
+  OnlyOwner: false,
 };

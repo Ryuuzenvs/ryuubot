@@ -3,6 +3,8 @@ import config from "../../config.js";
 import mess from "../../strings.js";
 import { logCustom } from "../../lib/logger.js";
 
+const max_result = 1;
+
 // Fungsi kirim pesan dengan quote
 async function sendMessageWithQuote(sock, remoteJid, message, text) {
   await sock.sendMessage(remoteJid, { text }, { quoted: message });
@@ -34,7 +36,7 @@ async function handle(sock, messageInfo) {
     const data = response.data;
 
     // Ambil maksimal 3 hasil teratas
-    const results = data?.data?.slice(0, 1);
+    const results = data?.data?.slice(0, max_result);
     if (!results || results.length === 0) {
       await sock.sendMessage(remoteJid, { react: { text: "❌", key: message.key } });
       return sendMessageWithQuote(sock, remoteJid, message, `❌ Tidak ditemukan hasil untuk: *${query}*`);

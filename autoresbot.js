@@ -1,5 +1,8 @@
 // List command tanpa registrasi
 export const commandWithoutRegister = ['list', 'owner', 'menu', 'claim'];
+ 
+const max_time_simulate = 4000;
+const min_time_simulate = 2500;
 
 // Import ESM
 import chokidar from 'chokidar';
@@ -30,6 +33,29 @@ const lastMessageTime = {};
 const pluginsPath = path.join(process.cwd(), 'plugins');
 const lastSent_participantUpdate = {};
 let plugins = [];
+
+
+//helper typing status
+// Helper Simulasi Mengetik Manusia
+const simulateTyping = async (sock, remoteJid, text = '') => {
+  try {
+    // 1. Tampilkan status "sedang mengetik..."
+    await sock.sendPresenceUpdate('composing', remoteJid);
+
+    // 2. Hitung delay realistis berdasarkan panjang teks (min: 1 detik, max: 3.5 detik)
+    const baseDelay = Math.min(Math.max((text.length || 10) * 30, min_time_simulate), max_time_simulate);
+    // Tambahkan sedikit variasi acak (randomness) agar tidak persis sama terus
+    const randomVariation = Math.floor(Math.random() * 500); 
+    const totalDelay = baseDelay + randomVariation;
+
+    await new Promise((resolve) => setTimeout(resolve, totalDelay));
+
+    // 3. Matikan status mengetik
+    await sock.sendPresenceUpdate('paused', remoteJid);
+  } catch (e) {
+    // Abaikan error presence jika gagal
+  }
+};
 
 // Load plugin awal
 reloadPlugins()
@@ -96,21 +122,20 @@ async function processMessage(sock, messageInfo) {
     console.log(chalk.magenta(`[DEBUG] Lolos preProcess? ->`), shouldContinue);
     if (!shouldContinue) return; 
 
-    // Rate limiter
+    // Rate limiter (Menggunakan sender agar berlaku per-user)
     let truncatedContent = fullText.length > 10 ? fullText.slice(0, 10) + '...' : fullText;
-
     const currentTime = Date.now();
-    if (
-      lastMessageTime[remoteJid] &&
-      currentTime - lastMessageTime[remoteJid] < config.rate_limit &&
-      prefix &&
-      !isOwnerUsers
-    ) {
-      danger(pushName, `Rate limit : ${truncatedContent}`);
-      return;
-    }
-    if (prefix) {
-      lastMessageTime[remoteJid] = currentTime;
+
+    if (prefix && !isOwnerUsers) {
+      const lastTime = lastMessageTime[sender] || 0;
+      
+      if (currentTime - lastTime < config.rate_limit) {
+        danger(pushName, `Rate limit (${sender}): ${truncatedContent}`);
+        return; // Menghentikan eksekusi tanpa update timestamp agar cooldown dihitung dari pesan valid terakhir
+      }
+      
+      // Update timestamp HANYA jika pesan ini lolos rate limit
+      lastMessageTime[sender] = currentTime;
     }
 
     if (truncatedContent.trim() && prefix) {
@@ -152,20 +177,24 @@ async function processMessage(sock, messageInfo) {
       if (plugin.Commands.includes(command)) {
         commandFound = true;
 
-        // Cek apakah perintah ini hanya untuk pengguna premium
         if (plugin.OnlyPremium && !isPremiumUsers && !isOwnerUsers) {
           logTracking(`Handler - Bukan premium (${command})`);
+          await simulateTyping(sock, remoteJid, mess.general.isPremium);
           await sock.sendMessage(remoteJid, { text: mess.general.isPremium }, { quoted: message });
           return;
         }
 
-        // Cek apakah perintah ini hanya untuk owner
         if (plugin.OnlyOwner && !isOwnerUsers) {
           logTracking(`Handler - Bukan Owner (${command})`);
+          await simulateTyping(sock, remoteJid, mess.general.isOwner);
           await sock.sendMessage(remoteJid, { text: mess.general.isOwner }, { quoted: message });
           return;
         }
 
+        // ...
+
+        // 🌟 Bikin simulasi mengetik sebelum plugin dieksekusi
+       
         // 🌟 LOG COMMAND OWNER (Hanya jalan jika config true & pengirim adalah Owner)
 if (logRolePluginToOwner && plugin.OnlyOwner && isOwnerUsers) {
   try {
@@ -238,6 +267,9 @@ if (logRolePluginToOwner && plugin.OnlyOwner && isOwnerUsers) {
             console.error(`Terjadi kesalahan saat mengurangi limit pengguna: ${error.message}`);
           }
         }
+
+await simulateTyping(sock, remoteJid, fullText);
+
 
         const pluginResult = await plugin.handle(sock, messageInfo);
 
