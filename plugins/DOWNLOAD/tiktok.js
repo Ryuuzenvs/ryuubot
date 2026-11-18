@@ -93,11 +93,17 @@ async function handle(sock, messageInfo) {
       sock,
       remoteJid,
       message,
-      `_⚠️ Format Penggunaan:_ \n\n_💬 Contoh:_ _*${prefix + command} linknya*_`
+      `_⚠️ Format Penggunaan:_ \n\n_💬 Contoh:_ _*${prefix + command} <link_tiktok>*_\n_💬 Paksa Kirim File:_ _*${prefix + command} <link_tiktok> --swhd*_`
     );
   }
 
-  const validLink = extractLink(content);
+  // Cek apakah ada flag --swhd di dalam input pesan
+  const args = content.trim().split(/\s+/);
+  const hasSwhdFlag = args.includes("--swhd");
+
+  // Bersihkan teks input dari flag --swhd untuk mengambil URL aslinya
+  const cleanContent = args.filter(arg => arg !== "--swhd").join(" ");
+  const validLink = extractLink(cleanContent);
 
   if (!isTikTokUrl(validLink)) {
     return sendMessageWithQuote(
@@ -105,6 +111,19 @@ async function handle(sock, messageInfo) {
       remoteJid,
       message,
       "URL yang Anda masukkan tidak valid. Pastikan URL berasal dari TikTok."
+    );
+  }
+
+  const isOwnerUser = isOwner(sender);
+  const isPremUser = isPremiumUser(sender);
+
+  // Validasi: Jika user memakai flag --swhd tapi bukan Premium/Owner, tolak / beri peringatan
+  if (hasSwhdFlag && !isPremUser && !isOwnerUser) {
+    return await sendMessageWithQuote(
+      sock,
+      remoteJid,
+      message,
+      `❌ Fitur parameter *--swhd* (Send Without HD/Link limit bypass) hanya khusus untuk pengguna *Premium* dan *Owner*!\n\nKetik *.harga* untuk melihat informasi upgrade.`
     );
   }
 
@@ -133,9 +152,6 @@ async function handle(sock, messageInfo) {
 
       let sizeMB = rawByteSize > 0 ? (rawByteSize / (1024 * 1024)) : 0;
 
-      const isOwnerUser = isOwner(sender);
-      const isPremUser = isPremiumUser(sender);
-
       let allowedSize = LIMIT_SIZE_FREE;
       if (isPremUser) allowedSize = LIMIT_SIZE_PREM;
       if (isOwnerUser) allowedSize = Infinity;
@@ -148,9 +164,10 @@ async function handle(sock, messageInfo) {
       console.log(`Allowed Limit : ${allowedSize} MB`);
       console.log(`Is Owner      : ${isOwnerUser}`);
       console.log(`Is Premium    : ${isPremUser}`);
+      console.log(`Flag --swhd   : ${hasSwhdFlag}`);
       console.log(`=========================\n`);
 
-      // 1. Cek Batas Limit Akun (Role User)
+      // 1. Cek Batas Limit Akun (Role User Berdasarkan Ukuran Maksimal)
       if (sizeMB > allowedSize) {
         console.log(`[TIKTOK RESULT] Blocked by Role Limit (${sizeMB.toFixed(2)} MB > ${allowedSize} MB)`);
         return await sendMessageWithQuote(
@@ -164,30 +181,31 @@ async function handle(sock, messageInfo) {
 ⭐ Premium User : Maks ${LIMIT_SIZE_PREM} MB
 👑 Owner : Unlimited
 
-Video ini melebihi batas akun kamu.
-Ketik *.harga* untuk melihat paket premium.`
+Video ini melebihi batas maksimal akun kamu.`
         );
       }
 
-      // 2. Jika Ukuran > 5MB -> Kirim URL Link saja
-      if (sizeMB > 5) {
-        console.log(`[TIKTOK RESULT] Sending URL Link only (${sizeMB.toFixed(2)} MB > 5 MB)`);
+      // 2. Logika Pengiriman: 
+      // Jika ukuran > 5MB, biasanya dikirim link saja KECUALI user premium/owner menyertakan flag `--swhd`
+      if (sizeMB > 5 && !hasSwhdFlag) {
+        console.log(`[TIKTOK RESULT] Sending URL Link only (${sizeMB.toFixed(2)} MB > 5 MB, --swhd is false)`);
         const linkCaption = `📌 *TikTok Downloader*\n\n` +
           `📄 *Judul:* ${response.title || '-'}\n` +
           `📦 *Ukuran File:* ${sizeMB.toFixed(2)} MB\n\n` +
-          `⚠️ *Ukuran video lebih dari 5 MB.* File tidak dikirim langsung untuk menghemat kuota & RAM server.\n\n` +
+          `⚠️ *Ukuran video lebih dari 5 MB.* File dikirim berupa link untuk menghemat RAM.\n` +
+          `💡 _Tips khusus Premium/Owner:_ Ketik dengan tambahan *--swhd* di akhir perintah jika ingin bot tetap mendownload & mengirim file videonya langsung.\n\n` +
           `🔗 *Download Video via Link:* \n${targetVideo.url}`;
 
         return await sendMessageWithQuote(sock, remoteJid, message, linkCaption);
       }
 
-      // 3. Jika Ukuran <= 5MB -> Kirim Video Langsung
-      console.log(`[TIKTOK RESULT] Sending Video File Directly (${sizeMB.toFixed(2)} MB <= 5 MB)`);
+      // 3. Kirim Video Langsung (Kondisi: Ukuran <= 5MB ATAU ukuran > 5MB tapi flag --swhd aktif oleh Premium/Owner)
+      console.log(`[TIKTOK RESULT] Sending Video File Directly (${sizeMB.toFixed(2)} MB, Force Send via --swhd: ${hasSwhdFlag})`);
       await sock.sendMessage(
         remoteJid,
         {
           video: { url: targetVideo.url },
-          caption: response.title || "_Tanpa Caption_",
+          caption: (response.title || "_Tanpa Caption_") + (hasSwhdFlag ? `\n\n_⚡ [Sent via --swhd bypass]_` : ""),
         },
         { quoted: message }
       );

@@ -2,6 +2,7 @@ import { findUser, updateUser } from "../../lib/users.js";
 
 async function handle(sock, messageInfo) {
   const { remoteJid, message, content, sender, prefix, command } = messageInfo;
+  const chance_win = 0.01;
 
   // 1. Validasi Input Taruhan
   const taruhan = parseInt(content?.trim());
@@ -30,7 +31,7 @@ async function handle(sock, messageInfo) {
 
   // 3. Logic Gacha 50/50
   // Math.random() < 0.5 artinya peluang menang 50%
-  const isWin = Math.random() < 0.5;
+  const isWin = Math.random() < chance_win;
   let finalMoney;
   let responseText;
 

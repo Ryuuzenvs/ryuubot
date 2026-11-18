@@ -1,6 +1,7 @@
 // List command tanpa registrasi
-export const commandWithoutRegister = ['list', 'owner', 'menu', 'claim'];
- 
+export const commandWithoutRegister = [];
+import { simulateTyping, sendWithTyping } from './lib/typingHelper.js'; 
+
 const max_time_simulate = 4000;
 const min_time_simulate = 2500;
 
@@ -37,25 +38,6 @@ let plugins = [];
 
 //helper typing status
 // Helper Simulasi Mengetik Manusia
-const simulateTyping = async (sock, remoteJid, text = '') => {
-  try {
-    // 1. Tampilkan status "sedang mengetik..."
-    await sock.sendPresenceUpdate('composing', remoteJid);
-
-    // 2. Hitung delay realistis berdasarkan panjang teks (min: 1 detik, max: 3.5 detik)
-    const baseDelay = Math.min(Math.max((text.length || 10) * 30, min_time_simulate), max_time_simulate);
-    // Tambahkan sedikit variasi acak (randomness) agar tidak persis sama terus
-    const randomVariation = Math.floor(Math.random() * 500); 
-    const totalDelay = baseDelay + randomVariation;
-
-    await new Promise((resolve) => setTimeout(resolve, totalDelay));
-
-    // 3. Matikan status mengetik
-    await sock.sendPresenceUpdate('paused', remoteJid);
-  } catch (e) {
-    // Abaikan error presence jika gagal
-  }
-};
 
 // Load plugin awal
 reloadPlugins()
@@ -179,15 +161,13 @@ async function processMessage(sock, messageInfo) {
 
         if (plugin.OnlyPremium && !isPremiumUsers && !isOwnerUsers) {
           logTracking(`Handler - Bukan premium (${command})`);
-          await simulateTyping(sock, remoteJid, mess.general.isPremium);
-          await sock.sendMessage(remoteJid, { text: mess.general.isPremium }, { quoted: message });
+         await sendWithTyping(sock, remoteJid, { text: mess.general.isPremium }, { quoted: message });
           return;
         }
 
         if (plugin.OnlyOwner && !isOwnerUsers) {
           logTracking(`Handler - Bukan Owner (${command})`);
-          await simulateTyping(sock, remoteJid, mess.general.isOwner);
-          await sock.sendMessage(remoteJid, { text: mess.general.isOwner }, { quoted: message });
+          await sendWithTyping(sock, remoteJid, { text: mess.general.isOwner }, { quoted: message });
           return;
         }
 
@@ -255,7 +235,7 @@ if (logRolePluginToOwner && plugin.OnlyOwner && isOwnerUsers) {
             const isLimitExceeded = userData.limit < plugin.limitDeduction || userData.limit < 1;
             if (isLimitExceeded) {
               logTracking('Handler - Limit habis ');
-              await sock.sendMessage(remoteJid, { text: mess.general.limit }, { quoted: message });
+await sendWithTyping(sock, remoteJid, { text: mess.general.limit }, { quoted: message });
               return;
             }
 

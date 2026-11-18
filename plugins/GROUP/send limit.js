@@ -149,7 +149,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["sendlimit"],
+  Commands: ["anonim"],
   OnlyPremium: false,
   OnlyOwner: false,
 };

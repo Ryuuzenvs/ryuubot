@@ -248,9 +248,9 @@ export default {
   handle,
   commands: ['hd', 'remini'],
   Commands: ['hd', 'remini'],
-  onlyPremium: false,
-  OnlyPremium: false,
-  onlyOwner: true,
-  OnlyOwner: true,
+  onlyPremium: trye,
+  OnlyPremium: true,
+  onlyOwner: false,
+  OnlyOwner: false,
   limitDeduction: 1,
 };

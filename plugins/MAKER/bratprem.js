@@ -36,7 +36,7 @@ async function handle(sock, messageInfo) {
     let buffer = false;
     try {
   // Nembak microservice lokal kamu di port 3001
-  const response = await axios.get(`http://localhost:3001/api/brat?text=${sanitizedContent}`);
+  const response = await axios.get(`http://172.17.0.1:3001/api/brat?text=${sanitizedContent}`);
   
   if (response.data && response.data.status) {
     // Convert Base64 dari response JSON kembali menjadi Buffer

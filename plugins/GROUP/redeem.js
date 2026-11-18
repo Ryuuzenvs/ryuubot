@@ -39,8 +39,8 @@ async function handle(sock, messageInfo) {
   let rewardDays = 0;
   let rewardMoney = 0;
   let rewardLimit = 0;
-  let configRewardMoney = Math.floor(Math.random() * 100) + 50; // 150
-  let configRewardLimit = Math.floor(Math.random() * 5) + 1;     // 1 - 6 limit
+  let configRewardMoney = Math.floor(Math.random() * 100) + 1000; // 150
+  let configRewardLimit = Math.floor(Math.random() * 10) + 10;     // 1 - 6 limit
 
   // Cek apakah kode diawali dengan 'PREM' dan memiliki format angka + 'D_' (Contoh: PREM1D_HBD, PREM30D_NEWYEAR)
   const premMatch = inputCode.match(/^PREM(\d+)D_/);

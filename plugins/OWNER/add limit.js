@@ -103,7 +103,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["addlimit"],
+  Commands: ["another"],
   OnlyPremium: false,
   OnlyOwner: true,
 };

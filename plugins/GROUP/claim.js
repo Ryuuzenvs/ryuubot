@@ -5,11 +5,11 @@ async function handle(sock, messageInfo) {
   const { remoteJid, message, sender } = messageInfo;
 
   const CLAIM_COOLDOWN_MINUTES = 1; 
-  const MIN_CLAIM_MONEY = 1;
-  const MAX_CLAIM_MONEY = 5;
+  const MIN_CLAIM_MONEY = 10;
+  const MAX_CLAIM_MONEY = 20;
   
   // Persentase dapat limit (16% = 0.16)
-  const LIMIT_CHANCE = 0.16; 
+  const LIMIT_CHANCE = 0.3; 
   const MIN_CLAIM_LIMIT = 1;
   const MAX_CLAIM_LIMIT = 3; // Limit dikit aja biar mahal
 
