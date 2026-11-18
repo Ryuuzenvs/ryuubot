@@ -14,19 +14,24 @@ const DISABLE_UPDATE = process.env.DISABLE_UPDATE === 'true'; // Konversi string
 
 const DESTINATION = 'group'; // group , private, both
 const APIKEY = process.env.APIKEY || ''; // apikey dari autoresbot.com (paket apikey)
+const APIKEY_HD = process.env.APIKEY_HD || ''; // apikey dari autoresbot.com (paket apikey)
 const BOT_AUTO_ORDER_APIKEY = process.env.BOT_API_KEY || 'resbot_secret_key_12345'; // apikey dari ryuu.page.gd/wa-store (paket apikey)
 const URL_BOT_AUTO_ORDER = 'ryuu.page.gd/wa-store/public';
 const ID_GROUP_AUTO_ORDER = '120363429467773375@g.us';
-const RATE_LIMIT = 3000; // 3 detik/chat
-const SIMILARITY = true; // Pencarian kemiripan command (true, false)
+const RATE_LIMIT = 10000; // 3 detik/chat
+const SIMILARITY = false; // Pencarian kemiripan command (true, false)
 const MODE = process.env.MODE || 'production'; // [production, development] (jangan di ubah kecuali anda developer)
+
+//config feature
 const logRolePluginToOwner = false;
+const LIMIT_SIZE_FREE = 3; //size download tiktok downloader
+const LIMIT_SIZE_PREM = 50;
 
 const VERSION = global.version; // don't edit
 const EMAIL = 'dhanakaede@gmail.com';
 const REGION = 'Indonesia';
 const WEBSITE = 'ryuu.page.gd';
-const DATA_OWNER = ['6285293726774','6285188510933', '6285188510932'];
+const DATA_OWNER = ['6285188510933', '6285188510932', '6285293726774', '6285809839062', '6283135476115', '6283840233425'];
 const PREFIX = ['.', '!', '#', '/'];
 
 // Konfiqurasi Chat
@@ -35,7 +40,7 @@ const AUTO_READ = false; // jika true (setiap chat akan di baca/centang 2 biru)
 const AUTO_BACKUP = false; // jika true (setiap restart server, data backup di kirimkan ke wa owner);
 const MIDNIGHT_RESTART = true; // Restart setiap jam 12 malam
 const PRESENCE_UPDATE = ''; // unavailable, available, composing, recording, paused
-const TYPE_WELCOME = 'text'; // 1, 2, 3, 4, 5, 6 text dan random
+const TYPE_WELCOME = 'random'; // 1, 2, 3, 4, 5, 6 text dan random
 const BG_WELCOME2 = 'https://api.autoresbot.com/api/maker/bg-default';
 
 // Konfiqurasi Panel
@@ -61,6 +66,8 @@ const SPAM_ACTION = 'both'; // tindakan setelah warning terpenuhi (kick, block, 
 const STATUS_SCHEDULED = true;
 
 const config = {
+LIMIT_SIZE_FREE: LIMIT_SIZE_FREE,
+LIMIT_SIZE_PREM: LIMIT_SIZE_PREM,
 logRolePluginToOwner: logRolePluginToOwner,
 bot_auto_order_apikey: BOT_AUTO_ORDER_APIKEY,
 url_bot_auto_order: URL_BOT_AUTO_ORDER,
@@ -69,6 +76,7 @@ max_reconnect: MAX_RECONNECT,
 reconnect_delay: RECONNECT_DELAY,
 disableUpdate: DISABLE_UPDATE, // 
   APIKEY,
+APIKEY_HD,
 useCustomPairing: USE_CUSTOM_PAIRING,
   phone_number_bot: NOMOR_BOT,
   type_connection: CONNECTION,

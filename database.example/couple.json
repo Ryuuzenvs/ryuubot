@@ -1,0 +1,86 @@
+[
+  {
+    "id": "couple_1794610700445",
+    "user1": "6285188510933@s.whatsapp.net",
+    "user2": "6285293726774@s.whatsapp.net",
+    "status": "active",
+    "createdAt": "2026-11-13T22:58:20.445Z",
+    "acceptedAt": "2026-11-13T22:58:29.232Z"
+  },
+  {
+    "id": "couple_1794625306898",
+    "user1": "6283135476115@s.whatsapp.net",
+    "user2": "60108088094@s.whatsapp.net",
+    "status": "active",
+    "createdAt": "2026-11-14T03:01:46.898Z",
+    "acceptedAt": "2026-11-15T06:41:48.737Z"
+  },
+  {
+    "id": "couple_1794626387920",
+    "user1": "6283124870103@s.whatsapp.net",
+    "user2": "6281399698495@s.whatsapp.net",
+    "status": "active",
+    "createdAt": "2026-11-14T03:19:47.920Z",
+    "acceptedAt": "2026-11-16T10:28:40.363Z"
+  },
+  {
+    "id": "couple_1794671435276",
+    "user1": "6282363097468@s.whatsapp.net",
+    "user2": "6281514296578@s.whatsapp.net",
+    "status": "active",
+    "createdAt": "2026-11-14T15:50:35.276Z",
+    "acceptedAt": "2026-11-14T15:51:40.620Z"
+  },
+  {
+    "id": "couple_1794714762854",
+    "user1": "6283193004856@s.whatsapp.net",
+    "user2": "6282343119797@s.whatsapp.net",
+    "status": "active",
+    "createdAt": "2026-11-15T03:52:42.854Z",
+    "acceptedAt": "2026-11-15T03:54:01.816Z"
+  },
+  {
+    "id": "couple_1794758278307",
+    "user1": "6285126834679@s.whatsapp.net",
+    "user2": "6282342788587@s.whatsapp.net",
+    "status": "active",
+    "createdAt": "2026-11-15T15:57:58.307Z",
+    "acceptedAt": "2026-11-15T16:09:41.015Z"
+  },
+  {
+    "id": "couple_1794824898341",
+    "user1": "6281513881026@s.whatsapp.net",
+    "user2": "6282156607576@s.whatsapp.net",
+    "status": "pending",
+    "createdAt": "2026-11-16T10:28:18.341Z"
+  },
+  {
+    "id": "couple_1794834092723",
+    "user1": "6283867578275@s.whatsapp.net",
+    "user2": "6289676036551@s.whatsapp.net",
+    "status": "active",
+    "createdAt": "2026-11-16T13:01:32.723Z",
+    "acceptedAt": "2026-11-17T10:37:22.584Z"
+  },
+  {
+    "id": "couple_1794834133926",
+    "user1": "6285650833070@s.whatsapp.net",
+    "user2": "6282334989492@s.whatsapp.net",
+    "status": "pending",
+    "createdAt": "2026-11-16T13:02:13.927Z"
+  },
+  {
+    "id": "couple_1794834250571",
+    "user1": "62882017048878@s.whatsapp.net",
+    "user2": "6283867578275@s.whatsapp.net",
+    "status": "pending",
+    "createdAt": "2026-11-16T13:04:10.571Z"
+  },
+  {
+    "id": "couple_1794836708826",
+    "user1": "6281347757763@s.whatsapp.net",
+    "user2": "6285650833070@s.whatsapp.net",
+    "status": "pending",
+    "createdAt": "2026-11-16T13:45:08.826Z"
+  }
+]

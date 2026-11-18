@@ -17,8 +17,25 @@
   },
   {
     "code": "SPESIAL100MEMBER",
-    "stock": 100,
-    "claimedBy": [],
+    "stock": 94,
+    "claimedBy": [
+      "6285188510933@s.whatsapp.net",
+      "6281991845402@s.whatsapp.net",
+      "6282363097468@s.whatsapp.net",
+      "6283172801140@s.whatsapp.net",
+      "6283867578275@s.whatsapp.net",
+      "6285650833070@s.whatsapp.net"
+    ],
     "createdAt": 1794402837559
+  },
+  {
+    "code": "PREM1D_MALMING14NOV",
+    "stock": 97,
+    "claimedBy": [
+      "6285188510933@s.whatsapp.net",
+      "6281513881026@s.whatsapp.net",
+      "6288231308971@s.whatsapp.net"
+    ],
+    "createdAt": 1794652908844
   }
 ]
