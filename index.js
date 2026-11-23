@@ -8,7 +8,7 @@ console.log(`[✔] Start App ...`);
 // ─── Cek versi Node ───────────────────────────────
 const [major] = process.versions.node.split('.').map(Number);
 
-if (major < 20 || major >= 26) {
+if (major < 20 || major >= 28) {
   console.error(`❌ Script ini hanya kompatibel dengan Node.js versi 20.x`);
   console.error(
     `ℹ️ Jika kamu menjalankan script ini melalui panel, buka menu *Startup*, lalu ubah *Docker Image* ke versi Node.js 20`,

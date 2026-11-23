@@ -30,6 +30,8 @@ const categories = {
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *3 Hari*   :   *Rp.600*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu*   :   *Rp.1.400*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Bulan*   :   *Rp.4.400*
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *6 Bulan* :   *Rp.20.000*
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Tahun* :   *Rp.35.000*
 `.trim(),
 
   paigc: `
@@ -52,6 +54,7 @@ const categories = {
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.2.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Bulan* :   *Rp.7.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *6 Bulan* :   *Rp.30.000*
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Tahun* :   *Rp.55.000*
 `.trim(),
 
   rvo: `
@@ -69,9 +72,22 @@ const categories = {
 ..    ▓⃞💰 *𝗣𝗥𝗜𝗖𝗘𝗟𝗜𝗦𝗧 𝗢𝗪𝗡𝗘𝗥*
 ✦. *OWNER*
 ㅤㅤㅤ .. 📌
-ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.2.000*
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Hari* :   *Rp.500*
+    ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.2.000*
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Bulan* :   *Rp.5.000*
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *6 Bulan* :   *Rp.35.000*
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Tahun* :   *Rp.55.000*
+`.trim(),
+
+jadibot: `
+..    ▓⃞💰 *PRICELIST JADIBOT*
+✦. *Jadibot*
+ㅤㅤㅤ .. 📌
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Hari* :   *Rp.500*
+    ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.2.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Bulan* :   *Rp.5.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *6 Bulan* :   *Rp.30.000*
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Tahun* :   *Rp.55.000*
 `.trim(),
 
   reseller: `

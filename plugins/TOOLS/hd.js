@@ -248,7 +248,7 @@ export default {
   handle,
   commands: ['hd', 'remini'],
   Commands: ['hd', 'remini'],
-  onlyPremium: trye,
+  onlyPremium: true,
   OnlyPremium: true,
   onlyOwner: false,
   OnlyOwner: false,
