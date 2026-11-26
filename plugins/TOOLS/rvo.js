@@ -19,16 +19,26 @@ async function handle(sock, messageInfo) {
 
     // Tampilkan reaksi "Loading"
     await sock.sendMessage(remoteJid, {
-      react: { text: "⏰", key: message.key },
-    });
+  react: { text: "⏰", key: message.key },
+});
 
-    // Download
-    const media = await downloadQuotedMedia(message);
-    const mediaPath = path.join("tmp", media);
+// Download media yang di-quote
+const media = await downloadQuotedMedia(message);
+if (!media) {
+  return await sock.sendMessage(
+    remoteJid,
+    {
+      text: "❌ Gagal mengunduh media. Pastikan pesan yang di-reply adalah media valid (termasuk View Once) yang memiliki mediaKey.",
+    },
+    { quoted: message }
+  );
+}
 
-    if (!fs.existsSync(mediaPath)) {
-      throw new Error("File media tidak ditemukan setelah diunduh.");
-    }
+const mediaPath = path.join("tmp", media);
+
+if (!fs.existsSync(mediaPath)) {
+  throw new Error("File media tidak ditemukan setelah diunduh.");
+}
 
     // Membaca file menjadi Buffer
     const mediaBuffer = fs.readFileSync(mediaPath);
@@ -66,6 +76,8 @@ async function handle(sock, messageInfo) {
       );
       return;
     }
+
+    
   } catch (error) {
     console.error("Kesalahan saat memproses perintah Hd:", error);
 

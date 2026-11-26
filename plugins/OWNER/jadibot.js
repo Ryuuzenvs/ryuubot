@@ -255,7 +255,7 @@ async function handle(sock, messageInfo) {
 
 export default {
   handle,
-  Commands: ["jadibot"],
+  Commands: ["jadiryuubot"],
   OnlyPremium: false,
   OnlyOwner: true,
 };

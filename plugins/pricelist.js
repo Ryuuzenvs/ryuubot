@@ -1,5 +1,8 @@
 import { sendMessageWithMention } from "../lib/utils.js";
 
+// Sesuaikan isi array ini dengan key kategori best seller kamu
+const BEST_SELLER = ["prem","owner","jadibot", "bikinbot", "panel", "custom"];
+
 // Daftar kategori pricelist
 const categories = {
   limit: `
@@ -73,18 +76,18 @@ const categories = {
 ✦. *OWNER*
 ㅤㅤㅤ .. 📌
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Hari* :   *Rp.500*
-    ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.2.000*
+ ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.2.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Bulan* :   *Rp.5.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *6 Bulan* :   *Rp.35.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Tahun* :   *Rp.55.000*
 `.trim(),
 
-jadibot: `
+  jadibot: `
 ..    ▓⃞💰 *PRICELIST JADIBOT*
 ✦. *Jadibot*
 ㅤㅤㅤ .. 📌
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Hari* :   *Rp.500*
-    ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.2.000*
+ ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.2.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Bulan* :   *Rp.5.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *6 Bulan* :   *Rp.30.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Tahun* :   *Rp.55.000*
@@ -94,6 +97,7 @@ jadibot: `
 ..    ▓⃞💰 *𝗣𝗥𝗜𝗖𝗘𝗟𝗜𝗦𝗧 𝗥𝗘𝗦𝗘𝗟𝗟𝗘𝗥*
 ✦. *RESELLER*
 ㅤㅤㅤ .. 📌
+ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Hari* :   *Rp1.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Minggu* :   *Rp.5.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *1 Bulan* :   *Rp.15.000*
 ㅤㅤ ·  ✦ㅤ🖇꯭  ׁ  *6 Bulan* :   *Rp.50.000*
@@ -152,43 +156,60 @@ _(Silahkan hubungi owner untuk cek stok)_
 `.trim()
 };
 
-async function handle(sock, messageInfo) {
-  const { remoteJid, message, content, sender, senderType } = messageInfo;
 
-  // Mengambil query dari input teks persis seperti script Pinterest / TikTok kamu
-  const rawQuery = content ? content.trim() : "";
-  const parts = rawQuery.split(/\s+/);
-  const query = parts[0] ? parts[0].toLowerCase() : "";
 
-  let selectedText = "";
-
-  // Cek apakah argumen pertama cocok dengan salah satu key kategori
-  if (query && categories[query]) {
-    selectedText = `
-${categories[query]}
-
+function buildFooter(sender) {
+  return `
 *─── [ INFORMASI ] ───*
-​- Ingin beli? Ketik *.qris [nominal]*
-​- Butuh bantuan? Ketik *.owner*
-​- Semua transaksi *No Refund*.
+- Ingin beli? Ketik *.qris [nominal]*
+- Butuh bantuan? Ketik *.owner*
+- Lihat semua daftar? Ketik *.pl lengkap*
+- Semua transaksi *No Refund*.
 
 _Hai @${sender.split("@")[0]}, harga di atas dapat berubah sewaktu-waktu._
 `.trim();
-  } else {
-    // Jika tidak ada parameter atau parameter salah, gabungkan semua isi kategori secara otomatis
+}
+
+async function handle(sock, messageInfo) {
+  const { remoteJid, message, content, sender, senderType } = messageInfo;
+
+  // Jika format pesan ".pl lengkap", bagian setelah command ada di argumen pertama/kedua tergantung parser bot.
+  // Kita cek seluruh token agar aman baik saat dipanggil langsung maupun lewat command handler.
+  const rawQuery = content ? content.trim() : "";
+  const parts = rawQuery.split(/\s+/).map((p) => p.toLowerCase());
+
+  const isShowAll = parts.includes("lengkap") || parts.includes("all");
+  const matchedKey = parts.find((p) => Object.prototype.hasOwnProperty.call(categories, p));
+
+  let selectedText = "";
+
+  if (isShowAll) {
     const allCategoriesText = Object.values(categories).join("\n\n");
-    
     selectedText = `
-..    ▓⃞💰 *𝗣𝗥𝗜𝗖𝗘𝗟𝗜𝗦𝗧 𝗟𝗔𝗬𝗔𝗡𝗔𝗡 𝗕𝗢𝗧*
+..    ▓⃞💰 *𝗣𝗥𝗜𝗖𝗘𝗟𝗜𝗦𝗧 𝗟𝗘𝗡𝗚𝗞𝗔𝗣 𝗟𝗔𝗬𝗔𝗡𝗔𝗡 𝗕𝗢𝗧*
 
 ${allCategoriesText}
 
-*─── [ INFORMASI ] ───*
-​- Ingin beli? Ketik *.qris [nominal]*
-​- Butuh bantuan? Ketik *.owner*
-​- Semua transaksi *No Refund*.
+${buildFooter(sender)}
+`.trim();
+  } else if (matchedKey) {
+    selectedText = `
+${categories[matchedKey]}
 
-_Hai @${sender.split("@")[0]}, harga di atas dapat berubah sewaktu-waktu._
+${buildFooter(sender)}
+`.trim();
+  } else {
+    const bestSellerText = BEST_SELLER
+      .filter((key) => Boolean(categories[key]))
+      .map((key) => categories[key])
+      .join("\n\n");
+
+    selectedText = `
+..    ▓⃞💰 *𝗣𝗥𝗜𝗖𝗘𝗟𝗜𝗦𝗧 𝗕𝗘𝗦𝗧 𝗦𝗘𝗟𝗟𝗘𝗥*
+
+${bestSellerText}
+
+${buildFooter(sender)}
 `.trim();
   }
 
